@@ -3,7 +3,7 @@
 
 Litecoin-PoS Core version 0.20.0.0 is now available from:
 
-  <https://github.com/SatoshiLTCP/litecoin-pos/releases/tag/v0.20.0.0/>
+  <https://github.com/litecoinpos/ltcp/releases/tag/v0.20.0.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.

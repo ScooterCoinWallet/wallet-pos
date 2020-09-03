@@ -155,8 +155,8 @@ New settings
 - A new `-asmap` configuration option has been added to diversify the
   node's network connections by mapping IP addresses Autonomous System
   Numbers (ASNs) and then limiting the number of connections made to any
-  single ASN.  See [issue #16599](https://github.com/litecoin-pos/litecoin-pos/issues/16599),
-  [PR #16702](https://github.com/litecoin-pos/litecoin-pos/pull/16702), and the
+  single ASN.  See [issue #16599](https://github.com/litecoinpos/ltcp/issues/16599),
+  [PR #16702](https://github.com/litecoinpos/ltcp/pull/16702), and the
   `litecoin-posd help` for more information.  This option is experimental and
   subject to removal or breaking changes in future releases, so the
   legacy /16 prefix mapping of IP addresses remains the default.  (#16702)

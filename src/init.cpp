@@ -590,7 +590,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/litecoin-pos/litecoin-pos>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/litecoinpos/ltcp>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i").translated, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

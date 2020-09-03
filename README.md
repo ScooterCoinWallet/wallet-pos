@@ -3,7 +3,7 @@ Litecoin PoS Core integration/staging tree
 
 https://litecoinpos.org
 
-What is Litecoin PoS?
+What is Litecoin PoS ?
 ----------------
 
 Litecoin PoS is an experimental digital currency that enables instant payments to

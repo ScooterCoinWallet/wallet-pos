@@ -91,13 +91,10 @@ public:
         consensus.LTCPDiffAdjHeight = 130000;
 
 
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000030a24513b41646");
-
-        
-
+        // The best chain should have at least this much work.      
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000014a3729d1ef68e59");      
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x76cbd30680cf800310f7c6cf99f5ea3d54259d3ae98453dd33b495ae92b184f0"); //block 2064
+        consensus.defaultAssumeValid = uint256S("0xc36b39c7af34d1794326bfd7697c72155d95d4594eb83ce8001993a3d7648dba"); //block 2064
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -152,15 +149,17 @@ public:
                 { 50, uint256S("0x00000002cf301651b95bd43f3c97e871ff2359eef5b7984e90f95e86e4516c1c")},
                 { 414, uint256S("0x000000013fb57ddf19e1b43265fbb42320528f37e481f213e5872117b23153bf")},
                 { 999, uint256S("0x0000000039e329bfbfb2ebe4945617f866aca19534ae76fa64d2713ffa6c90e0")},
-                { 2000, uint256S("0x8637767c4e9b342ccd118dc607d84599af599e143652763a9b7aa032238d46a3")}
+                { 2000, uint256S("0x8637767c4e9b342ccd118dc607d84599af599e143652763a9b7aa032238d46a3")},
+                { 8000, uint256S("0xa267832a992964929bdbb07180d83a11f624b8ff7c7982de1318c064dc539d2c")},
+                { 16000, uint256S("0x989d6efef4aa873931abca998aed0b80f27b957f6e055dc7d82d84c4a4e935da")}
             }
         };
 
         chainTxData = ChainTxData{
-            // Data from RPC: getchaintxstats 1999 8637767c4e9b342ccd118dc607d84599af599e143652763a9b7aa032238d46a3
-            /* nTime    */ 1596436160,
-            /* nTxCount */ 3006,
-            /* dTxRate  */ 0.009325253930017135,
+            // Data from RPC: getchaintxstats 15999 989d6efef4aa873931abca998aed0b80f27b957f6e055dc7d82d84c4a4e935da
+            /* nTime    */ 1598967744,
+            /* nTxCount */ 31165,
+            /* dTxRate  */ 0.01092147945866078,
         };
     }
 };

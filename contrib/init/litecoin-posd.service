@@ -5,23 +5,23 @@
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/bitcoin/litecoin-pos.conf, but keep in mind those explicitly
+# /etc/litecoin-pos/litecoin-pos.conf, but keep in mind those explicitly
 # specified as arguments in ExecStart= will override those in the
 # config file.
 
 [Unit]
-Description=Bitcoin daemon
+Description=Litecoin PoS daemon
 After=network.target
 
 [Service]
 ExecStart=/usr/bin/litecoin-posd -daemon \
                             -pid=/run/litecoin-posd/litecoin-posd.pid \
-                            -conf=/etc/bitcoin/litecoin-pos.conf \
+                            -conf=/etc/litecoin-pos/litecoin-pos.conf \
                             -datadir=/var/lib/litecoin-posd
 
 # Make sure the config directory is readable by the service user
 PermissionsStartOnly=true
-ExecStartPre=/bin/chgrp bitcoin /etc/bitcoin
+ExecStartPre=/bin/chgrp litecoin-pos /etc/litecoin-pos
 
 # Process management
 ####################
@@ -34,16 +34,16 @@ TimeoutStopSec=600
 # Directory creation and permissions
 ####################################
 
-# Run as bitcoin:bitcoin
-User=bitcoin
-Group=bitcoin
+# Run as litecoin-pos:litecoin-pos
+User=litecoin-pos
+Group=litecoin-pos
 
 # /run/litecoin-posd
 RuntimeDirectory=litecoin-posd
 RuntimeDirectoryMode=0710
 
-# /etc/bitcoin
-ConfigurationDirectory=bitcoin
+# /etc/litecoin-pos
+ConfigurationDirectory=litecoin-pos
 ConfigurationDirectoryMode=0710
 
 # /var/lib/litecoin-posd

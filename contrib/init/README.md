@@ -5,7 +5,7 @@ Upstart: litecoin-posd.conf
 OpenRC:  litecoin-posd.openrc
          litecoin-posd.openrcconf
 CentOS:  litecoin-posd.init
-macOS:   org.bitcoin.litecoin-posd.plist
+macOS:   org.litecoin-pos.litecoin-posd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

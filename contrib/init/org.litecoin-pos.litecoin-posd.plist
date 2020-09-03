@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.bitcoin.litecoin-posd</string>
+	<string>org.litecoin-pos.litecoin-posd</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/litecoin-posd</string>

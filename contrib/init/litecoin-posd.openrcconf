@@ -1,7 +1,7 @@
 # /etc/conf.d/litecoin-posd: config file for /etc/init.d/litecoin-posd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/bitcoin/litecoin-pos.conf"
+#BITCOIND_CONFIGFILE="/etc/litecoin-pos/litecoin-pos.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
 #BITCOIND_PIDDIR="/var/run/litecoin-posd"
@@ -13,8 +13,8 @@
 #BITCOIND_DATADIR="/var/lib/litecoin-posd"
 
 # User and group to own litecoin-posd process
-#BITCOIND_USER="bitcoin"
-#BITCOIND_GROUP="bitcoin"
+#BITCOIND_USER="litecoin-pos"
+#BITCOIND_GROUP="litecoin-pos"
 
 # Path to litecoin-posd executable
 #BITCOIND_BIN="/usr/bin/litecoin-posd"

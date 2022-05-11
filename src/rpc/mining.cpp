@@ -443,7 +443,7 @@ static UniValue getstakingstatus(const JSONRPCRequest& request)
     return obj;
 }
 
-// NOTE: Unlike wallet RPC (which use LTCP values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use SCOOT values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
 static UniValue prioritisetransaction(const JSONRPCRequest& request)
 {
             RPCHelpMan{"prioritisetransaction",

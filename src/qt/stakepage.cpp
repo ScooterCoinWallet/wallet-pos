@@ -82,7 +82,7 @@ void StakePage::setWalletModel(WalletModel *model)
         connect(model->getOptionsModel(), &OptionsModel::displayUnitChanged, this, &StakePage::updateDisplayUnit);
     }
 
-    // update the display unit, to not use the default ("LTCP")
+    // update the display unit, to not use the default ("SCOOT")
     updateDisplayUnit();
 }
 

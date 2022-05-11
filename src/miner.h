@@ -222,7 +222,7 @@ int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParam
 
 #ifdef ENABLE_WALLET
 /** Generate a new block, without valid proof-of-work */
-void StakeLTCPs(bool fStake, CWallet *pwallet, CConnman* connman, CTxMemPool* mempool, boost::thread_group*& stakeThread);
+void StakeSCOOTs(bool fStake, CWallet *pwallet, CConnman* connman, CTxMemPool* mempool, boost::thread_group*& stakeThread);
 #endif
 
 #endif // BITCOIN_MINER_H

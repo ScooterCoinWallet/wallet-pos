@@ -15,9 +15,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(LTCP);
-    unitlist.append(mLTCP);
-    unitlist.append(uLTCP);
+    unitlist.append(SCOOT);
+    unitlist.append(mSCOOT);
+    unitlist.append(uSCOOT);
     unitlist.append(SAT);
     return unitlist;
 }
@@ -26,9 +26,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case LTCP:
-    case mLTCP:
-    case uLTCP:
+    case SCOOT:
+    case mSCOOT:
+    case uSCOOT:
     case SAT:
         return true;
     default:
@@ -40,9 +40,9 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case LTCP: return QString("LTCP");
-    case mLTCP: return QString("mLTCP");
-    case uLTCP: return QString::fromUtf8("µLTCP (bits)");
+    case SCOOT: return QString("SCOOT");
+    case mSCOOT: return QString("mSCOOT");
+    case uSCOOT: return QString::fromUtf8("µSCOOT (bits)");
     case SAT: return QString("Satoshi (sat)");
     default: return QString("???");
     }
@@ -52,7 +52,7 @@ QString BitcoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uLTCP: return QString::fromUtf8("bits");
+    case uSCOOT: return QString::fromUtf8("bits");
     case SAT: return QString("sat");
     default: return longName(unit);
     }
@@ -62,9 +62,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case LTCP: return QString("Scootercoin");
-    case mLTCP: return QString("Milli-Scootercoin (1 / 1" THIN_SP_UTF8 "000)");
-    case uLTCP: return QString("Micro-Scootercoin (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SCOOT: return QString("Scootercoin");
+    case mSCOOT: return QString("Milli-Scootercoin (1 / 1" THIN_SP_UTF8 "000)");
+    case uSCOOT: return QString("Micro-Scootercoin (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
@@ -74,9 +74,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case LTCP: return 100000000;
-    case mLTCP: return 100000;
-    case uLTCP: return 100;
+    case SCOOT: return 100000000;
+    case mSCOOT: return 100000;
+    case uSCOOT: return 100;
     case SAT: return 1;
     default: return 100000000;
     }
@@ -86,9 +86,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case LTCP: return 8;
-    case mLTCP: return 5;
-    case uLTCP: return 2;
+    case SCOOT: return 8;
+    case mSCOOT: return 5;
+    case uSCOOT: return 2;
     case SAT: return 0;
     default: return 0;
     }

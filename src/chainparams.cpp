@@ -86,9 +86,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
-        consensus.LTCPRewardMatchStep = 40000;
-        consensus.LTCPRewardMatchHeight = 3 * consensus.LTCPRewardMatchStep;
-        consensus.LTCPDiffAdjHeight = 130000;
+        consensus.SCOOTRewardMatchStep = 40000;
+        consensus.SCOOTRewardMatchHeight = 3 * consensus.SCOOTRewardMatchStep;
+        consensus.SCOOTDiffAdjHeight = 130000;
 
 
         // The best chain should have at least this much work.      
@@ -193,9 +193,9 @@ public:
         consensus.CSVHeight = 1;
         consensus.SegwitHeight = 1;
         consensus.MinBIP9WarningHeight = consensus.SegwitHeight + consensus.nMinerConfirmationWindow;
-        consensus.LTCPRewardMatchStep = 400;
-        consensus.LTCPRewardMatchHeight = 3 * consensus.LTCPRewardMatchStep;
-        consensus.LTCPDiffAdjHeight = 1500;
+        consensus.SCOOTRewardMatchStep = 400;
+        consensus.SCOOTRewardMatchHeight = 3 * consensus.SCOOTRewardMatchStep;
+        consensus.SCOOTDiffAdjHeight = 1500;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 3 * 60; // every 10 blocks
@@ -292,9 +292,9 @@ public:
         consensus.CSVHeight = 432; // CSV activated on regtest (Used in rpc activation tests)
         consensus.SegwitHeight = 0; // SEGWIT is always activated on regtest unless overridden
         consensus.MinBIP9WarningHeight = 0;
-        consensus.LTCPRewardMatchStep = 400;
-        consensus.LTCPRewardMatchHeight = 3 * consensus.LTCPRewardMatchStep;
-        consensus.LTCPDiffAdjHeight = 1500;
+        consensus.SCOOTRewardMatchStep = 400;
+        consensus.SCOOTRewardMatchHeight = 3 * consensus.SCOOTRewardMatchStep;
+        consensus.SCOOTDiffAdjHeight = 1500;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 10 * 3 * 60; // every 10 blocks

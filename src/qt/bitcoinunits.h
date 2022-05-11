@@ -40,9 +40,9 @@ public:
      */
     enum Unit
     {
-        LTCP,
-        mLTCP,
-        uLTCP,
+        SCOOT,
+        mSCOOT,
+        uSCOOT,
         SAT
     };
 

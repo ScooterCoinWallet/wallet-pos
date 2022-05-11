@@ -689,7 +689,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman, CTxMemPool* mempool)
     }
 }
 
-void StakeLTCPs(bool fStake, CWallet *pwallet, CConnman* connman, CTxMemPool* mempool, boost::thread_group*& stakeThread)
+void StakeSCOOTs(bool fStake, CWallet *pwallet, CConnman* connman, CTxMemPool* mempool, boost::thread_group*& stakeThread)
 {
     if (stakeThread != nullptr)
     {

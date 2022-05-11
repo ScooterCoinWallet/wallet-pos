@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-// LTCPTODO Move this to compiler flags
+// SCOOTTODO Move this to compiler flags
 #define BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 #include <boost/assign/list_of.hpp>
 
@@ -35,7 +35,7 @@ uint256 ComputeStakeModifier(const CBlockIndex* pindexPrev, const uint256& kerne
     return Hash(ss.begin(), ss.end());
 }
 
-// LTCP kernel protocol
+// SCOOT kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + blockFrom.nTime + txPrev.vout.hash + txPrev.vout.n + nTime) < bnTarget * nWeight

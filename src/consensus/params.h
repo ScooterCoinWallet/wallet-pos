@@ -65,13 +65,13 @@ struct Params {
     int MinBIP9WarningHeight;
     /** The size of the step going towards reward matching - rewards from
      * both chains, scootercoin and scootercoin pos are coming in sync with steps of this size. */
-    int LTCPRewardMatchStep;
-    /** Block height at which LTCPRewardMatch becomes active - rewards from
+    int SCOOTRewardMatchStep;
+    /** Block height at which SCOOTRewardMatch becomes active - rewards from
      * both chains, scootercoin and scootercoin pos are in sync as of this height. */
-    int LTCPRewardMatchHeight;
-    /** Block height at which LTCPDiffAdj becomes active - difficulty adjustment
+    int SCOOTRewardMatchHeight;
+    /** Block height at which SCOOTDiffAdj becomes active - difficulty adjustment
      * formula is changed so that block times are more reliable. */
-    int LTCPDiffAdjHeight;
+    int SCOOTDiffAdjHeight;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef LITECOIN_POS_H
-#define LITECOIN_POS_H
+#ifndef SCOOTERCOIN_H
+#define SCOOTERCOIN_H
 
 #include <chain.h>
 #include <primitives/transaction.h>
@@ -74,4 +74,4 @@ bool GetMPoSOutputScripts(std::vector<CScript> &mposScroptList, int nHeight, con
 
 bool CreateMPoSOutputs(CMutableTransaction& txNew, int64_t nRewardPiece, int nHeight, const Consensus::Params& consensusParams);
 
-#endif // LITECOIN_POS_H
+#endif // SCOOTERCOIN_H

@@ -22,7 +22,7 @@ public:
 class CScriptNum10
 {
 /**
- * The ScriptNum implementation from Litecoin PoS Core 0.10.0, for cross-comparison.
+ * The ScriptNum implementation from Scootercoin Core 0.10.0, for cross-comparison.
  */
 public:
 

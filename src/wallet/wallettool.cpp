@@ -10,7 +10,7 @@
 namespace WalletTool {
 
 // The standard wallet deleter function blocks on the validation interface
-// queue, which doesn't exist for the litecoin-pos-wallet. Define our own
+// queue, which doesn't exist for the scootercoin-wallet. Define our own
 // deleter here.
 static void WalletToolReleaseWallet(CWallet* wallet)
 {

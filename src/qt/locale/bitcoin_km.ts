@@ -145,10 +145,10 @@
     </message>
 </context>
 <context>
-    <name>LitecoinPoSGUI</name>
+    <name>ScootercoinGUI</name>
     <message>
-        <source>Send coins to a LitecoinPoS address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន LitecoinPoS មួយ</translation>
+        <source>Send coins to a Scootercoin address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Scootercoin មួយ</translation>
     </message>
     </context>
 <context>
@@ -310,6 +310,6 @@
     </message>
     </context>
 <context>
-    <name>litecoin-pos-core</name>
+    <name>scootercoin-core</name>
     </context>
 </TS>

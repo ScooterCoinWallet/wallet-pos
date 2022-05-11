@@ -68,8 +68,8 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>alamat-alamat penerimaan</translation>
     </message>
     <message>
-        <source>These are your LitecoinPoS addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ini adalah alamat LitecoinPoS anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
+        <source>These are your Scootercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ini adalah alamat Scootercoin anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -162,8 +162,8 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>Mengesahkan enkripsi dompet</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINPOSS&lt;/b&gt;!</source>
-        <translation>Amaran: Jika anda enkripkan dompet anda dan hilangkan frasa laluan, anda akan &lt;b&gt;ANDA AKAN HILANGKAN SEMUA LITECOINPOS ANDA&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SCOOTERCOINS&lt;/b&gt;!</source>
+        <translation>Amaran: Jika anda enkripkan dompet anda dan hilangkan frasa laluan, anda akan &lt;b&gt;ANDA AKAN HILANGKAN SEMUA SCOOTERCOIN ANDA&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -222,7 +222,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
 </context>
 <context>
-    <name>LitecoinPoSGUI</name>
+    <name>ScootercoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Tandatangan &amp; mesej...</translation>
@@ -320,8 +320,8 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>Reindexi blok pada cakera...</translation>
     </message>
     <message>
-        <source>Send coins to a LitecoinPoS address</source>
-        <translation>Menghantar koin kepada alamat LitecoinPoS</translation>
+        <source>Send coins to a Scootercoin address</source>
+        <translation>Menghantar koin kepada alamat Scootercoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -356,12 +356,12 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>sulitkan kata laluan milik peribadi anda</translation>
     </message>
     <message>
-        <source>Sign messages with your LitecoinPoS addresses to prove you own them</source>
-        <translation>sahkan mesej bersama alamat litecoin-pos anda untuk menunjukkan alamat ini anda punya</translation>
+        <source>Sign messages with your Scootercoin addresses to prove you own them</source>
+        <translation>sahkan mesej bersama alamat scootercoin anda untuk menunjukkan alamat ini anda punya</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LitecoinPoS addresses</source>
-        <translation>Sahkan mesej untuk memastikan mereka telah ditandatangani dengan alamat LitecoinPoS yang ditentukan</translation>
+        <source>Verify messages to ensure they were signed with specified Scootercoin addresses</source>
+        <translation>Sahkan mesej untuk memastikan mereka telah ditandatangani dengan alamat Scootercoin yang ditentukan</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -381,8 +381,8 @@ Alihkan fail data ke dalam tab semasa</translation>
 </translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and litecoin-pos: URIs)</source>
-        <translation>Request payments (generates QR codes and litecoin-pos: URIs)
+        <source>Request payments (generates QR codes and scootercoin: URIs)</source>
+        <translation>Request payments (generates QR codes and scootercoin: URIs)
 </translation>
     </message>
     <message>
@@ -461,8 +461,8 @@ Alihkan fail data ke dalam tab semasa</translation>
 <context>
     <name>Intro</name>
     <message>
-        <source>LitecoinPoS</source>
-        <translation>LitecoinPoS</translation>
+        <source>Scootercoin</source>
+        <translation>Scootercoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -650,7 +650,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     </context>
 <context>
-    <name>litecoin-pos-core</name>
+    <name>scootercoin-core</name>
     <message>
         <source>Loading wallet...</source>
         <translation>Sedang baca wallet...</translation>

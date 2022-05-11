@@ -30,7 +30,7 @@
         <translation>&amp;Dele</translation>
     </message>
     <message>
-        <source>These are your LitecoinPoS addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Scootercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Hae sunt inscriptiones mittendi pensitationes.  Semper inspice quantitatem et inscriptionem accipiendi antequam nummos mittis.</translation>
     </message>
     <message>
@@ -112,7 +112,7 @@
         <translation>Confirma cifrationem cassidilis</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINPOSS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SCOOTERCOINS&lt;/b&gt;!</source>
         <translation>Monitio: Si cassidile tuum cifras et tesseram amittis, tu &lt;b&gt;AMITTES OMNES TUOS NUMMOS BITOS&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -164,7 +164,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>LitecoinPoSGUI</name>
+    <name>ScootercoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Signa &amp;nuntium...</translation>
@@ -226,8 +226,8 @@
         <translation>Recreans indicem frustorum in disco...</translation>
     </message>
     <message>
-        <source>Send coins to a LitecoinPoS address</source>
-        <translation>Mitte nummos ad inscriptionem LitecoinPoS</translation>
+        <source>Send coins to a Scootercoin address</source>
+        <translation>Mitte nummos ad inscriptionem Scootercoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -262,12 +262,12 @@
         <translation>Cifra claves privatas quae cassidili tui sunt</translation>
     </message>
     <message>
-        <source>Sign messages with your LitecoinPoS addresses to prove you own them</source>
-        <translation>Signa nuntios cum tuis inscriptionibus LitecoinPoS ut demonstres te eas possidere</translation>
+        <source>Sign messages with your Scootercoin addresses to prove you own them</source>
+        <translation>Signa nuntios cum tuis inscriptionibus Scootercoin ut demonstres te eas possidere</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LitecoinPoS addresses</source>
-        <translation>Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus LitecoinPoS</translation>
+        <source>Verify messages to ensure they were signed with specified Scootercoin addresses</source>
+        <translation>Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus Scootercoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -342,8 +342,8 @@
         <translation>Cassidile &lt;b&gt;cifratum&lt;/b&gt; est et iam nunc &lt;b&gt;seratum&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LitecoinPoS can no longer continue safely and will quit.</source>
-        <translation>Error fatalis accidit.  LitecoinPoS nondum pergere tute potest, et exibit.</translation>
+        <source>A fatal error occurred. Scootercoin can no longer continue safely and will quit.</source>
+        <translation>Error fatalis accidit.  Scootercoin nondum pergere tute potest, et exibit.</translation>
     </message>
 </context>
 <context>
@@ -418,8 +418,8 @@
         <translation>Muta inscriptionem mittendi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LitecoinPoS address.</source>
-        <translation>Inscriptio inserta "%1" non valida inscriptio LitecoinPoS est.</translation>
+        <source>The entered address "%1" is not a valid Scootercoin address.</source>
+        <translation>Inscriptio inserta "%1" non valida inscriptio Scootercoin est.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -447,8 +447,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LitecoinPoS</source>
-        <translation>LitecoinPoS</translation>
+        <source>Scootercoin</source>
+        <translation>Scootercoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -499,8 +499,8 @@
         <translation>Cassidile</translation>
     </message>
     <message>
-        <source>Automatically open the LitecoinPoS client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Aperi per se portam clientis LitecoinPoS in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
+        <source>Automatically open the Scootercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Aperi per se portam clientis Scootercoin in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -582,8 +582,8 @@
         <translation>Schema</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LitecoinPoS network after a connection is established, but this process has not completed yet.</source>
-        <translation>Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete Litecoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Scootercoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete Scootercoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
     </message>
     <message>
         <source>Immature:</source>
@@ -597,8 +597,8 @@
 <context>
     <name>PaymentServer</name>
     <message>
-        <source>Cannot start litecoin-pos: click-to-pay handler</source>
-        <translation>LitecoinPoS incipere non potest: cliccare-ad-pensandum handler</translation>
+        <source>Cannot start scootercoin: click-to-pay handler</source>
+        <translation>Scootercoin incipere non potest: cliccare-ad-pensandum handler</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -906,8 +906,8 @@
         <translation>Copia signationem in latibulum systematis</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LitecoinPoS address</source>
-        <translation>Signa nuntium ut demonstres hanc inscriptionem LitecoinPoS a te possessa esse</translation>
+        <source>Sign the message to prove you own this Scootercoin address</source>
+        <translation>Signa nuntium ut demonstres hanc inscriptionem Scootercoin a te possessa esse</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -926,8 +926,8 @@
         <translation>&amp;Verifica Nuntium</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LitecoinPoS address</source>
-        <translation>Verifica nuntium ut cures signatum esse cum specifica inscriptione LitecoinPoS</translation>
+        <source>Verify the message to ensure it was signed with the specified Scootercoin address</source>
+        <translation>Verifica nuntium ut cures signatum esse cum specifica inscriptione Scootercoin</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1337,7 +1337,7 @@
     </message>
     </context>
 <context>
-    <name>litecoin-pos-core</name>
+    <name>scootercoin-core</name>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
         <translation>Hoc est prae-dimittum experimentala aedes - utere eo periculo tuo proprio - nolite utere fodendo vel applicationibus mercatoriis</translation>

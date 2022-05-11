@@ -66,8 +66,8 @@
         <translation>Adresy ôdbiyraniŏ</translation>
     </message>
     <message>
-        <source>These are your LitecoinPoS addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tukej sōm adresy LitecoinPoS na kere posyłŏsz płaty. Dycki wybaduj wielość i adresã ôdbiyrŏcza przed posłaniym mōnet.</translation>
+        <source>These are your Scootercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tukej sōm adresy Scootercoin na kere posyłŏsz płaty. Dycki wybaduj wielość i adresã ôdbiyrŏcza przed posłaniym mōnet.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -160,8 +160,8 @@
         <translation>Przituplikuj szyfrowanie portmanyja</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINPOSS&lt;/b&gt;!</source>
-        <translation>Pozōr: jeźli zaszyfrujesz swōj portmanyj i stracisz hasło &lt;b&gt;STRACISZ WSZYJSKE SWOJE LITECOINPOSY&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SCOOTERCOINS&lt;/b&gt;!</source>
+        <translation>Pozōr: jeźli zaszyfrujesz swōj portmanyj i stracisz hasło &lt;b&gt;STRACISZ WSZYJSKE SWOJE SCOOTERCOINY&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -220,7 +220,7 @@
     </message>
 </context>
 <context>
-    <name>LitecoinPoSGUI</name>
+    <name>ScootercoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Szkryftnij &amp;wiadōmość</translation>
@@ -322,8 +322,8 @@
         <translation>Proxy je &lt;b&gt;zapuszczone&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a LitecoinPoS address</source>
-        <translation>Poślij mōnety na adresã LitecoinPoS</translation>
+        <source>Send coins to a Scootercoin address</source>
+        <translation>Poślij mōnety na adresã Scootercoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -358,12 +358,12 @@
         <translation>Szyfruj klucze prywatne, kere sōm we twojim portmanyju</translation>
     </message>
     <message>
-        <source>Sign messages with your LitecoinPoS addresses to prove you own them</source>
+        <source>Sign messages with your Scootercoin addresses to prove you own them</source>
         <translation>Podpisz wiadōmości swojōm adresōm coby dowiyść jejich posiadanie</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LitecoinPoS addresses</source>
-        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm LitecoinPoS.</translation>
+        <source>Verify messages to ensure they were signed with specified Scootercoin addresses</source>
+        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm Scootercoin.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -382,8 +382,8 @@
         <translation>Lajsta szkart</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and litecoin-pos: URIs)</source>
-        <translation>Żōndej płatu (gyneruje kod QR jak tyż URI litecoin-pos:)</translation>
+        <source>Request payments (generates QR codes and scootercoin: URIs)</source>
+        <translation>Żōndej płatu (gyneruje kod QR jak tyż URI scootercoin:)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -398,8 +398,8 @@
         <translation>Ôp&amp;cyje piski nakŏzań</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LitecoinPoS network</source>
-        <translation><numerusform>%n aktywne połōnczynie do necu LitecoinPoS</numerusform><numerusform>%n aktywnych połōnczyń do necu LitecoinPoS</numerusform><numerusform>%n aktywnych skuplowań do necu LitecoinPoS</numerusform></translation>
+        <source>%n active connection(s) to Scootercoin network</source>
+        <translation><numerusform>%n aktywne połōnczynie do necu Scootercoin</numerusform><numerusform>%n aktywnych połōnczyń do necu Scootercoin</numerusform><numerusform>%n aktywnych skuplowań do necu Scootercoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -446,7 +446,7 @@
         <translation>&amp;Adresy posyłaniŏ</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LitecoinPoS command-line options</source>
+        <source>Show the %1 help message to get a list with possible Scootercoin command-line options</source>
         <translation>Pokŏż pōmoc %1 coby zobŏczyć wykŏz wszyjskich ôpcyji piski nakŏzań.</translation>
     </message>
     <message>
@@ -530,8 +530,8 @@
         <translation>Portmanyj je &lt;b&gt;zaszyfrowany&lt;/b&gt; i terŏźnie &lt;b&gt;zaszperowany&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LitecoinPoS can no longer continue safely and will quit.</source>
-        <translation>Przitrefiōł sie krytyczny feler. LitecoinPoS niy poradzi kōntynuować bezpiycznie i ôstanie zawrzity.</translation>
+        <source>A fatal error occurred. Scootercoin can no longer continue safely and will quit.</source>
+        <translation>Przitrefiōł sie krytyczny feler. Scootercoin niy poradzi kōntynuować bezpiycznie i ôstanie zawrzity.</translation>
     </message>
 </context>
 <context>
@@ -726,8 +726,8 @@
         <translation>Edytuj adresã posyłaniŏ</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LitecoinPoS address.</source>
-        <translation>Wkludzōnŏ adresa "%1" niyma nŏleżnōm adresōm LitecoinPoS.</translation>
+        <source>The entered address "%1" is not a valid Scootercoin address.</source>
+        <translation>Wkludzōnŏ adresa "%1" niyma nŏleżnōm adresōm Scootercoin.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -815,8 +815,8 @@
         <translation>Użyj ôbranego folderu datōw</translation>
     </message>
     <message>
-        <source>LitecoinPoS</source>
-        <translation>LitecoinPoS</translation>
+        <source>Scootercoin</source>
+        <translation>Scootercoin</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -827,8 +827,8 @@
         <translation>Kole %1 GB datōw ôstanie spamiyntane w tym katalogu.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the LitecoinPoS block chain.</source>
-        <translation>%1 sebiere i spamiyntŏ kopijõ kety blokōw LitecoinPoS.</translation>
+        <source>%1 will download and store a copy of the Scootercoin block chain.</source>
+        <translation>%1 sebiere i spamiyntŏ kopijõ kety blokōw Scootercoin.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -858,12 +858,12 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the litecoin-pos network, as detailed below.</source>
-        <translation>Świyże transakcyje mogōm niy być jeszcze widzialne, a tedyć saldo portmanyja może być niynŏleżne. Te detale bydōm nŏleżne, kej portmanyj zakōńczy synchrōnizacyjõ z necym litecoin-pos, zgodnie z miyniōnym ôpisym.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the scootercoin network, as detailed below.</source>
+        <translation>Świyże transakcyje mogōm niy być jeszcze widzialne, a tedyć saldo portmanyja może być niynŏleżne. Te detale bydōm nŏleżne, kej portmanyj zakōńczy synchrōnizacyjõ z necym scootercoin, zgodnie z miyniōnym ôpisym.</translation>
     </message>
     <message>
-        <source>Attempting to spend litecoin-poss that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Prōba wydaniŏ litecoin-posōw kere niy sōm jeszcze wyświytlōne za transakcyjŏ ôstanie ôdciepniyntŏ bez nec.</translation>
+        <source>Attempting to spend scootercoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Prōba wydaniŏ scootercoinōw kere niy sōm jeszcze wyświytlōne za transakcyjŏ ôstanie ôdciepniyntŏ bez nec.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1007,8 +1007,8 @@
         <translation>&amp;Wydej niyprzituplowanõ wydŏwkã</translation>
     </message>
     <message>
-        <source>Automatically open the LitecoinPoS client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Autōmatycznie ôdewrzij port klijynta LitecoinPoS na routerze. Ta ôpcyjŏ funguje ino jeźli twōj router podpiyrŏ UPnP i je ôno zapuszczone.</translation>
+        <source>Automatically open the Scootercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Autōmatycznie ôdewrzij port klijynta Scootercoin na routerze. Ta ôpcyjŏ funguje ino jeźli twōj router podpiyrŏ UPnP i je ôno zapuszczone.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1023,8 +1023,8 @@
         <translation>Zwōl na skuplowania przichodzōnce</translation>
     </message>
     <message>
-        <source>Connect to the LitecoinPoS network through a SOCKS5 proxy.</source>
-        <translation>Skupluj sie z necym LitecoinPoS bez SOCKS5 proxy.</translation>
+        <source>Connect to the Scootercoin network through a SOCKS5 proxy.</source>
+        <translation>Skupluj sie z necym Scootercoin bez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1055,8 +1055,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the LitecoinPoS network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Skupluj sie z necym LitecoinPoS ze pōmocōm ôsobnego proxy SOCKS5 dlŏ necu TOR</translation>
+        <source>Connect to the Scootercoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Skupluj sie z necym Scootercoin ze pōmocōm ôsobnego proxy SOCKS5 dlŏ necu TOR</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1102,8 +1102,8 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LitecoinPoS network after a connection is established, but this process has not completed yet.</source>
-        <translation>Wyświytlanŏ informacyjŏ może być niyterŏźnŏ. Twōj portmanyj synchrōnizuje sie autōmatycznie z necym litecoin-pos zarŏz po tym, jak zrychtowane je skuplowanie, ale proces tyn niy ôstoł jeszcze skōńczōny.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Scootercoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Wyświytlanŏ informacyjŏ może być niyterŏźnŏ. Twōj portmanyj synchrōnizuje sie autōmatycznie z necym scootercoin zarŏz po tym, jak zrychtowane je skuplowanie, ale proces tyn niy ôstoł jeszcze skōńczōny.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1137,8 +1137,8 @@
         <translation>Bedynōng URI</translation>
     </message>
     <message>
-        <source>'litecoin-pos://' is not a valid URI. Use 'litecoin-pos:' instead.</source>
-        <translation>'litecoin-pos://' to niyma nŏleżne URI. Użyj 'litecoin-pos:'.</translation>
+        <source>'scootercoin://' is not a valid URI. Use 'scootercoin:' instead.</source>
+        <translation>'scootercoin://' to niyma nŏleżne URI. Użyj 'scootercoin:'.</translation>
     </message>
     </context>
 <context>
@@ -1163,8 +1163,8 @@
         <translation>Kwota</translation>
     </message>
     <message>
-        <source>Enter a LitecoinPoS address (e.g. %1)</source>
-        <translation>Wkludź adresã LitecoinPoS (bp. %1)</translation>
+        <source>Enter a Scootercoin address (e.g. %1)</source>
+        <translation>Wkludź adresã Scootercoin (bp. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1376,8 +1376,8 @@
         <translation>&amp;Etyketa:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LitecoinPoS network.</source>
-        <translation>Ôpcyjōnalnŏ wiadōmość do prziwstōniŏ do żōndaniŏ płatu, kerŏ bydzie wyświytlanŏ, kej żōndanie ôstanie ôdewrzōne. Napōmniynie: wiadōmość ta niy ôstanie wysłanŏ z płatym w nec LitecoinPoS.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Scootercoin network.</source>
+        <translation>Ôpcyjōnalnŏ wiadōmość do prziwstōniŏ do żōndaniŏ płatu, kerŏ bydzie wyświytlanŏ, kej żōndanie ôstanie ôdewrzōne. Napōmniynie: wiadōmość ta niy ôstanie wysłanŏ z płatym w nec Scootercoin.</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -1581,8 +1581,8 @@
         <translation>Utworzynie transakcyje niy podarziło sie!</translation>
     </message>
     <message>
-        <source>Warning: Invalid LitecoinPoS address</source>
-        <translation>Pozōr: niynŏleżnŏ adresa LitecoinPoS</translation>
+        <source>Warning: Invalid Scootercoin address</source>
+        <translation>Pozōr: niynŏleżnŏ adresa Scootercoin</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -1600,8 +1600,8 @@
         <translation>&amp;Etyketa:</translation>
     </message>
     <message>
-        <source>The LitecoinPoS address to send the payment to</source>
-        <translation>Adresa LitecoinPoS, na kerõ chcesz posłać płat</translation>
+        <source>The Scootercoin address to send the payment to</source>
+        <translation>Adresa Scootercoin, na kerõ chcesz posłać płat</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1620,8 +1620,8 @@
         <translation>Wiadōmość:</translation>
     </message>
     <message>
-        <source>A message that was attached to the litecoin-pos: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LitecoinPoS network.</source>
-        <translation>Wiadōmość, kerŏ ôstała prziwstōnŏ do URI litecoin-pos:, kerŏ bydzie przechowowanŏ z transakcyjōm w cylach informacyjnych. Napōmniynie: Ta wiadōmość niy bydzie rozszyrzowanŏ w necu LitecoinPoS.</translation>
+        <source>A message that was attached to the scootercoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Scootercoin network.</source>
+        <translation>Wiadōmość, kerŏ ôstała prziwstōnŏ do URI scootercoin:, kerŏ bydzie przechowowanŏ z transakcyjōm w cylach informacyjnych. Napōmniynie: Ta wiadōmość niy bydzie rozszyrzowanŏ w necu Scootercoin.</translation>
     </message>
     </context>
 <context>
@@ -1877,7 +1877,7 @@
     </message>
 </context>
 <context>
-    <name>litecoin-pos-core</name>
+    <name>scootercoin-core</name>
     <message>
         <source>The %s developers</source>
         <translation>Twōrcy %s</translation>

@@ -3,15 +3,15 @@
 *.exe
 *.pdb
 src/bitcoin
-src/litecoin-pos
-src/litecoin-posd
-src/litecoin-pos-cli
-src/litecoin-pos-tx
-src/litecoin-pos-wallet
+src/scootercoin
+src/scootercoind
+src/scootercoin-cli
+src/scootercoin-tx
+src/scootercoin-wallet
 src/test/test_bitcoin
 src/qt/test/test_bitcoin-qt
-src/test/test_litecoin-pos
-src/qt/test/test_litecoin-pos-qt
+src/test/test_scootercoin
+src/qt/test/test_scootercoin-qt
 
 # autoreconf
 Makefile.in
@@ -37,8 +37,8 @@ configure
 libtool
 src/config/bitcoin-config.h
 src/config/bitcoin-config.h.in
-src/config/litecoin-pos-config.h
-src/config/litecoin-pos-config.h.in
+src/config/scootercoin-config.h
+src/config/scootercoin-config.h.in
 src/config/stamp-h1
 src/obj
 share/setup.nsi
@@ -51,11 +51,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/litecoin-pos-qt.config
-src/qt/litecoin-pos-qt.creator
-src/qt/litecoin-pos-qt.creator.user
-src/qt/litecoin-pos-qt.files
-src/qt/litecoin-pos-qt.includes
+src/qt/scootercoin-qt.config
+src/qt/scootercoin-qt.creator
+src/qt/scootercoin-qt.creator.user
+src/qt/scootercoin-qt.files
+src/qt/scootercoin-qt.includes
 
 .deps
 .dirstamp
@@ -92,8 +92,8 @@ src/qt/litecoin-pos-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/litecoin-pos-qt
-Litecoin-POS-Qt.app
+src/qt/scootercoin-qt
+Scootercoin-Qt.app
 background.tiff*
 !src/qt/test/Makefile
 !src/qt/Makefile
@@ -103,7 +103,7 @@ Makefile.am.user
 # Unit-tests
 Makefile.test
 bitcoin-qt_test
-litecoin-pos-qt_test
+scootercoin-qt_test
 
 # Resources cpp
 qrc_*.cpp

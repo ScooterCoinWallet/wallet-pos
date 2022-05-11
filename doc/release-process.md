@@ -143,7 +143,7 @@ NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from 
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Litecoin-PoS Core for Linux, Windows, and macOS:
+### Build and sign Scootercoin Core for Linux, Windows, and macOS:
 
     pushd ./gitian-builder
     ./bin/gbuild --num-make 2 --memory 3000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
@@ -304,14 +304,14 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
 - Update bitcoin.org version
 
-  - First, check to see if the Litecoin-PoS.org maintainers have prepared a
+  - First, check to see if the Scootercoin.org maintainers have prepared a
     release: https://github.com/bitcoin-dot-org/bitcoin.org/labels/Core
 
       - If they have, it will have previously failed their Travis CI
         checks because the final release files weren't uploaded.
         Trigger a Travis CI rebuild---if it passes, merge.
 
-  - If they have not prepared a release, follow the Litecoin-PoS.org release
+  - If they have not prepared a release, follow the Scootercoin.org release
     instructions: https://github.com/bitcoin-dot-org/bitcoin.org/blob/master/docs/adding-events-release-notes-and-alerts.md#release-notes
 
   - After the pull request is merged, the website will automatically show the newest version within 15 minutes, as well
@@ -328,7 +328,7 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
   - Update packaging repo
 
-      - Push the flatpak to flathub, e.g. https://github.com/flathub/org.bitcoincore.litecoin-pos-qt/pull/2
+      - Push the flatpak to flathub, e.g. https://github.com/flathub/org.bitcoincore.scootercoin-qt/pull/2
 
       - Push the latest version to master (if applicable), e.g. https://github.com/bitcoin-core/packaging/pull/32
 
@@ -361,11 +361,11 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
   - bitcoin-dev and bitcoin-core-dev mailing list
 
-  - Litecoin-PoS Core announcements list https://bitcoincore.org/en/list/announcements/join/
+  - Scootercoin Core announcements list https://bitcoincore.org/en/list/announcements/join/
 
   - Update title of #bitcoin on Freenode IRC
 
-  - Optionally twitter, reddit /r/Litecoin-PoS, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/Scootercoin, ... but this will usually sort out itself
 
   - Celebrate
 

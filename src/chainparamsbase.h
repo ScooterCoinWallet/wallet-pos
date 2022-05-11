@@ -9,8 +9,8 @@
 #include <string>
 
 /**
- * CBaseChainParams defines the base parameters (shared between litecoin-pos-cli and litecoin-posd)
- * of a given instance of the Litecoin PoS system.
+ * CBaseChainParams defines the base parameters (shared between scootercoin-cli and scootercoind)
+ * of a given instance of the Scootercoin system.
  */
 class CBaseChainParams
 {

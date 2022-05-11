@@ -45,7 +45,7 @@ Some prebuilt x64 versions of Qt can be downloaded from [here](https://github.co
 
 To determine which Qt prebuilt version to download open the `.appveyor.yml` file and note the `QT_DOWNLOAD_URL`. When extracting the zip file the destination path must be set to `C:\`. This is due to the way that Qt includes, libraries and tools use internal paths.
 
-To build Bitcoin Core without Qt unload or disable the `litecoin-pos-qt`, `libbitcoin_qt` and `test_bitcoin-qt` projects.
+To build Bitcoin Core without Qt unload or disable the `scootercoin-qt`, `libbitcoin_qt` and `test_bitcoin-qt` projects.
 
 Building
 ---------------------

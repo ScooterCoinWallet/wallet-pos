@@ -288,6 +288,11 @@ public:
     {
         return *phashBlock;
     }
+	
+    uint256 GetBlockPoWHash() const
+    {
+        return GetBlockHeader().GetPoWHash();
+    }
 
     /**
      * Check whether this block's and all previous blocks' transactions have been

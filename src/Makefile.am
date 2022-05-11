@@ -82,18 +82,18 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += litecoin-posd
+  bin_PROGRAMS += scootercoind
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += litecoin-pos-cli
+  bin_PROGRAMS += scootercoin-cli
 endif
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += litecoin-pos-tx
+  bin_PROGRAMS += scootercoin-tx
 endif
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += litecoin-pos-wallet
+  bin_PROGRAMS += scootercoin-wallet
 endif
 endif
 
@@ -264,7 +264,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between litecoin-posd and litecoin-pos-qt
+# server: shared between scootercoind and scootercoin-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
 # libbitcoin_common or libbitcoin_util libraries, instead.
@@ -340,7 +340,7 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between litecoin-posd and litecoin-pos-qt, but only linked
+# wallet: shared between scootercoind and scootercoin-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -388,6 +388,9 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/poly1305.cpp \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
+  crypto/scrypt.cpp \
+  crypto/scrypt-sse2.cpp \
+  crypto/scrypt.h \
   crypto/sha1.cpp \
   crypto/sha1.h \
   crypto/sha256.cpp \
@@ -456,7 +459,7 @@ libbitcoin_consensus_a_SOURCES = \
   util/strencodings.h \
   version.h
 
-# common: shared between litecoin-posd, and litecoin-pos-qt and non-server tools
+# common: shared between scootercoind, and scootercoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -535,7 +538,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between litecoin-pos-cli and litecoin-pos-qt
+# cli: shared between scootercoin-cli and scootercoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -547,17 +550,17 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# litecoin-posd binary #
-litecoin_posd_SOURCES = bitcoind.cpp
-litecoin_posd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-litecoin_posd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-litecoin_posd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# scootercoind binary #
+scootercoind_SOURCES = bitcoind.cpp
+scootercoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+scootercoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+scootercoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-litecoin_posd_SOURCES += bitcoind-res.rc
+scootercoind_SOURCES += bitcoind-res.rc
 endif
 
-litecoin_posd_LDADD = \
+scootercoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -571,38 +574,38 @@ litecoin_posd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-litecoin_posd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+scootercoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# litecoin-pos-cli binary #
-litecoin_pos_cli_SOURCES = bitcoin-cli.cpp
-litecoin_pos_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-litecoin_pos_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-litecoin_pos_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# scootercoin-cli binary #
+scootercoin_cli_SOURCES = bitcoin-cli.cpp
+scootercoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+scootercoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+scootercoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-litecoin_pos_cli_SOURCES += bitcoin-cli-res.rc
+scootercoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-litecoin_pos_cli_LDADD = \
+scootercoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-litecoin_pos_cli_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+scootercoin_cli_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# litecoin-pos-tx binary #
-litecoin_pos_tx_SOURCES = bitcoin-tx.cpp
-litecoin_pos_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-litecoin_pos_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-litecoin_pos_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# scootercoin-tx binary #
+scootercoin_tx_SOURCES = bitcoin-tx.cpp
+scootercoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+scootercoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+scootercoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-litecoin_pos_tx_SOURCES += bitcoin-tx-res.rc
+scootercoin_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-litecoin_pos_tx_LDADD = \
+scootercoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -610,20 +613,20 @@ litecoin_pos_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-litecoin_pos_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+scootercoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# litecoin-pos-wallet binary #
-litecoin_pos_wallet_SOURCES = bitcoin-wallet.cpp
-litecoin_pos_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-litecoin_pos_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-litecoin_pos_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# scootercoin-wallet binary #
+scootercoin_wallet_SOURCES = bitcoin-wallet.cpp
+scootercoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+scootercoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+scootercoin_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-litecoin_pos_wallet_SOURCES += bitcoin-wallet-res.rc
+scootercoin_wallet_SOURCES += bitcoin-wallet-res.rc
 endif
 
-litecoin_pos_wallet_LDADD = \
+scootercoin_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_SERVER) \
@@ -638,7 +641,7 @@ litecoin_pos_wallet_LDADD = \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
-litecoin_pos_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS)
+scootercoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS)
 #
 
 # bitcoinconsensus library #

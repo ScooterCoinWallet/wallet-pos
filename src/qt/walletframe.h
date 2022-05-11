@@ -21,9 +21,9 @@ QT_END_NAMESPACE
 
 /**
  * A container for embedding all wallet-related
- * controls into LitecoinPosGUI. The purpose of this class is to allow future
+ * controls into ScootercoinGUI. The purpose of this class is to allow future
  * refinements of the wallet controls with minimal need for further
- * modifications to LitecoinPosGUI, thus greatly simplifying merges while
+ * modifications to ScootercoinGUI, thus greatly simplifying merges while
  * reducing the risk of breaking top-level stuff.
  */
 class WalletFrame : public QFrame

@@ -1,7 +1,7 @@
 Translation Strings Policy
 ===========================
 
-This document provides guidelines for internationalization of the Litecoin-PoS Core software.
+This document provides guidelines for internationalization of the Scootercoin Core software.
 
 How to translate?
 ------------------
@@ -75,10 +75,10 @@ In Qt code, use tr's third argument for optional plurality. For example:
 This adds `<numerusform>`s to the respective `.ts` file, which can be translated separately depending on the language. In English, this is simply:
 
     <message numerus="yes">
-        <source>%n active connection(s) to Litecoin-PoS network</source>
+        <source>%n active connection(s) to Scootercoin network</source>
         <translation>
-            <numerusform>%n active connection to Litecoin-PoS network</numerusform>
-            <numerusform>%n active connections to Litecoin-PoS network</numerusform>
+            <numerusform>%n active connection to Scootercoin network</numerusform>
+            <numerusform>%n active connections to Scootercoin network</numerusform>
         </translation>
     </message>
 

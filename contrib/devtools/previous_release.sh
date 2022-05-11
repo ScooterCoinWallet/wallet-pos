@@ -120,9 +120,9 @@ pushd "$TARGET" || exit 1
           make
           # Move binaries, so they're in the same place as in the release download:
           mkdir bin
-          mv src/litecoin-posd src/litecoin-pos-cli src/litecoin-pos-tx bin
+          mv src/scootercoind src/scootercoin-cli src/scootercoin-tx bin
           if [ "$FUNCTIONAL_TESTS" -eq "0" ]; then
-            mv src/qt/litecoin-pos-qt bin
+            mv src/qt/scootercoin-qt bin
           fi
         }
         popd || exit 1

@@ -54,7 +54,7 @@ QString BitcoinAddressTypes::description(int addressType)
 {
     switch(addressType)
     {
-    case LEGACY: return QString("Legacy Litecoin PoS address. P2PKH");
+    case LEGACY: return QString("Legacy Scootercoin address. P2PKH");
     case NESTED_SEGWIT: return QString("Nested Segwit address. P2SH");
     case NATIVE_SEGWIT: return QString("Native Segwit address. P2WPKH");
     default: return QString("???");

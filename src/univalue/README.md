@@ -14,7 +14,7 @@ This class is aligned with the JSON standard, [RFC
 
 ## Library usage
 
-This is a fork of univalue used by Litecoin PoS Core. It is not maintained for usage
+This is a fork of univalue used by Scootercoin Core. It is not maintained for usage
 by other projects. Notably, the API may break in non-backward-compatible ways.
 
 Other projects looking for a maintained library should use the upstream

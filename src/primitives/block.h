@@ -19,7 +19,167 @@
  */
 
 // Base class for block header, used to serialize the header without signature
-// Workaround due to removing serialization templates in Litecoin PoS Core 0.18
+// Workaround due to removing serialization templates in Scootercoin Core 0.18
+
+class CBlockHeaderBasePoW
+{
+public:
+    // header without signature
+    int32_t nVersion;
+    uint256 hashPrevBlock;
+    uint256 hashMerkleRoot;
+    uint32_t nTime;
+    uint32_t nBits;
+    uint32_t nNonce;
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(this->nVersion);
+        READWRITE(hashPrevBlock);
+        READWRITE(hashMerkleRoot);
+        READWRITE(nTime);
+        READWRITE(nBits);
+        READWRITE(nNonce);
+    }
+};
+
+class CBlockHeaderPoW : public CBlockHeaderBasePoW
+{
+public:
+    // header
+    std::vector<unsigned char> vchBlockSig;
+
+    CBlockHeaderPoW()
+    {
+        SetNull();
+    }
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITE(this->nVersion);
+        READWRITE(hashPrevBlock);
+        READWRITE(hashMerkleRoot);
+        READWRITE(nTime);
+        READWRITE(nBits);
+        READWRITE(nNonce);
+    }
+
+    void SetNull()
+    {
+        nVersion = 0;
+        hashPrevBlock.SetNull();
+        hashMerkleRoot.SetNull();
+        nTime = 0;
+        nBits = 0;
+        nNonce = 0;
+    }
+
+    bool IsNull() const
+    {
+        return (nBits == 0);
+    }
+
+    uint256 GetHash() const;
+	
+	uint256 GetPoWHash() const;
+
+    int64_t GetBlockTime() const
+    {
+        return (int64_t)nTime;
+    }
+
+    // ppcoin: two types of block: proof-of-work or proof-of-stake
+    virtual bool IsProofOfStake() const
+    {
+        return false;
+    }
+
+    virtual bool IsProofOfWork() const
+    {
+        return true;
+    }
+    
+    virtual uint32_t StakeTime() const
+    {
+        uint32_t ret = 0;
+        return ret;
+    }
+
+    CBlockHeaderPoW& operator=(const CBlockHeaderPoW& other)
+    {
+        if (this != &other)
+        {
+            this->nVersion       = other.nVersion;
+            this->hashPrevBlock  = other.hashPrevBlock;
+            this->hashMerkleRoot = other.hashMerkleRoot;
+            this->nTime          = other.nTime;
+            this->nBits          = other.nBits;
+            this->nNonce         = other.nNonce;
+        }
+        return *this;
+    }
+};
+
+class CBlockPoW : public CBlockHeaderPoW
+{
+public:
+    // network and disk
+    std::vector<CTransactionRef> vtx;
+
+    // memory only
+    mutable bool fChecked;
+
+    CBlockPoW()
+    {
+        SetNull();
+    }
+
+    CBlockPoW(const CBlockHeaderPoW &header)
+    {
+        SetNull();
+        *(static_cast<CBlockHeaderPoW*>(this)) = header;
+    }
+
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action) {
+        READWRITEAS(CBlockHeaderPoW, *this);
+        READWRITE(vtx);
+    }
+
+    void SetNull()
+    {
+        CBlockHeaderPoW::SetNull();
+        vtx.clear();
+        fChecked = false;
+    }
+
+    CBlockHeaderPoW GetBlockHeader() const
+    {
+        CBlockHeaderPoW block;
+        block.nVersion       = nVersion;
+        block.hashPrevBlock  = hashPrevBlock;
+        block.hashMerkleRoot = hashMerkleRoot;
+        block.nTime          = nTime;
+        block.nBits          = nBits;
+        block.nNonce         = nNonce;
+        return block;
+    }
+
+    std::pair<COutPoint, unsigned int> GetProofOfStake() const
+    {
+        return std::make_pair(COutPoint(), (unsigned int)0);
+    }
+
+    std::string ToString() const;
+};
+
+
 class CBlockHeaderBase
 {
 public:
@@ -90,6 +250,8 @@ public:
     }
 
     uint256 GetHash() const;
+	
+    uint256 GetPoWHash() const;
 
     uint256 GetHashWithoutSign() const;
 
@@ -133,6 +295,19 @@ public:
             this->prevoutStake   = other.prevoutStake;
         }
         return *this;
+    }
+	
+	CBlockHeaderPoW GetPoW() const
+    {
+		CBlockHeaderPoW block;
+		block.SetNull();
+        block.nVersion       = nVersion;
+        block.hashPrevBlock  = hashPrevBlock;
+        block.hashMerkleRoot = hashMerkleRoot;
+        block.nTime          = nTime;
+        block.nBits          = nBits;
+        block.nNonce         = nNonce;
+        return block;
     }
 };
 
@@ -193,6 +368,8 @@ public:
 
     std::string ToString() const;
 };
+
+
 
 /** Describes a place in the block chain to another node such that if the
  * other node doesn't have the same branch, it can find a recent common trunk.

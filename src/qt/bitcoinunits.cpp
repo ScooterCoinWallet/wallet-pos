@@ -62,9 +62,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case LTCP: return QString("Litecoin-PoS");
-    case mLTCP: return QString("Milli-Litecoin-PoS (1 / 1" THIN_SP_UTF8 "000)");
-    case uLTCP: return QString("Micro-Litecoin-PoS (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case LTCP: return QString("Scootercoin");
+    case mLTCP: return QString("Milli-Scootercoin (1 / 1" THIN_SP_UTF8 "000)");
+    case uLTCP: return QString("Micro-Scootercoin (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }

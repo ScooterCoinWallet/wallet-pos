@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.litecoin-pos.litecoin-posd</string>
+	<string>org.scootercoin.scootercoind</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/litecoin-posd</string>
+		<string>/usr/local/bin/scootercoind</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

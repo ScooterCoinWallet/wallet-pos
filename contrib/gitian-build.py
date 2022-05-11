@@ -26,13 +26,13 @@ def setup():
         programs += ['apt-cacher-ng', 'lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
     if not os.path.isdir('gitian'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/litecoinpos/gitian.git'])
-    if not os.path.isdir('litecoin-pos-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/CryptoDev777/litecoin-pos-detached-sigs.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/ScooterCoinWallet/gitian.git'])
+    if not os.path.isdir('scootercoin-detached-sigs'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/CryptoDev777/scootercoin-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
-    if not os.path.isdir('litecoin-pos'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/litecoinpos/litecoin-pos.git'])
+    if not os.path.isdir('scootercoin'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/ScooterCoinWallet/wallet-pos.git'])
     os.chdir('gitian-builder')
     make_image_prog = ['bin/make-base-vm', '--suite', 'bionic', '--arch', 'amd64']
     if args.docker:
@@ -49,34 +49,34 @@ def setup():
 def build():
     global args, workdir
 
-    os.makedirs('litecoin-pos-binaries/' + args.version, exist_ok=True)
+    os.makedirs('scootercoin-binaries/' + args.version, exist_ok=True)
     print('\nBuilding Dependencies\n')
     os.chdir('gitian-builder')
     os.makedirs('inputs', exist_ok=True)
 
     subprocess.check_call(['wget', '-O', 'inputs/osslsigncode-2.0.tar.gz', 'https://github.com/mtrojnar/osslsigncode/archive/2.0.tar.gz'])
     subprocess.check_call(["echo '5a60e0a4b3e0b4d655317b2f12a810211c50242138322b16e7e01c6fbb89d92f inputs/osslsigncode-2.0.tar.gz' | sha256sum -c"], shell=True)
-    subprocess.check_call(['make', '-C', '../litecoin-pos/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
+    subprocess.check_call(['make', '-C', '../scootercoin/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'litecoin-pos='+args.commit, '--url', 'litecoin-pos='+args.url, '../litecoin-pos/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian/', '../litecoin-pos/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call('mv build/out/litecoin-pos-*.tar.gz build/out/src/litecoin-pos-*.tar.gz ../litecoin-pos-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'scootercoin='+args.commit, '--url', 'scootercoin='+args.url, '../scootercoin/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call('mv build/out/scootercoin-*.tar.gz build/out/src/scootercoin-*.tar.gz ../scootercoin-binaries/'+args.version, shell=True)
 
     if args.windows:
         print('\nCompiling ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'litecoin-pos='+args.commit, '--url', 'litecoin-pos='+args.url, '../litecoin-pos/contrib/gitian-descriptors/gitian-win.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian/', '../litecoin-pos/contrib/gitian-descriptors/gitian-win.yml'])
-        subprocess.check_call('mv build/out/litecoin-pos-*-win-unsigned.tar.gz inputs/', shell=True)
-        subprocess.check_call('mv build/out/litecoin-pos-*.zip build/out/litecoin-pos-*.exe build/out/src/litecoin-pos-*.tar.gz ../litecoin-pos-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'scootercoin='+args.commit, '--url', 'scootercoin='+args.url, '../scootercoin/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call('mv build/out/scootercoin-*-win-unsigned.tar.gz inputs/', shell=True)
+        subprocess.check_call('mv build/out/scootercoin-*.zip build/out/scootercoin-*.exe build/out/src/scootercoin-*.tar.gz ../scootercoin-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nCompiling ' + args.version + ' MacOS')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'litecoin-pos='+args.commit, '--url', 'litecoin-pos='+args.url, '../litecoin-pos/contrib/gitian-descriptors/gitian-osx.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian/', '../litecoin-pos/contrib/gitian-descriptors/gitian-osx.yml'])
-        subprocess.check_call('mv build/out/litecoin-pos-*-osx-unsigned.tar.gz inputs/', shell=True)
-        subprocess.check_call('mv build/out/litecoin-pos-*.tar.gz build/out/litecoin-pos-*.dmg build/out/src/litecoin-pos-*.tar.gz ../litecoin-pos-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'scootercoin='+args.commit, '--url', 'scootercoin='+args.url, '../scootercoin/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call('mv build/out/scootercoin-*-osx-unsigned.tar.gz inputs/', shell=True)
+        subprocess.check_call('mv build/out/scootercoin-*.tar.gz build/out/scootercoin-*.dmg build/out/src/scootercoin-*.tar.gz ../scootercoin-binaries/'+args.version, shell=True)
 
     os.chdir(workdir)
 
@@ -95,17 +95,17 @@ def sign():
 
     if args.windows:
         print('\nSigning ' + args.version + ' Windows')
-        subprocess.check_call('cp inputs/litecoin-pos-' + args.version + '-win-unsigned.tar.gz inputs/litecoin-pos-win-unsigned.tar.gz', shell=True)
-        subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../litecoin-pos/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian/', '../litecoin-pos/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call('mv build/out/litecoin-pos-*win64-setup.exe ../litecoin-pos-binaries/'+args.version, shell=True)
+        subprocess.check_call('cp inputs/scootercoin-' + args.version + '-win-unsigned.tar.gz inputs/scootercoin-win-unsigned.tar.gz', shell=True)
+        subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../scootercoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call('mv build/out/scootercoin-*win64-setup.exe ../scootercoin-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nSigning ' + args.version + ' MacOS')
-        subprocess.check_call('cp inputs/litecoin-pos-' + args.version + '-osx-unsigned.tar.gz inputs/litecoin-pos-osx-unsigned.tar.gz', shell=True)
-        subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../litecoin-pos/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian/', '../litecoin-pos/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call('mv build/out/litecoin-pos-osx-signed.dmg ../litecoin-pos-binaries/'+args.version+'/litecoin-pos-'+args.version+'-osx.dmg', shell=True)
+        subprocess.check_call('cp inputs/scootercoin-' + args.version + '-osx-unsigned.tar.gz inputs/scootercoin-osx-unsigned.tar.gz', shell=True)
+        subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../scootercoin/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call('mv build/out/scootercoin-osx-signed.dmg ../scootercoin-binaries/'+args.version+'/scootercoin-'+args.version+'-osx.dmg', shell=True)
 
     os.chdir(workdir)
 
@@ -123,27 +123,27 @@ def verify():
     os.chdir('gitian-builder')
 
     print('\nVerifying v'+args.version+' Linux\n')
-    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-linux', '../litecoin-pos/contrib/gitian-descriptors/gitian-linux.yml']):
+    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-linux', '../scootercoin/contrib/gitian-descriptors/gitian-linux.yml']):
         print('Verifying v'+args.version+' Linux FAILED\n')
         rc = 1
 
     print('\nVerifying v'+args.version+' Windows\n')
-    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-win-unsigned', '../litecoin-pos/contrib/gitian-descriptors/gitian-win.yml']):
+    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-win-unsigned', '../scootercoin/contrib/gitian-descriptors/gitian-win.yml']):
         print('Verifying v'+args.version+' Windows FAILED\n')
         rc = 1
 
     print('\nVerifying v'+args.version+' MacOS\n')
-    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-osx-unsigned', '../litecoin-pos/contrib/gitian-descriptors/gitian-osx.yml']):
+    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-osx-unsigned', '../scootercoin/contrib/gitian-descriptors/gitian-osx.yml']):
         print('Verifying v'+args.version+' MacOS FAILED\n')
         rc = 1
 
     print('\nVerifying v'+args.version+' Signed Windows\n')
-    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-win-signed', '../litecoin-pos/contrib/gitian-descriptors/gitian-win-signer.yml']):
+    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-win-signed', '../scootercoin/contrib/gitian-descriptors/gitian-win-signer.yml']):
         print('Verifying v'+args.version+' Signed Windows FAILED\n')
         rc = 1
 
     print('\nVerifying v'+args.version+' Signed MacOS\n')
-    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-osx-signed', '../litecoin-pos/contrib/gitian-descriptors/gitian-osx-signer.yml']):
+    if subprocess.call(['bin/gverify', '-v', '-d', '../gitian/', '-r', args.version+'-osx-signed', '../scootercoin/contrib/gitian-descriptors/gitian-osx-signer.yml']):
         print('Verifying v'+args.version+' Signed MacOS FAILED\n')
         rc = 1
 
@@ -156,7 +156,7 @@ def main():
     parser = argparse.ArgumentParser(description='Script for running full Gitian builds.')
     parser.add_argument('-c', '--commit', action='store_true', dest='commit', help='Indicate that the version argument is for a commit or branch')
     parser.add_argument('-p', '--pull', action='store_true', dest='pull', help='Indicate that the version argument is the number of a github repository pull request')
-    parser.add_argument('-u', '--url', dest='url', default='https://github.com/litecoinpos/litecoin-pos', help='Specify the URL of the repository. Default is %(default)s')
+    parser.add_argument('-u', '--url', dest='url', default='https://github.com/ScooterCoinWallet/wallet-pos', help='Specify the URL of the repository. Default is %(default)s')
     parser.add_argument('-v', '--verify', action='store_true', dest='verify', help='Verify the Gitian build')
     parser.add_argument('-b', '--build', action='store_true', dest='build', help='Do a Gitian build')
     parser.add_argument('-s', '--sign', action='store_true', dest='sign', help='Make signed binaries for Windows and MacOS')
@@ -230,10 +230,10 @@ def main():
         raise Exception('Cannot have both commit and pull')
     args.commit = ('' if args.commit else 'v') + args.version
 
-    os.chdir('litecoin-pos')
+    os.chdir('scootercoin')
     if args.pull:
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
-        os.chdir('../gitian-builder/inputs/litecoin-pos')
+        os.chdir('../gitian-builder/inputs/scootercoin')
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
         args.commit = subprocess.check_output(['git', 'show', '-s', '--format=%H', 'FETCH_HEAD'], universal_newlines=True, encoding='utf8').strip()
         args.version = 'pull-' + args.version

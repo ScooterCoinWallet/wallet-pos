@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Litecoin-POS-Qt</string>
+  <string>Scootercoin-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Litecoin-POS-Qt</string>
+  <string>Scootercoin-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>net.litecoinpos.Litecoin-POS-Qt</string>
+  <string>net.scootercoin.Scootercoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>net.litecoinpos.LitecoinPOSPayment</string>
+      <string>net.scootercoin.ScootercoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>litecoinpos</string>
+        <string>scootercoin</string>
       </array>
     </dict>
   </array>

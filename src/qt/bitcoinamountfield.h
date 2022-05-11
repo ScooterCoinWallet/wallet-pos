@@ -15,7 +15,7 @@ QT_BEGIN_NAMESPACE
 class QValueComboBox;
 QT_END_NAMESPACE
 
-/** Widget for entering litecoin-pos amounts.
+/** Widget for entering scootercoin amounts.
   */
 class BitcoinAmountField: public QWidget
 {

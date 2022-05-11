@@ -185,7 +185,7 @@ def FromHex(obj, hex_string):
 def ToHex(obj):
     return obj.serialize().hex()
 
-# Objects that map to litecoin-posd objects, which can be serialized/deserialized
+# Objects that map to scootercoind objects, which can be serialized/deserialized
 
 
 class CAddress:
@@ -444,7 +444,7 @@ class CTransaction:
         if len(self.vin) == 0:
             flags = struct.unpack("<B", f.read(1))[0]
             # Not sure why flags can't be zero, but this
-            # matches the implementation in litecoin-posd
+            # matches the implementation in scootercoind
             if (flags != 0):
                 self.vin = deser_vector(f, CTxIn)
                 self.vout = deser_vector(f, CTxOut)
@@ -1307,7 +1307,7 @@ class msg_headers:
         self.headers = headers if headers is not None else []
 
     def deserialize(self, f):
-        # comment in litecoin-posd indicates these should be deserialized as blocks
+        # comment in scootercoind indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))

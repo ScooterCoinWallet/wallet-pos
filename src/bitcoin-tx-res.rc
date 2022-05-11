@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Litecoin PoS"
-            VALUE "FileDescription",    "litecoin-pos-tx (CLI Litecoin PoS transaction editor utility)"
+            VALUE "CompanyName",        "Scootercoin"
+            VALUE "FileDescription",    "scootercoin-tx (CLI Scootercoin transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "litecoin-pos-tx"
+            VALUE "InternalName",       "scootercoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "litecoin-pos-tx.exe"
-            VALUE "ProductName",        "litecoin-pos-tx"
+            VALUE "OriginalFilename",   "scootercoin-tx.exe"
+            VALUE "ProductName",        "scootercoin-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

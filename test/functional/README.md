@@ -90,10 +90,10 @@ over the network (`CBlock`, `CTransaction`, etc, along with the network-level
 wrappers for them, `msg_block`, `msg_tx`, etc).
 
 - P2P tests have two threads. One thread handles all network communication
-with the litecoin-posd(s) being tested in a callback-based event loop; the other
+with the scootercoind(s) being tested in a callback-based event loop; the other
 implements the test logic.
 
-- `P2PConnection` is the class used to connect to a litecoin-posd.  `P2PInterface`
+- `P2PConnection` is the class used to connect to a scootercoind.  `P2PInterface`
 contains the higher level logic for processing P2P payloads and connecting to
 the Bitcoin Core node application logic. For custom behaviour, subclass the
 P2PInterface object and override the callback methods.
@@ -126,7 +126,7 @@ Base class for functional tests.
 Generally useful functions.
 
 #### [mininode.py](test_framework/mininode.py)
-Basic code to support P2P connectivity to a litecoin-posd.
+Basic code to support P2P connectivity to a scootercoind.
 
 #### [script.py](test_framework/script.py)
 Utilities for manipulating transaction scripts (originally from python-bitcoinlib)

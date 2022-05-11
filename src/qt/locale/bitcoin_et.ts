@@ -66,8 +66,8 @@
         <translation>Vastuvõtvad aadressid</translation>
     </message>
     <message>
-        <source>These are your LitecoinPoS addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Need on sinu LitecoinPoS aadressid maksete saatmiseks. Ennem müntide saatmist kontrolli alati summat ja makse saaja aadressi.</translation>
+        <source>These are your Scootercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Need on sinu Scootercoin aadressid maksete saatmiseks. Ennem müntide saatmist kontrolli alati summat ja makse saaja aadressi.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -160,8 +160,8 @@
         <translation>Kinnita rahakoti krüpteerimine.</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINPOSS&lt;/b&gt;!</source>
-        <translation>Hoiatus:Kui sa krüpteerid oma rahakoti ja kaotad salafraasi, siis sa&lt;b&gt;KAOTAD OMA LITECOINPOSID&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR SCOOTERCOINS&lt;/b&gt;!</source>
+        <translation>Hoiatus:Kui sa krüpteerid oma rahakoti ja kaotad salafraasi, siis sa&lt;b&gt;KAOTAD OMA SCOOTERCOINID&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -216,7 +216,7 @@
     </message>
     </context>
 <context>
-    <name>LitecoinPoSGUI</name>
+    <name>ScootercoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Signeeri &amp;sõnum</translation>
@@ -286,8 +286,8 @@
         <translation>Kõvakettal olevate plokkide reindekseerimine...</translation>
     </message>
     <message>
-        <source>Send coins to a LitecoinPoS address</source>
-        <translation>Saada münte LitecoinPoSi aadressile</translation>
+        <source>Send coins to a Scootercoin address</source>
+        <translation>Saada münte Scootercoini aadressile</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -322,12 +322,12 @@
         <translation>Krüpteeri oma rahakoti privaatvõtmed</translation>
     </message>
     <message>
-        <source>Sign messages with your LitecoinPoS addresses to prove you own them</source>
-        <translation>Omandi tõestamiseks allkirjasta sõnumid oma LitecoinPoSi aadressiga</translation>
+        <source>Sign messages with your Scootercoin addresses to prove you own them</source>
+        <translation>Omandi tõestamiseks allkirjasta sõnumid oma Scootercoini aadressiga</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LitecoinPoS addresses</source>
-        <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud LitecoinPoSi aadressiga</translation>
+        <source>Verify messages to ensure they were signed with specified Scootercoin addresses</source>
+        <translation>Kinnita sõnumid kindlustamaks et need allkirjastati määratud Scootercoini aadressiga</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -346,16 +346,16 @@
         <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and litecoin-pos: URIs)</source>
-        <translation>Loo maksepäring (genereerib QR koodid ja litecoin-posi: URId)</translation>
+        <source>Request payments (generates QR codes and scootercoin: URIs)</source>
+        <translation>Loo maksepäring (genereerib QR koodid ja scootercoini: URId)</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Käsurea valikud</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LitecoinPoS network</source>
-        <translation><numerusform>%n aktiivne ühendus LitecoinPoSi võrku</numerusform><numerusform>%n aktiivset ühendust LitecoinPoSi võrku</numerusform></translation>
+        <source>%n active connection(s) to Scootercoin network</source>
+        <translation><numerusform>%n aktiivne ühendus Scootercoini võrku</numerusform><numerusform>%n aktiivset ühendust Scootercoini võrku</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -456,8 +456,8 @@
         <translation>Rahakott on &lt;b&gt;krüpteeritud&lt;/b&gt; ning hetkel &lt;b&gt;suletud&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LitecoinPoS can no longer continue safely and will quit.</source>
-        <translation>Ilmnes kriitiline tõrge. LitecoinPoS suletakse turvakaalutluste tõttu.</translation>
+        <source>A fatal error occurred. Scootercoin can no longer continue safely and will quit.</source>
+        <translation>Ilmnes kriitiline tõrge. Scootercoin suletakse turvakaalutluste tõttu.</translation>
     </message>
 </context>
 <context>
@@ -612,8 +612,8 @@
         <translation>Muuda saatvat aadressi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LitecoinPoS address.</source>
-        <translation>Sisestatud aadress "%1" ei ole korrektne LitecoinPoS aadress.</translation>
+        <source>The entered address "%1" is not a valid Scootercoin address.</source>
+        <translation>Sisestatud aadress "%1" ei ole korrektne Scootercoin aadress.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -649,8 +649,8 @@
         <translation>Tere tulemast</translation>
     </message>
     <message>
-        <source>LitecoinPoS</source>
-        <translation>LitecoinPoS</translation>
+        <source>Scootercoin</source>
+        <translation>Scootercoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -713,8 +713,8 @@
         <translation>Ekspert</translation>
     </message>
     <message>
-        <source>Automatically open the LitecoinPoS client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>LitecoinPoSi kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
+        <source>Automatically open the Scootercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Scootercoini kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -812,7 +812,7 @@
         <translation>Vorm</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LitecoinPoS network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Scootercoin network after a connection is established, but this process has not completed yet.</source>
         <translation>Kuvatav info ei pruugi olla ajakohane. Ühenduse loomisel süngitakse sinu rahakott automaatselt Bitconi võrgustikuga, kuid see toiming on hetkel lõpetamata.</translation>
     </message>
     <message>
@@ -843,8 +843,8 @@
         <translation>Maksepäringu tõrge</translation>
     </message>
     <message>
-        <source>Cannot start litecoin-pos: click-to-pay handler</source>
-        <translation>LitecoinPoS ei käivitu: vajuta-maksa toiming</translation>
+        <source>Cannot start scootercoin: click-to-pay handler</source>
+        <translation>Scootercoin ei käivitu: vajuta-maksa toiming</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1331,8 +1331,8 @@
         <translation>Maksepäring aegunud.</translation>
     </message>
     <message>
-        <source>Warning: Invalid LitecoinPoS address</source>
-        <translation>Hoiatus: Ebakorrektne LitecoinPoS aadress</translation>
+        <source>Warning: Invalid Scootercoin address</source>
+        <translation>Hoiatus: Ebakorrektne Scootercoin aadress</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1404,8 +1404,8 @@
         <translation>&amp;Allkirjastamise teade</translation>
     </message>
     <message>
-        <source>The LitecoinPoS address to sign the message with</source>
-        <translation>LitecoinPoS aadress millega sõnum allkirjastada</translation>
+        <source>The Scootercoin address to sign the message with</source>
+        <translation>Scootercoin aadress millega sõnum allkirjastada</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1436,8 +1436,8 @@
         <translation>Kopeeri praegune signatuur vahemällu</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LitecoinPoS address</source>
-        <translation>Allkirjasta sõnum LitecoinPoSi aadressi sulle kuulumise tõestamiseks</translation>
+        <source>Sign the message to prove you own this Scootercoin address</source>
+        <translation>Allkirjasta sõnum Scootercoini aadressi sulle kuulumise tõestamiseks</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1456,12 +1456,12 @@
         <translation>&amp;Kinnita Sõnum</translation>
     </message>
     <message>
-        <source>The LitecoinPoS address the message was signed with</source>
-        <translation>LitecoinPoS aadress millega sõnum on allkirjastatud</translation>
+        <source>The Scootercoin address the message was signed with</source>
+        <translation>Scootercoin aadress millega sõnum on allkirjastatud</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LitecoinPoS address</source>
-        <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud LitecoinPoSi aadressiga.</translation>
+        <source>Verify the message to ensure it was signed with the specified Scootercoin address</source>
+        <translation>Kinnita sõnum tõestamaks selle allkirjastatust määratud Scootercoini aadressiga.</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1887,7 +1887,7 @@
     </message>
     </context>
 <context>
-    <name>litecoin-pos-core</name>
+    <name>scootercoin-core</name>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
         <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining'uks ega kaupmeeste programmides</translation>

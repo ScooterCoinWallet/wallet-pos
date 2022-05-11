@@ -1,40 +1,40 @@
-Litecoin PoS Core integration/staging tree
+Scootercoin Core integration/staging tree
 =====================================
 
-https://litecoinpos.org
+https://scootercoin.org
 
-What is Litecoin PoS ?
+What is Scootercoin?
 ----------------
 
-Litecoin PoS is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Litecoin PoS uses peer-to-peer technology to operate
+Scootercoin is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Scootercoin uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Litecoin PoS Core is the name of open source
+out collectively by the network. Scootercoin Core is the name of open source
 software which enables the use of this currency.
 
-Litecoin PoS Core is built on top of Bitcoin Core. The difference between the two
-is the consensus algorithm: Litecoin PoS Core uses Proof of Stake consensus, whilst
+Scootercoin Core is built on top of Bitcoin Core. The difference between the two
+is the consensus algorithm: Scootercoin Core uses Proof of Stake consensus, whilst
 Bitcoin Core uses Proof of Work. Using Proof of Stake as a consensus algorithm is
 allowing it not only to scale better and be orders of magnitude more efficient in
 terms of power consumption, but it is also lowering the entry barrier for contributing
 to the creation of new blocks.
 
 For more information, as well as an immediately usable, binary version of
-the Litecoin PoS Core software, see https://www.litecoinpos.org/#wallet-ltcp, or read the
-[original whitepaper](https://www.litecoinpos.org/WhitePaperLTCP.pdf).
+the Scootercoin Core software, see https://www.scootercoin.org/#wallet-ltcp, or read the
+[original whitepaper](https://www.scootercoin.org/WhitePaperLTCP.pdf).
 
 License
 -------
 
-Litecoin PoS Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Scootercoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/litecoinpos/litecoin-pos/tags) are created
-regularly to indicate new official, stable release versions of Litecoin PoS Core.
+completely stable. [Tags](https://github.com/ScooterCoinWallet/wallet-pos/tags) are created
+regularly to indicate new official, stable release versions of Scootercoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
 and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).

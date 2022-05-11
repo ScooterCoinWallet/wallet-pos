@@ -1,5 +1,5 @@
 ---
-name: "litecoin-pos-dmg-signer"
+name: "scootercoin-dmg-signer"
 distro: "ubuntu"
 suites:
 - "bionic"
@@ -8,10 +8,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/litecoinpos/litecoin-pos-detached-sigs.git"
+- "url": "https://github.com/ScooterCoinWallet/scootercoin-detached-sigs.git"
   "dir": "signature"
 files:
-- "litecoin-pos-osx-unsigned.tar.gz"
+- "scootercoin-osx-unsigned.tar.gz"
 script: |
   set -e -o pipefail
 
@@ -30,8 +30,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=litecoin-pos-osx-unsigned.tar.gz
-  SIGNED=litecoin-pos-osx-signed.dmg
+  UNSIGNED=scootercoin-osx-unsigned.tar.gz
+  SIGNED=scootercoin-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

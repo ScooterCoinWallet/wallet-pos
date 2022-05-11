@@ -1,41 +1,41 @@
-Litecoin-PoS Core
+Scootercoin Core
 =============
 
 Setup
 ---------------------
-Litecoin-PoS Core is the original Litecoin-PoS client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Litecoin-PoS transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Scootercoin Core is the original Scootercoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Scootercoin transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Litecoin-PoS Core, visit [bitcoincore.org](https://bitcoincore.org/en/download/).
+To download Scootercoin Core, visit [bitcoincore.org](https://bitcoincore.org/en/download/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Litecoin-PoS Core on your native platform.
+The following are some helpful notes on how to run Scootercoin Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/litecoin-pos-qt` (GUI) or
-- `bin/litecoin-posd` (headless)
+- `bin/scootercoin-qt` (GUI) or
+- `bin/scootercoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run litecoin-pos-qt.exe.
+Unpack the files into a directory, and then run scootercoin-qt.exe.
 
 ### macOS
 
-Drag Litecoin-PoS Core to your applications folder, and then run Litecoin-PoS Core.
+Drag Scootercoin Core to your applications folder, and then run Scootercoin Core.
 
 ### Need Help?
 
-* See the documentation at the [Litecoin-PoS Wiki](https://en.bitcoin.it/wiki/Main_Page)
+* See the documentation at the [Scootercoin Wiki](https://en.bitcoin.it/wiki/Main_Page)
 for help and more information.
 * Ask for help on [#bitcoin](https://webchat.freenode.net/#bitcoin) on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin).
 * Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?board=4.0).
 
 Building
 ---------------------
-The following are developer notes on how to build Litecoin-PoS Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Scootercoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -48,7 +48,7 @@ The following are developer notes on how to build Litecoin-PoS Core on your nati
 
 Development
 ---------------------
-The Litecoin-PoS repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Scootercoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -67,11 +67,11 @@ The Litecoin-PoS repo's [root README](/README.md) contains relevant information 
 ### Resources
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
 * Discuss project-specific development on #bitcoin-core-dev on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin-core-dev).
-* Discuss general Litecoin-PoS development on #bitcoin-dev on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin-dev).
+* Discuss general Scootercoin development on #bitcoin-dev on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin-dev).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
-- [litecoin-pos.conf Configuration File](bitcoin-conf.md)
+- [scootercoin.conf Configuration File](bitcoin-conf.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
 - [Reduce Memory](reduce-memory.md)

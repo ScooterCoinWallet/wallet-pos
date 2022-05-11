@@ -9,10 +9,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both litecoin-posd and litecoin-pos-qt, to make it harder for attackers to
+ * for both scootercoind and scootercoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("LitecoinPOS");
+const std::string CLIENT_NAME("Scootercoin");
 
 /**
  * Client version number

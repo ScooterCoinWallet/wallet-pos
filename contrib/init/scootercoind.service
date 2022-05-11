@@ -1,53 +1,53 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit litecoin-posd.service
+# $ systemctl edit scootercoind.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/litecoin-pos/litecoin-pos.conf, but keep in mind those explicitly
+# /etc/scootercoin/scootercoin.conf, but keep in mind those explicitly
 # specified as arguments in ExecStart= will override those in the
 # config file.
 
 [Unit]
-Description=Litecoin PoS daemon
+Description=Scootercoin daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/litecoin-posd -daemon \
-                            -pid=/run/litecoin-posd/litecoin-posd.pid \
-                            -conf=/etc/litecoin-pos/litecoin-pos.conf \
-                            -datadir=/var/lib/litecoin-posd
+ExecStart=/usr/bin/scootercoind -daemon \
+                            -pid=/run/scootercoind/scootercoind.pid \
+                            -conf=/etc/scootercoin/scootercoin.conf \
+                            -datadir=/var/lib/scootercoind
 
 # Make sure the config directory is readable by the service user
 PermissionsStartOnly=true
-ExecStartPre=/bin/chgrp litecoin-pos /etc/litecoin-pos
+ExecStartPre=/bin/chgrp scootercoin /etc/scootercoin
 
 # Process management
 ####################
 
 Type=forking
-PIDFile=/run/litecoin-posd/litecoin-posd.pid
+PIDFile=/run/scootercoind/scootercoind.pid
 Restart=on-failure
 TimeoutStopSec=600
 
 # Directory creation and permissions
 ####################################
 
-# Run as litecoin-pos:litecoin-pos
-User=litecoin-pos
-Group=litecoin-pos
+# Run as scootercoin:scootercoin
+User=scootercoin
+Group=scootercoin
 
-# /run/litecoin-posd
-RuntimeDirectory=litecoin-posd
+# /run/scootercoind
+RuntimeDirectory=scootercoind
 RuntimeDirectoryMode=0710
 
-# /etc/litecoin-pos
-ConfigurationDirectory=litecoin-pos
+# /etc/scootercoin
+ConfigurationDirectory=scootercoin
 ConfigurationDirectoryMode=0710
 
-# /var/lib/litecoin-posd
-StateDirectory=litecoin-posd
+# /var/lib/scootercoind
+StateDirectory=scootercoind
 StateDirectoryMode=0710
 
 # Hardening measures

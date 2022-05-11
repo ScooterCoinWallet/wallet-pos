@@ -38,9 +38,9 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     if (platformStyle->getUseExtraSpacing())
         ui->payToLayout->setSpacing(4);
 
-    // normal Litecoin PoS address field
+    // normal Scootercoin address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
-    // just a label for displaying Litecoin PoS address(es)
+    // just a label for displaying Scootercoin address(es)
     ui->payTo_is->setFont(GUIUtil::fixedPitchFont());
 
     // Connect signals

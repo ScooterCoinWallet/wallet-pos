@@ -170,7 +170,7 @@ FUZZ_SUITE_LD_COMMON = \
  $(CRYPTO_LIBS) \
  $(EVENT_PTHREADS_LIBS)
 
-# test_litecoin-pos binary #
+# test_scootercoin binary #
 BITCOIN_TESTS =\
   test/arith_uint256_tests.cpp \
   test/scriptnum10.h \
@@ -1043,7 +1043,7 @@ endif
 if TARGET_WINDOWS
 else
 if ENABLE_BENCH
-	@echo "Running bench/bench_litecoin-pos -evals=1 -scaling=0..."
+	@echo "Running bench/bench_scootercoin -evals=1 -scaling=0..."
 	$(BENCH_BINARY) -evals=1 -scaling=0 > /dev/null
 endif
 endif

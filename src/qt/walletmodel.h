@@ -49,7 +49,7 @@ QT_BEGIN_NAMESPACE
 class QTimer;
 QT_END_NAMESPACE
 
-/** Interface to Litecoin PoS wallet from Qt view code. */
+/** Interface to Scootercoin wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT

@@ -10,11 +10,11 @@ BUILDDIR=${BUILDDIR:-$TOPDIR}
 BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BITCOIND=${BITCOIND:-$BINDIR/litecoin-posd}
-BITCOINCLI=${BITCOINCLI:-$BINDIR/litecoin-pos-cli}
-BITCOINTX=${BITCOINTX:-$BINDIR/litecoin-pos-tx}
-WALLET_TOOL=${WALLET_TOOL:-$BINDIR/litecoin-pos-wallet}
-BITCOINQT=${BITCOINQT:-$BINDIR/qt/litecoin-pos-qt}
+BITCOIND=${BITCOIND:-$BINDIR/scootercoind}
+BITCOINCLI=${BITCOINCLI:-$BINDIR/scootercoin-cli}
+BITCOINTX=${BITCOINTX:-$BINDIR/scootercoin-tx}
+WALLET_TOOL=${WALLET_TOOL:-$BINDIR/scootercoin-wallet}
+BITCOINQT=${BITCOINQT:-$BINDIR/qt/scootercoin-qt}
 
 [ ! -x $BITCOIND ] && echo "$BITCOIND not found or not executable." && exit 1
 
@@ -22,8 +22,8 @@ BITCOINQT=${BITCOINQT:-$BINDIR/qt/litecoin-pos-qt}
 read -r -a LTCPVER <<< "$($BITCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }')"
 
 # Create a footer file with copyright content.
-# This gets autodetected fine for litecoin-posd if --version-string is not set,
-# but has different outcomes for litecoin-pos-qt and litecoin-pos-cli.
+# This gets autodetected fine for scootercoind if --version-string is not set,
+# but has different outcomes for scootercoin-qt and scootercoin-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $BITCOIND --version | sed -n '1!p' >> footer.h2m
 

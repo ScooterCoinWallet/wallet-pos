@@ -60,17 +60,17 @@ class BackwardsCompatibilityTest(BitcoinTestFramework):
             180100,
             170100
         ], binary=[
-            self.options.litecoin-posd,
-            self.options.litecoin-posd,
-            releases_path + "/v0.19.0.1/bin/litecoin-posd",
-            releases_path + "/v0.18.1/bin/litecoin-posd",
-            releases_path + "/v0.17.1/bin/litecoin-posd"
+            self.options.scootercoind,
+            self.options.scootercoind,
+            releases_path + "/v0.19.0.1/bin/scootercoind",
+            releases_path + "/v0.18.1/bin/scootercoind",
+            releases_path + "/v0.17.1/bin/scootercoind"
         ], binary_cli=[
             self.options.bitcoincli,
             self.options.bitcoincli,
-            releases_path + "/v0.19.0.1/bin/litecoin-pos-cli",
-            releases_path + "/v0.18.1/bin/litecoin-pos-cli",
-            releases_path + "/v0.17.1/bin/litecoin-pos-cli"
+            releases_path + "/v0.19.0.1/bin/scootercoin-cli",
+            releases_path + "/v0.18.1/bin/scootercoin-cli",
+            releases_path + "/v0.17.1/bin/scootercoin-cli"
         ])
 
         self.start_nodes()
@@ -306,7 +306,7 @@ class BackwardsCompatibilityTest(BitcoinTestFramework):
         assert info['private_keys_enabled'] == False
         assert info['keypoolsize'] == 0
 
-        # RPC loadwallet failure causes litecoin-posd to exit, in addition to the RPC
+        # RPC loadwallet failure causes scootercoind to exit, in addition to the RPC
         # call failure, so the following test won't work:
         # assert_raises_rpc_error(-4, "Wallet loading failed.", node_v17.loadwallet, 'w3_v18')
 

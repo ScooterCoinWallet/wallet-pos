@@ -1,6 +1,6 @@
-# `litecoin-pos.conf` Configuration File
+# `scootercoin.conf` Configuration File
 
-The configuration file is used by `litecoin-posd`, `litecoin-pos-qt` and `litecoin-pos-cli`.
+The configuration file is used by `scootercoind`, `scootercoin-qt` and `scootercoin-cli`.
 
 All command-line options (except for `-?`, `-help`, `-version` and `-conf`) may be specified in a configuration file, and all configuration file options (except for `includeconf`) may also be specified on the command line. Command-line options override values set in the configuration file and configuration file options override values set in the GUI.
 
@@ -47,16 +47,16 @@ rpcport=4000
 
 ## Configuration File Path
 
-The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `litecoin-pos.conf` and it is located in the Litecoin-pos data directory, but both the Litecoin-pos data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
+The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `scootercoin.conf` and it is located in the Scootercoin data directory, but both the Scootercoin data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
 
-The `includeconf=<file>` option in the `litecoin-pos.conf` file can be used to include additional configuration files.
+The `includeconf=<file>` option in the `scootercoin.conf` file can be used to include additional configuration files.
 
 ### Default configuration file locations
 
 Operating System | Data Directory | Example Path
 -- | -- | --
-Windows | `%APPDATA%\Litecoin-pos\` | `C:\Users\username\AppData\Roaming\Litecoin-pos\litecoin-pos.conf`
-Linux | `$HOME/.litecoin-pos/` | `/home/username/.litecoin-pos/litecoin-pos.conf`
-macOS | `$HOME/Library/Application Support/Litecoin-pos/` | `/Users/username/Library/Application Support/Litecoin-pos/litecoin-pos.conf`
+Windows | `%APPDATA%\Scootercoin\` | `C:\Users\username\AppData\Roaming\Scootercoin\scootercoin.conf`
+Linux | `$HOME/.scootercoin/` | `/home/username/.scootercoin/scootercoin.conf`
+macOS | `$HOME/Library/Application Support/Scootercoin/` | `/Users/username/Library/Application Support/Scootercoin/scootercoin.conf`
 
-You can find an example litecoin-pos.conf file in [share/examples/litecoin-pos.conf](../share/examples/litecoin-pos.conf).
+You can find an example scootercoin.conf file in [share/examples/scootercoin.conf](../share/examples/scootercoin.conf).

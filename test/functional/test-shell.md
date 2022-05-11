@@ -8,8 +8,8 @@ The `TestShell` submodule extends the `BitcoinTestFramework` functionality to
 external interactive environments for prototyping and educational purposes. Just
 like `BitcoinTestFramework`, the `TestShell` allows the user to:
 
-* Manage regtest litecoin-posd subprocesses.
-* Access RPC interfaces of the underlying litecoin-posd instances.
+* Manage regtest scootercoind subprocesses.
+* Access RPC interfaces of the underlying scootercoind instances.
 * Log events to the functional test logging utility.
 
 The `TestShell` can be useful in interactive environments where it is necessary
@@ -20,7 +20,7 @@ user inputs. Such environments include the Python3 command line interpreter or
 ## 1. Requirements
 
 * Python3
-* `litecoin-posd` built in the same repository as the `TestShell`.
+* `scootercoind` built in the same repository as the `TestShell`.
 
 ## 2. Importing `TestShell` from the Bitcoin Core repository
 
@@ -34,7 +34,7 @@ importing the `TestShell` class from the `test_shell` sub-package.
 >>> from test_framework.test_shell import TestShell
 ```
 
-The following `TestShell` methods manage the lifetime of the underlying litecoin-posd
+The following `TestShell` methods manage the lifetime of the underlying scootercoind
 processes and logging utilities.
 
 * `TestShell.setup()`
@@ -61,7 +61,7 @@ used to initialize the `TestShell` can be found in [section
 
 **Note: Running multiple instances of `TestShell` is not allowed.** Running a
 single process also ensures that logging remains consolidated in the same
-temporary folder. If you need more litecoin-posd nodes than set by default (1),
+temporary folder. If you need more scootercoind nodes than set by default (1),
 simply increase the `num_nodes` parameter during setup.
 
 ```
@@ -75,7 +75,7 @@ Unlike the `BitcoinTestFramework` class, the `TestShell` keeps the underlying
 Bitcoind subprocesses (nodes) and logging utilities running until the user
 explicitly shuts down the `TestShell` object.
 
-During the time between the `setup` and `shutdown` calls, all `litecoin-posd` node
+During the time between the `setup` and `shutdown` calls, all `scootercoind` node
 processes and `BitcoinTestFramework` convenience methods can be accessed
 interactively.
 
@@ -126,12 +126,12 @@ test-framework**. Modules such as
 [key.py](../test/functional/test_framework/key.py),
 [script.py](../test/functional/test_framework/script.py) and
 [messages.py](../test/functional/test_framework/messages.py) are particularly
-useful in constructing objects which can be passed to the litecoin-posd nodes managed
+useful in constructing objects which can be passed to the scootercoind nodes managed
 by a running `TestShell` object.
 
 ## 5. Shutting the `TestShell` down
 
-Shutting down the `TestShell` will safely tear down all running litecoin-posd
+Shutting down the `TestShell` will safely tear down all running scootercoind
 instances and remove all temporary data and logging directories.
 
 ```
@@ -150,7 +150,7 @@ To prevent the logs from being removed after a shutdown, simply set the
 20XX-XX-XXTXX:XX:XX.XXXXXXX TestFramework (INFO): Tests successful
 ```
 
-The following utility consolidates logs from the litecoin-posd nodes and the
+The following utility consolidates logs from the scootercoind nodes and the
 underlying `BitcoinTestFramework`:
 
 * `/path/to/bitcoin/test/functional/combine_logs.py
@@ -167,20 +167,20 @@ can be called after the TestShell is shut down.
 
 | Test parameter key | Default Value | Description |
 |---|---|---|
-| `bind_to_localhost_only` | `True` | Binds litecoin-posd RPC services to `127.0.0.1` if set to `True`.|
-| `cachedir` | `"/path/to/bitcoin/test/cache"` | Sets the litecoin-posd datadir directory. |
-| `chain`  | `"regtest"` | Sets the chain-type for the underlying test litecoin-posd processes. |
+| `bind_to_localhost_only` | `True` | Binds scootercoind RPC services to `127.0.0.1` if set to `True`.|
+| `cachedir` | `"/path/to/bitcoin/test/cache"` | Sets the scootercoind datadir directory. |
+| `chain`  | `"regtest"` | Sets the chain-type for the underlying test scootercoind processes. |
 | `configfile` | `"/path/to/bitcoin/test/config.ini"` | Sets the location of the test framework config file. |
-| `coveragedir` | `None` | Records litecoin-posd RPC test coverage into this directory if set. |
+| `coveragedir` | `None` | Records scootercoind RPC test coverage into this directory if set. |
 | `loglevel` | `INFO` | Logs events at this level and higher. Can be set to `DEBUG`, `INFO`, `WARNING`, `ERROR` or `CRITICAL`. |
 | `nocleanup` | `False` | Cleans up temporary test directory if set to `True` during `shutdown`. |
-| `noshutdown` | `False` | Does not stop litecoin-posd instances after `shutdown` if set to `True`. |
-| `num_nodes` | `1` | Sets the number of initialized litecoin-posd processes. |
+| `noshutdown` | `False` | Does not stop scootercoind instances after `shutdown` if set to `True`. |
+| `num_nodes` | `1` | Sets the number of initialized scootercoind processes. |
 | `perf` | False | Profiles running nodes with `perf` for the duration of the test if set to `True`. |
-| `rpc_timeout` | `60` | Sets the RPC server timeout for the underlying litecoin-posd processes. |
+| `rpc_timeout` | `60` | Sets the RPC server timeout for the underlying scootercoind processes. |
 | `setup_clean_chain` | `False` | Initializes an empty blockchain by default. A 199-block-long chain is initialized if set to `True`. |
 | `randomseed` | Random Integer | `TestShell.options.randomseed` is a member of `TestShell` which can be accessed during a test to seed a random generator. User can override default with a constant value for reproducible test runs. |
-| `supports_cli` | `False` | Whether the litecoin-pos-cli utility is compiled and available for the test. |
+| `supports_cli` | `False` | Whether the scootercoin-cli utility is compiled and available for the test. |
 | `tmpdir` | `"/var/folders/.../"` | Sets directory for test logs. Will be deleted upon a successful test run unless `nocleanup` is set to `True` |
 | `trace_rpc` | `False` | Logs all RPC calls if set to `True`. |
-| `usecli` | `False` | Uses the litecoin-pos-cli interface for all litecoin-posd commands instead of directly calling the RPC server. Requires `supports_cli`. |
+| `usecli` | `False` | Uses the scootercoin-cli interface for all scootercoind commands instead of directly calling the RPC server. Requires `supports_cli`. |

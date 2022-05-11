@@ -64,10 +64,10 @@ struct Params {
      * This prevents us from warning about the CSV and segwit activations. */
     int MinBIP9WarningHeight;
     /** The size of the step going towards reward matching - rewards from
-     * both chains, litecoin-pos and litecoin pos are coming in sync with steps of this size. */
+     * both chains, scootercoin and scootercoin pos are coming in sync with steps of this size. */
     int LTCPRewardMatchStep;
     /** Block height at which LTCPRewardMatch becomes active - rewards from
-     * both chains, litecoin-pos and litecoin pos are in sync as of this height. */
+     * both chains, scootercoin and scootercoin pos are in sync as of this height. */
     int LTCPRewardMatchHeight;
     /** Block height at which LTCPDiffAdj becomes active - difficulty adjustment
      * formula is changed so that block times are more reliable. */

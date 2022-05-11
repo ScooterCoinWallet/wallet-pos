@@ -20,7 +20,7 @@ public:
     State validate(QString &input, int &pos) const;
 };
 
-/** Litecoin PoS address widget validator, checks for a valid Litecoin PoS address.
+/** Scootercoin address widget validator, checks for a valid Scootercoin address.
  */
 class BitcoinAddressCheckValidator : public QValidator
 {

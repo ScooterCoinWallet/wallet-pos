@@ -1,4 +1,4 @@
-This directory contains integration tests that test litecoin-posd and its
+This directory contains integration tests that test scootercoind and its
 utilities in their entirety. It does not contain unit tests, which
 can be found in [/src/test](/src/test), [/src/wallet/test](/src/wallet/test),
 etc.
@@ -6,10 +6,10 @@ etc.
 This directory contains the following sets of tests:
 
 - [functional](/test/functional) which test the functionality of
-litecoin-posd and litecoin-pos-qt by interacting with them through the RPC and P2P
+scootercoind and scootercoin-qt by interacting with them through the RPC and P2P
 interfaces.
 - [util](/test/util) which tests the bitcoin utilities, currently only
-litecoin-pos-tx.
+scootercoin-tx.
 - [lint](/test/lint/) which perform various static analysis checks.
 
 The util tests are run as part of `make check` target. The functional
@@ -94,29 +94,29 @@ options. Run `test/functional/test_runner.py -h` to see them all.
 
 ##### Resource contention
 
-The P2P and RPC ports used by the litecoin-posd nodes-under-test are chosen to make
-conflicts with other processes unlikely. However, if there is another litecoin-posd
+The P2P and RPC ports used by the scootercoind nodes-under-test are chosen to make
+conflicts with other processes unlikely. However, if there is another scootercoind
 process running on the system (perhaps from a previous test which hasn't successfully
-killed all its litecoin-posd nodes), then there may be a port conflict which will
+killed all its scootercoind nodes), then there may be a port conflict which will
 cause the test to fail. It is recommended that you run the tests on a system
-where no other litecoin-posd processes are running.
+where no other scootercoind processes are running.
 
 On linux, the test framework will warn if there is another
-litecoin-posd process running when the tests are started.
+scootercoind process running when the tests are started.
 
-If there are zombie litecoin-posd processes after test failure, you can kill them
+If there are zombie scootercoind processes after test failure, you can kill them
 by running the following commands. **Note that these commands will kill all
-litecoin-posd processes running on the system, so should not be used if any non-test
-litecoin-posd processes are being run.**
+scootercoind processes running on the system, so should not be used if any non-test
+scootercoind processes are being run.**
 
 ```bash
-killall litecoin-posd
+killall scootercoind
 ```
 
 or
 
 ```bash
-pkill -9 litecoin-posd
+pkill -9 scootercoind
 ```
 
 
@@ -127,11 +127,11 @@ functional test is run and is stored in test/cache. This speeds up
 test startup times since new blockchains don't need to be generated for
 each test. However, the cache may get into a bad state, in which case
 tests will fail. If this happens, remove the cache directory (and make
-sure litecoin-posd processes are stopped as above):
+sure scootercoind processes are stopped as above):
 
 ```bash
 rm -rf test/cache
-killall litecoin-posd
+killall scootercoind
 ```
 
 ##### Test logging
@@ -146,7 +146,7 @@ levels using the logger included in the test_framework, e.g.
 - when run directly, *all* logs are written to `test_framework.log` and INFO
   level and above are output to the console.
 - when run by [our CI (Continuous Integration)](/ci/README.md), no logs are output to the console. However, if a test
-  fails, the `test_framework.log` and litecoin-posd `debug.log`s will all be dumped
+  fails, the `test_framework.log` and scootercoind `debug.log`s will all be dumped
   to the console to help troubleshooting.
 
 These log files can be located under the test data directory (which is always
@@ -161,7 +161,7 @@ e.g. `self.nodes[0]`.
 To change the level of logs output to the console, use the `-l` command line
 argument.
 
-`test_framework.log` and litecoin-posd `debug.log`s can be combined into a single
+`test_framework.log` and scootercoind `debug.log`s can be combined into a single
 aggregate log by running the `combine_logs.py` script. The output can be plain
 text, colorized text or html. For example:
 
@@ -188,9 +188,9 @@ import pdb; pdb.set_trace()
 ```
 
 anywhere in the test. You will then be able to inspect variables, as well as
-call methods that interact with the litecoin-posd nodes-under-test.
+call methods that interact with the scootercoind nodes-under-test.
 
-If further introspection of the litecoin-posd instances themselves becomes
+If further introspection of the scootercoind instances themselves becomes
 necessary, this can be accomplished by first setting a pdb breakpoint
 at an appropriate location, running the test to that point, then using
 `gdb` (or `lldb` on macOS) to attach to the process and debug.
@@ -213,13 +213,13 @@ test run:
 Use the path to find the pid file in the temp folder:
 
 ```bash
-cat /tmp/user/1000/testo9vsdjo3/node1/regtest/litecoin-posd.pid
+cat /tmp/user/1000/testo9vsdjo3/node1/regtest/scootercoind.pid
 ```
 
 Then you can use the pid to start `gdb`:
 
 ```bash
-gdb /home/example/litecoin-posd <pid>
+gdb /home/example/scootercoind <pid>
 ```
 
 Note: gdb attach step may require ptrace_scope to be modified, or `sudo` preceding the `gdb`.

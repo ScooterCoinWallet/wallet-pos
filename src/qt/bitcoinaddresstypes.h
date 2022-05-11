@@ -41,7 +41,7 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** Litecoin PoS adress type definitions. Encapsulates parsing
+/** Scootercoin adress type definitions. Encapsulates parsing
    and serves as list model for drop-down selection boxes.
 */
 class BitcoinAddressTypes: public QAbstractListModel

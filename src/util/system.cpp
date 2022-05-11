@@ -71,7 +71,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "litecoin-pos.conf";
+const char * const BITCOIN_CONF_FILENAME = "scootercoin.conf";
 
 ArgsManager gArgs;
 
@@ -288,7 +288,7 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
         if (key.substr(0, 5) == "-psn_") continue;
 #endif
 
-        if (key == "-") break; //litecoin-pos-tx using stdin
+        if (key == "-") break; //scootercoin-tx using stdin
         std::string val;
         size_t is_index = key.find('=');
         if (is_index != std::string::npos) {
@@ -555,13 +555,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Litecoin-pos
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Litecoin-pos
-    // Mac: ~/Library/Application Support/Litecoin-pos
-    // Unix: ~/.litecoin-pos
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Scootercoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Scootercoin
+    // Mac: ~/Library/Application Support/Scootercoin
+    // Unix: ~/.scootercoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Litecoin-pos";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Scootercoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -571,10 +571,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Litecoin-pos";
+    return pathRet / "Library/Application Support/Scootercoin";
 #else
     // Unix
-    return pathRet / ".litecoin-pos";
+    return pathRet / ".scootercoin";
 #endif
 #endif
 }

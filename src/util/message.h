@@ -46,7 +46,7 @@ enum class SigningResult {
 };
 
 /** Verify a signed message.
- * @param[in] address Signer's litecoin-pos address, it must refer to a public key.
+ * @param[in] address Signer's scootercoin address, it must refer to a public key.
  * @param[in] signature The signature in base64 format.
  * @param[in] message The message that was signed.
  * @return result code */

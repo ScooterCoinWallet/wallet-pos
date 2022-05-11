@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: litecoin-posd.service
-Upstart: litecoin-posd.conf
-OpenRC:  litecoin-posd.openrc
-         litecoin-posd.openrcconf
-CentOS:  litecoin-posd.init
-macOS:   org.litecoin-pos.litecoin-posd.plist
+SystemD: scootercoind.service
+Upstart: scootercoind.conf
+OpenRC:  scootercoind.openrc
+         scootercoind.openrcconf
+CentOS:  scootercoind.init
+macOS:   org.scootercoin.scootercoind.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

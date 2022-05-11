@@ -27,10 +27,10 @@
 #define COPYRIGHT_HOLDERS "The %s developers"
 
 /* Copyright holder(s) */
-#define COPYRIGHT_HOLDERS_FINAL "The Litecoin PoS Core developers"
+#define COPYRIGHT_HOLDERS_FINAL "The Scootercoin Core developers"
 
 /* Replacement for %s in copyright holders string */
-#define COPYRIGHT_HOLDERS_SUBSTITUTION "Litecoin PoS Core"
+#define COPYRIGHT_HOLDERS_SUBSTITUTION "Scootercoin Core"
 
 /* Copyright year */
 #define COPYRIGHT_YEAR 2020
@@ -265,16 +265,16 @@
 #define PACKAGE_BUGREPORT "https://github.com/bitcoin/bitcoin/issues"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "Litecoin PoS Core"
+#define PACKAGE_NAME "Scootercoin Core"
 
 /* Define to the full name and version of this package. */
 #define PACKAGE_STRING "Bitcoin Core 0.19.99"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "litecoin-pos"
+#define PACKAGE_TARNAME "scootercoin"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://litecoinpos.org/"
+#define PACKAGE_URL "https://scootercoin.org/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "0.19.99"

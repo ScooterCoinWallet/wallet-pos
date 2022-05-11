@@ -56,7 +56,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Litecoin PoS cannot be compiled without assertions."
+# error "Scootercoin cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -1123,7 +1123,7 @@ bool GetTransaction(const uint256& hash, CTransactionRef& txOut, const Consensus
 bool CheckHeaderPoW(const CBlockHeader& block, const Consensus::Params& consensusParams)
 {
     // Check for proof of work block header
-    return CheckProofOfWork(block.GetHash(), block.nBits, consensusParams);
+    return CheckProofOfWork(block.GetPoW().GetPoWHash(), block.nBits, consensusParams);
 }
 
 bool CheckHeaderPoS(const CBlockHeader& block, const Consensus::Params& consensusParams)
@@ -1159,7 +1159,7 @@ bool CheckIndexProof(const CBlockIndex& block, const Consensus::Params& consensu
 {
     // Get the hash of the proof
     // After validating the PoS block the computed hash proof is saved in the block index, which is used to check the index
-    uint256 hashProof = block.IsProofOfWork() ? block.GetBlockHash() : block.hashProof;
+    uint256 hashProof = block.IsProofOfWork() ? block.GetBlockPoWHash() : block.hashProof;
     // Check for proof after the hash proof is computed
     if (block.IsProofOfStake()) {
         //blocks are loaded out of order, so checking PoS kernels here is not practical
@@ -1289,8 +1289,8 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    CAmount nSubsidy = 50 * COIN;
-    if (nHeight == 1)  {
+    CAmount nSubsidy = 150 * COIN;
+    if (nHeight == 2)  {
         nSubsidy = PREMINE_COIN;
     } else {
        int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
@@ -1298,8 +1298,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         if (halvings >= 64)
             return 0;
 
-        CAmount nSubsidy = 50 * COIN;
-        // Subsidy is cut in half every 831,600 blocks
+        CAmount nSubsidy = 150 * COIN;
+        // Subsidy is cut in half every 840,000 blocks
         nSubsidy >>= halvings;
         return nSubsidy;
             
@@ -2427,7 +2427,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
     //only start checking this error after block 5000 and only on testnet and mainnet, not regtest
-    if (pindex->nHeight > 5000 && !Params().MineBlocksOnDemand()) {
+    if (pindex->nHeight > 385000 && !Params().MineBlocksOnDemand()) {
         //sanity check in case an exploit happens that allows new coins to be minted
         if(pindex->nMoneySupply > (uint64_t)(100000000 + ((pindex->nHeight - 5000) * 4)) * COIN){
             LogPrintf("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply");
@@ -4026,7 +4026,7 @@ bool CChainState::UpdateHashProof(const CBlock& block, BlockValidationState& sta
     // PoW is checked in CheckBlock()
     if (block.IsProofOfWork())
     {
-        hashProof = block.GetHash();
+        hashProof = block.GetPoWHash();
     }
     
     // Record proof hash value
@@ -5338,7 +5338,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
                     }
                 }
 
-                // In Litecoin PoS POW this only needed to be done for genesis and at the end of block indexing
+                // In Scootercoin POW this only needed to be done for genesis and at the end of block indexing
                 // For POS we need to sync this after every block to ensure txdb is populated for validating PoS proofs
                 {
                     BlockValidationState state;

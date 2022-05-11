@@ -187,7 +187,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
     {
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
-        {   // User-entered Litecoin PoS address / amount:
+        {   // User-entered Scootercoin address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -259,7 +259,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
         std::vector<std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp : transaction.getRecipients())
         {
-            if (!rcp.message.isEmpty()) // Message from normal litecoinpos:URI (litecoinpos:123...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal scootercoin:URI (scootercoin:123...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 

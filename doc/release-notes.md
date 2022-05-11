@@ -1,12 +1,12 @@
 
-Litecoin-PoS Core version 0.19.0 is now available from:
+Scootercoin Core version 0.19.0 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-0.19.0/>
 =======
 0.20.0 Release Notes
 ====================
 
-Litecoin-PoS Core version 0.20.0 is now available from:
+Scootercoin Core version 0.20.0 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-0.20.0/>
 
@@ -26,24 +26,24 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Litecoin-PoS-Qt` (on Mac)
-or `litecoin-posd`/`litecoin-pos-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Scootercoin-Qt` (on Mac)
+or `scootercoind`/`scootercoin-qt` (on Linux).
 
-Upgrading directly from a version of Litecoin-PoS Core that has reached its EOL is
+Upgrading directly from a version of Scootercoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Litecoin-PoS Core are generally supported.
+wallet versions of Scootercoin Core are generally supported.
 
 Compatibility
 ==============
 
-Litecoin-PoS Core is supported and extensively tested on operating systems
-using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Litecoin-PoS
+Scootercoin Core is supported and extensively tested on operating systems
+using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Scootercoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them.  It is not recommended to use Litecoin-PoS Core on
+frequently tested on them.  It is not recommended to use Scootercoin Core on
 unsupported systems.
 
-From Litecoin-PoS Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
-longer supported. Additionally, Litecoin-PoS Core does not yet change appearance
+From Scootercoin Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
+longer supported. Additionally, Scootercoin Core does not yet change appearance
 when macOS "dark mode" is activated.
 
 Known Bugs
@@ -66,20 +66,20 @@ Notable changes
 P2P and network changes
 -----------------------
 
-#### Removal of BIP61 reject network messages from Litecoin-PoS Core
+#### Removal of BIP61 reject network messages from Scootercoin Core
 
 The `-enablebip61` command line option to enable BIP61 has been removed.
 (#17004)
 
-This feature has been disabled by default since Litecoin-PoS Core version 0.18.0.
+This feature has been disabled by default since Scootercoin Core version 0.18.0.
 Nodes on the network can not generally be trusted to send valid messages
 (including reject messages), so this should only ever be used when
 connected to a trusted node.  Please use the alternatives recommended
 below if you rely on this removed feature:
 
-- Testing or debugging of implementations of the Litecoin-PoS P2P network protocol
+- Testing or debugging of implementations of the Scootercoin P2P network protocol
   should be done by inspecting the log messages that are produced by a recent
-  version of Litecoin-PoS Core. Litecoin-PoS Core logs debug messages
+  version of Scootercoin Core. Scootercoin Core logs debug messages
   (`-debug=<category>`) to a stream (`-printtoconsole`) or to a file
   (`-debuglogfile=<debug.log>`).
 
@@ -143,9 +143,9 @@ Updated RPCs
 Build System
 ------------
 
-- OpenSSL is no longer used by Litecoin-PoS Core.  (#17265)
+- OpenSSL is no longer used by Scootercoin Core.  (#17265)
 
-- BIP70 support has been fully removed from Litecoin-PoS Core. The
+- BIP70 support has been fully removed from Scootercoin Core. The
   `--enable-bip70` option remains, but it will throw an error during configure.
   (#17165)
 
@@ -170,14 +170,14 @@ New settings
   Numbers (ASNs) and then limiting the number of connections made to any
   single ASN.  See [issue #16599](https://github.com/bitcoin/bitcoin/issues/16599),
   [PR #16702](https://github.com/bitcoin/bitcoin/pull/16702), and the
-  `litecoin-posd help` for more information.  This option is experimental and
+  `scootercoind help` for more information.  This option is experimental and
   subject to removal or breaking changes in future releases, so the
   legacy /16 prefix mapping of IP addresses remains the default.  (#16702)
 
 Updated settings
 ----------------
 
-- All custom settings configured when Litecoin-PoS Core starts are now
+- All custom settings configured when Scootercoin Core starts are now
   written to the `debug.log` file to assist troubleshooting.  (#16115)
 
 - Importing blocks upon startup via the `bootstrap.dat` file no longer
@@ -203,7 +203,7 @@ Removed settings
 GUI changes
 -----------
 
-- The "Start Litecoin-PoS Core on system login" option has been removed on macOS.
+- The "Start Scootercoin Core on system login" option has been removed on macOS.
   (#17567)
 
 - In the Peers window, the details for a peer now displays a `Mapped AS`
@@ -213,15 +213,15 @@ GUI changes
 
 - A "known bug" [announced](https://bitcoincore.org/en/releases/0.18.0/#wallet-gui)
   in the release notes of version 0.18 has been fixed.  The issue
-  affected anyone who simultaneously used multiple Litecoin-PoS Core wallets
+  affected anyone who simultaneously used multiple Scootercoin Core wallets
   and the GUI coin control feature. (#18894)
 
 - For watch-only wallets, creating a new transaction in the Send screen
   or fee bumping an existing transaction in the Transactions screen will
-  automatically copy a Partially-Signed Litecoin-PoS Transaction (PSBT) to
+  automatically copy a Partially-Signed Scootercoin Transaction (PSBT) to
   the system clipboard.  This can then be pasted into an external
   program such as [HWI](https://github.com/bitcoin-core/HWI) for
-  signing.  Future versions of Litecoin-PoS Core should support a GUI option
+  signing.  Future versions of Scootercoin Core should support a GUI option
   for finalizing and broadcasting PSBTs, but for now the debug console
   may be used with the `finalizepsbt` and `sendrawtransaction` RPCs.
   (#16944, #17492)
@@ -251,7 +251,7 @@ Wallet
 Documentation changes
 ---------------------
 
-- Litecoin-PoS Core's automatically-generated source code documentation is
+- Scootercoin Core's automatically-generated source code documentation is
   now available at https://doxygen.bitcoincore.org.  (#17596)
 
 Low-level changes
@@ -260,7 +260,7 @@ Low-level changes
 Utilities
 ---------
 
-- The `litecoin-pos-cli` utility used with the `-getinfo` parameter now
+- The `scootercoin-cli` utility used with the `-getinfo` parameter now
   returns a `headers` field with the number of downloaded block headers
   on the best headers chain (similar to the `blocks` field that is also
   returned) and a `verificationprogress` field that estimates how much
@@ -268,7 +268,7 @@ Utilities
   information returned no longer includes the `protocolversion`,
   `walletversion`, and `keypoololdest` fields.  (#17302, #17650)
 
-- The `litecoin-pos-cli` utility now accepts a `-stdinwalletpassphrase`
+- The `scootercoin-cli` utility now accepts a `-stdinwalletpassphrase`
   parameter that can be used when calling the `walletpassphrase` and
   `walletpassphrasechange` RPCs to read the passphrase from standard
   input without echoing it to the terminal, improving security against
@@ -585,7 +585,7 @@ Build system
 - #18395 scripts: Add pe dylib checking to symbol-check.py (fanquake)
 - #18415 scripts: Add macho tests to test-security-check.py (fanquake)
 - #18425 releases: Update with new Windows code signing certificate (achow101)
-- #18702 Fix ASLR for litecoin-pos-cli on Windows (fanquake)
+- #18702 Fix ASLR for scootercoin-cli on Windows (fanquake)
 
 ### Tests and QA
 - #12134 Build previous releases and run functional tests (Sjors)
@@ -629,7 +629,7 @@ Build system
 - #17299 add reason checks for non-standard txs in `test_IsStandard` (theStack)
 - #17322 Fix input size assertion in `wallet_bumpfee.py` (instagibbs)
 - #17327 Add `rpc_fundrawtransaction` logging (jonatack)
-- #17330 Add `shrinkdebugfile=0` to regtest litecoin-pos.conf (sdaftuar)
+- #17330 Add `shrinkdebugfile=0` to regtest scootercoin.conf (sdaftuar)
 - #17340 Speed up fundrawtransaction test (jnewbery)
 - #17345 Do not instantiate CAddrDB for static call CAddrDB::Read() (hebasto)
 - #17362 Speed up `wallet_avoidreuse`, add logging (jonatack)
@@ -752,13 +752,13 @@ Build system
 
 ### Documentation
 - #16947 Doxygen-friendly script/descriptor.h comments (ch4ot1c)
-- #16983 Add detailed info about Litecoin-PoS Core files (hebasto)
+- #16983 Add detailed info about Scootercoin Core files (hebasto)
 - #16986 Doxygen-friendly CuckooCache comments (ch4ot1c)
 - #17022 move-only: Steps for "before major release branch-off" (MarcoFalke)
 - #17026 Update bips.md for default bech32 addresses in 0.20.0 (MarcoFalke)
 - #17081 Fix Makefile target in benchmarking.md (theStack)
 - #17102 Add missing indexes/blockfilter/basic to doc/files.md (MarcoFalke)
-- #17119 Fix broken litecoin-pos-cli examples (andrewtoth)
+- #17119 Fix broken scootercoin-cli examples (andrewtoth)
 - #17134 Add switch on enum example to developer notes (hebasto)
 - #17142 Update macdeploy README to include all files produced by `make deploy` (za-kk)
 - #17146 github: Add warning for bug reports (laanwj)
@@ -777,14 +777,14 @@ Build system
 - #17370 Update doc/bips.md with recent changes in master (MarcoFalke)
 - #17393 Added regtest config for linearize script (gr0kchain)
 - #17411 Add some better examples for scripted diff (laanwj)
-- #17503 Remove bitness from litecoin-pos-qt help message and manpage (laanwj)
+- #17503 Remove bitness from scootercoin-qt help message and manpage (laanwj)
 - #17539 Update and improve Developer Notes (hebasto)
 - #17561 Changed MiniUPnPc link to https in dependencies.md (sandakersmann)
 - #17596 Change doxygen URL to doxygen.bitcoincore.org (laanwj)
 - #17598 Update release process with latest changes (MarcoFalke)
 - #17617 Unify unix epoch time descriptions (jonatack)
 - #17637 script: Add keyserver to verify-commits readme (emilengler)
-- #17648 Rename wallet-tool references to litecoin-pos-wallet (hel-o)
+- #17648 Rename wallet-tool references to scootercoin-wallet (hel-o)
 - #17688 Add "ci" prefix to CONTRIBUTING.md (hebasto)
 - #17751 Use recommended shebang approach in documentation code block (hackerrdave)
 - #17752 Fix directory path for secp256k1 subtree in developer-notes (hackerrdave)
@@ -822,7 +822,7 @@ Build system
 ### Miscellaneous
 - #15600 lockedpool: When possible, use madvise to avoid including sensitive information in core dumps (luke-jr)
 - #15934 Merge settings one place instead of five places (ryanofsky)
-- #16115 On litecoin-posd startup, write config args to debug.log (LarryRuane)
+- #16115 On scootercoind startup, write config args to debug.log (LarryRuane)
 - #16117 util: Replace boost sleep with std sleep (MarcoFalke)
 - #16161 util: Fix compilation errors in support/lockedpool.cpp (jkczyz)
 - #16802 scripts: In linearize, search for next position of magic bytes rather than fail (takinbo)
@@ -845,7 +845,7 @@ Build system
 - #17507 random: mark RandAddPeriodic and SeedPeriodic as noexcept (fanquake)
 - #17527 Fix CPUID subleaf iteration (sipa)
 - #17604 util: Make schedulebatchpriority advisory only (fanquake)
-- #17650 util: Remove unwanted fields from litecoin-pos-cli -getinfo (malevolent)
+- #17650 util: Remove unwanted fields from scootercoin-cli -getinfo (malevolent)
 - #17671 script: Fixed wget call in gitian-build.py (willyko)
 - #17699 Make env data logging optional (sipa)
 - #17721 util: Don't allow base58 decoding of non-base58 strings. add base58 tests (practicalswift)
@@ -907,7 +907,7 @@ Build system
 - #15834 Fix transaction relay bugs introduced in #14897 and expire transactions from peer in-flight map (sdaftuar)
 - #15651 torcontrol: Use the default/standard network port for Tor hidden services, even if the internal port is set differently (luke-jr)
 - #16188 Document what happens to getdata of unknown type (MarcoFalke)
-- #15649 Add ChaCha20Poly1305@Litecoin-PoS AEAD (jonasschnelli)
+- #15649 Add ChaCha20Poly1305@Scootercoin AEAD (jonasschnelli)
 - #16152 Disable bloom filtering by default (TheBlueMatt)
 - #15993 Drop support of the insecure miniUPnPc versions (hebasto)
 - #16197 Use mockable time for tx download (MarcoFalke)
@@ -926,7 +926,7 @@ Build system
 - #15508 Refactor analyzepsbt for use outside RPC code (gwillen)
 - #15747 Remove plethora of Get*Balance (MarcoFalke)
 - #15728 Refactor relay transactions (jnewbery)
-- #15639 litecoin-pos-wallet tool: Drop libbitcoin_server.a dependency (ryanofsky)
+- #15639 scootercoin-wallet tool: Drop libbitcoin_server.a dependency (ryanofsky)
 - #15853 Remove unused import checkpoints.h (MarcoFalke)
 - #15780 add cachable amounts for caching credit/debit values (kallewoof)
 - #15778 Move maxtxfee from node to wallet (jnewbery)
@@ -1051,7 +1051,7 @@ Build system
 - #16291 Stop translating PACKAGE_NAME (MarcoFalke)
 - #16380 Remove unused bits from the service flags enum (MarcoFalke)
 - #16379 Fix autostart filenames on Linux for testnet/regtest (hebasto)
-- #16366 init: Use InitError for all errors in litecoin-posd/qt (MarcoFalke)
+- #16366 init: Use InitError for all errors in scootercoind/qt (MarcoFalke)
 - #16436 Do not create payment server if -disablewallet option provided (hebasto)
 - #16514 Remove unused RPCConsole::tabFocus (promag)
 - #16497 Generate bech32 addresses by default (take 2, fixup) (MarcoFalke)
@@ -1112,7 +1112,7 @@ Build system
 - #16235 Cleaned up and consolidated msbuild files (no code changes) (sipsorcery)
 - #16246 MSVC: Fix error in debug mode (Fix #16245) (NicolasDorier)
 - #16183 xtrans: Configure flags cleanup (dongcarl)
-- #16258 [MSVC]: Create the config.ini as part of litecoin-posd build (NicolasDorier)
+- #16258 [MSVC]: Create the config.ini as part of scootercoind build (NicolasDorier)
 - #16271 remove -Wall from rapidcheck build flags (fanquake)
 - #16309 [MSVC] allow user level project customization (NicolasDorier)
 - #16308 [MSVC] Copy build output to src/ automatically after build (NicolasDorier)
@@ -1179,7 +1179,7 @@ Build system
 - #15866 Add missing syncwithvalidationinterfacequeue to wallet_import_rescan (MarcoFalke)
 - #15697 Make swap_magic_bytes in p2p_invalid_messages atomic (MarcoFalke)
 - #15895 Avoid re-reading config.ini unnecessarily (luke-jr)
-- #15896 feature_filelock, interface_bitcoin_cli: Use PACKAGE_NAME in messages rather than hardcoding Litecoin-PoS Core (luke-jr)
+- #15896 feature_filelock, interface_bitcoin_cli: Use PACKAGE_NAME in messages rather than hardcoding Scootercoin Core (luke-jr)
 - #15897 QA/mininode: Send all headers upfront in send_blocks_and_test to avoid sending an unconnected one (luke-jr)
 - #15696 test_runner: Move feature_pruning to base tests (MarcoFalke)
 - #15869 Add settings merge test to prevent regresssions (ryanofsky)
@@ -1333,7 +1333,7 @@ Build system
 - #16556 Fix systemd service file configuration directory setup (setpill)
 - #15615 Add log output during initial header sync (jonasschnelli)
 - #16774 Avoid unnecessary "Synchronizing blockheaders" log messages (jonasschnelli)
-- #16489 log: harmonize litecoin-posd logging (jonatack)
+- #16489 log: harmonize scootercoind logging (jonatack)
 - #16577 util: Cbufferedfile fixes and unit test (LarryRuane)
 - #16984 util: Make thread names shorter (hebasto)
 - #17038 Don't rename main thread at process level (laanwj)
@@ -1344,7 +1344,7 @@ Build system
 
 ### Documentation
 - #15514 Update Transifex links (fanquake)
-- #15513 add "sections" info to example litecoin-pos.conf (fanquake)
+- #15513 add "sections" info to example scootercoin.conf (fanquake)
 - #15530 Move wallet lock annotations to header (MarcoFalke)
 - #15562 remove duplicate clone step in build-windows.md (fanquake)
 - #15565 remove release note fragments (fanquake)
@@ -1396,7 +1396,7 @@ Build system
 - #16484 update labels in CONTRIBUTING.md (MarcoFalke)
 - #16483 update Python command in msvc readme (sipsorcery)
 - #16504 Add release note for the deprecated totalFee option of bumpfee (promag)
-- #16448 add note on precedence of options in litecoin-pos.conf (fanquake)
+- #16448 add note on precedence of options in scootercoin.conf (fanquake)
 - #16536 Update and extend benchmarking.md (ariard)
 - #16530 Fix grammar and punctuation in developer notes (Tech1k)
 - #16574 Add historical release notes for 0.18.1 (laanwj)
@@ -1414,15 +1414,15 @@ Build system
 - #16629 Add documentation for the new whitelist permissions (NicolasDorier)
 - #16723 Update labels in CONTRIBUTING.md (hebasto)
 - #16461 Tidy up shadowing section (promag)
-- #16621 add default litecoin-pos.conf locations (GChuf)
+- #16621 add default scootercoin.conf locations (GChuf)
 - #16752 Delete stale URL in test README (michaelfolkson)
 - #14862 Declare BLOCK_VALID_HEADER reserved (MarcoFalke)
 - #16806 Add issue templates for bug and feature request (MarcoFalke)
 - #16857 Elaborate need to re-login on Debian-based after usermod for Tor group (clashicly)
-- #16863 Add a missing closing parenthesis in the litecoin-pos-wallet's help (darosior)
+- #16863 Add a missing closing parenthesis in the scootercoin-wallet's help (darosior)
 - #16757 CChainState return values (MarcoFalke)
 - #16847 add comments clarifying how local services are advertised (jamesob)
-- #16812 Fix whitespace errs in .md files, litecoin-pos.conf, and Info.plist.in (ch4ot1c)
+- #16812 Fix whitespace errs in .md files, scootercoin.conf, and Info.plist.in (ch4ot1c)
 - #16885 Update tx-size-small comment with relevant CVE disclosure (instagibbs)
 - #16900 Fix doxygen comment for SignTransaction in rpc/rawtransaction_util (MarcoFalke)
 - #16914 Update homebrew instruction for doxygen (Sjors)

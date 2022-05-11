@@ -2427,7 +2427,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
     //only start checking this error after block 5000 and only on testnet and mainnet, not regtest
-    if (pindex->nHeight > 385000 && !Params().MineBlocksOnDemand()) {
+    if (pindex->nHeight > 385100 && !Params().MineBlocksOnDemand()) {
         //sanity check in case an exploit happens that allows new coins to be minted
         if(pindex->nMoneySupply > (uint64_t)(100000000 + ((pindex->nHeight - 5000) * 4)) * COIN){
             LogPrintf("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply");

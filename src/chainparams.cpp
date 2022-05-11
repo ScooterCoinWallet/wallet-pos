@@ -68,8 +68,8 @@ public:
         
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days (302400)
+        consensus.nPowTargetSpacing = 2.5 * 60; // 2.5 minutes (150)
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.fPoSNoRetargeting = false;
@@ -163,7 +163,8 @@ public:
                 {330000, uint256S("0x94dee6208616969394ec5af3f5a7aec6990c9d95df04e1c734074878adfd2a2c")},
                 {340000, uint256S("0xbc81582e434d0bf2360ab35abcccbcd0172bdb09a9e5aa5ec3fd6469fa3193c5")},
                 {360000, uint256S("0xca3e15d6b371d5c1dcd4b5f59a2cd69788127c2227ddc0d0a8481de232285004")},
-                {380000, uint256S("0x8a90991fc02d11f3fb0d18970848d7c58dd4cccd60592e926d643dafad6b0fe7")}
+                {380000, uint256S("0x8a90991fc02d11f3fb0d18970848d7c58dd4cccd60592e926d643dafad6b0fe7")},
+				{385000, uint256S("0x2cda800ab53f0f1ec8cf4ddc37ce548d62198e6910d349126f9125a19ccfba43")}
             }
         };
 

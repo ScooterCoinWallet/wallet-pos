@@ -33,7 +33,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/litecoin-pos/litecoin-pos.git"
+- "url": "https://github.com/litecoinpos/litecoin-pos.git"
   "dir": "litecoin-pos"
 files: []
 script: |

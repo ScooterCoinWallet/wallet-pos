@@ -3,7 +3,7 @@
 
 Litecoin-PoS Core version 0.20.0.0 is now available from:
 
-  <https://github.com/litecoinpos/ltcp/releases/tag/v0.20.0.0/>
+  <https://github.com/litecoinpos/litecoin-pos/releases/tag/v0.20.0.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
@@ -155,8 +155,8 @@ New settings
 - A new `-asmap` configuration option has been added to diversify the
   node's network connections by mapping IP addresses Autonomous System
   Numbers (ASNs) and then limiting the number of connections made to any
-  single ASN.  See [issue #16599](https://github.com/litecoin-pos/litecoin-pos/issues/16599),
-  [PR #16702](https://github.com/litecoin-pos/litecoin-pos/pull/16702), and the
+  single ASN.  See [issue #16599](https://github.com/litecoinpos/litecoin-pos/issues/16599),
+  [PR #16702](https://github.com/litecoinpos/litecoin-pos/pull/16702), and the
   `litecoin-posd help` for more information.  This option is experimental and
   subject to removal or breaking changes in future releases, so the
   legacy /16 prefix mapping of IP addresses remains the default.  (#16702)

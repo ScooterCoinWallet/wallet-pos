@@ -8,8 +8,6 @@ src/litecoin-posd
 src/litecoin-pos-cli
 src/litecoin-pos-tx
 src/litecoin-pos-wallet
-src/test/fuzz
-!src/test/fuzz/*.*
 src/test/test_bitcoin
 src/qt/test/test_bitcoin-qt
 src/test/test_litecoin-pos
@@ -46,7 +44,6 @@ src/obj
 share/setup.nsi
 share/qt/Info.plist
 
-src/univalue/gen
 
 src/qt/*.moc
 src/qt/moc_*.cpp
@@ -98,7 +95,8 @@ Makefile
 src/qt/litecoin-pos-qt
 Litecoin-POS-Qt.app
 background.tiff*
-
+!src/qt/test/Makefile
+!src/qt/Makefile
 # Qt Creator
 Makefile.am.user
 

@@ -51,7 +51,7 @@ inline arith_uint256 GetLimit(int nHeight, const Consensus::Params& params, bool
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, bool fProofOfStake)
 {
-	if (pindexLast && pindexLast->nHeight < 400000) {
+	if (pindexLast && pindexLast->nHeight <= 385000) {
 		assert(pindexLast != nullptr);
 		unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 

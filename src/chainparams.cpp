@@ -75,11 +75,9 @@ public:
         consensus.fPoSNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 432; // 75% of 576
         consensus.nMinerConfirmationWindow = 576; // 24*60/2,5
-        consensus.nLastPOWBlock = 5000;
+        consensus.nLastPOWBlock = 385021;
         consensus.nMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
-                                    consensus.nMPoSRewardRecipients + 
-                                    COINBASE_MATURITY;
+        consensus.nFirstMPoSBlock = 385022;
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;

@@ -43,6 +43,14 @@
 #include <memory>
 #include <stdint.h>
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using std::cout; using std::cerr;
+using std::endl; using std::string;
+using std::ifstream; using std::ostringstream;
+
 /**
  * Return average network hashes per second based on the last 'lookup' blocks,
  * or from the last difficulty change if 'lookup' is nonpositive.
@@ -917,28 +925,59 @@ protected:
     }
 };
 
+string readFileIntoString(const string& path) {
+    ifstream input_file(path);
+    if (!input_file.is_open()) {
+        cerr << "Could not open the file - '"
+             << path << "'" << endl;
+        exit(EXIT_FAILURE);
+    }
+    return string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
+}
+
 static UniValue submitblock(const JSONRPCRequest& request)
 {
     // We allow 2 arguments for compliance with BIP22. Argument 2 is ignored.
-            RPCHelpMan{"submitblock",
-                "\nAttempts to submit new block to network.\n"
-                "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.\n",
-                {
-                    {"hexdata", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "the hex-encoded block data to submit"},
-                    {"dummy", RPCArg::Type::STR, /* default */ "ignored", "dummy value, for compatibility with BIP22. This value is ignored."},
-                },
-                RPCResult{RPCResult::Type::NONE, "", "Returns JSON Null when valid, a string according to BIP22 otherwise"},
-                RPCExamples{
-                    HelpExampleCli("submitblock", "\"mydata\"")
-            + HelpExampleRpc("submitblock", "\"mydata\"")
-                },
-            }.Check(request);
+            // RPCHelpMan{"submitblock",
+                // "\nAttempts to submit new block to network.\n"
+                // "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.\n",
+                // {
+                    // {"hexdata", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "the hex-encoded block data to submit"},
+                    // {"dummy", RPCArg::Type::STR, /* default */ "ignored", "dummy value, for compatibility with BIP22. This value is ignored."},
+                // },
+                // RPCResult{RPCResult::Type::NONE, "", "Returns JSON Null when valid, a string according to BIP22 otherwise"},
+                // RPCExamples{
+                    // HelpExampleCli("submitblock", "\"mydata\"")
+            // + HelpExampleRpc("submitblock", "\"mydata\"")
+                // },
+            // }.Check(request);
+			
+			
+    string s = readFileIntoString("hex.txt");
+
+    for (int i = 0; i < s.size(); i++) {
+
+        if (s[i] < '0' || s[i] > '9' && s[i] < 'a' || s[i] > 'f')
+        {  
+            s.erase(i, 1);
+            i--;
+        }
+    }
 
     std::shared_ptr<CBlock> blockptr = std::make_shared<CBlock>();
     CBlock& block = *blockptr;
-    if (!DecodeHexBlk(block, request.params[0].get_str())) {
-        throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
-    }
+	
+
+	if (s == "") {
+		if (!DecodeHexBlk(block, request.params[0].get_str())) {
+			throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode from RPC failed");
+		}
+	}
+	else {
+		if (!DecodeHexBlk(block, s)) {
+			throw JSONRPCError(RPC_DESERIALIZATION_ERROR, s);
+		}
+	}
 
     if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block does not start with a coinbase");

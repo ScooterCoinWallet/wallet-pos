@@ -174,7 +174,15 @@ bool DecodeHexBlk(CBlock& block, const std::string& strHexBlk)
     std::vector<unsigned char> blockData(ParseHex(strHexBlk));
     CDataStream ssBlock(blockData, SER_NETWORK, PROTOCOL_VERSION);
     try {
-		ssBlock >> block;
+		//ssBlock >> block;
+        ssBlock >> blockPoW;
+		block.nVersion = blockPoW.nVersion;
+		block.hashPrevBlock = blockPoW.hashPrevBlock;
+		block.hashMerkleRoot = blockPoW.hashMerkleRoot;
+		block.nTime = blockPoW.nTime;
+		block.nBits = blockPoW.nBits;
+		block.nNonce = blockPoW.nNonce;
+		block.vtx = blockPoW.vtx;
     }
     catch (const std::exception&) {
         return false;

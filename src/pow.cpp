@@ -51,7 +51,8 @@ inline arith_uint256 GetLimit(int nHeight, const Consensus::Params& params, bool
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, bool fProofOfStake)
 {
-	if (pindexLast && pindexLast->nHeight <= 385100) {
+	if (pindexLast && pindexLast->nHeight <= 385021) //PoW
+	{
 		assert(pindexLast != nullptr);
 		unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
@@ -85,7 +86,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 		return CalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 	}
-	else {
+	else //PoS
+	{
 		unsigned int nTargetLimit = GetLimit(pindexLast ? pindexLast->nHeight+1 : 0, params, fProofOfStake).GetCompact();
 
 		// genesis block

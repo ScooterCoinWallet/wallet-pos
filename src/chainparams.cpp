@@ -77,7 +77,9 @@ public:
         consensus.nMinerConfirmationWindow = 576; // 24*60/2,5
         consensus.nLastPOWBlock = 385021;
         consensus.nMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = 385022;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
+                                    consensus.nMPoSRewardRecipients + 
+                                    COINBASE_MATURITY;
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;

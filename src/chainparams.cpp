@@ -75,7 +75,7 @@ public:
         consensus.fPoSNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 432; // 75% of 576
         consensus.nMinerConfirmationWindow = 576; // 24*60/2,5
-        consensus.nLastPOWBlock = 385100;
+        consensus.nLastPOWBlock = 5000;
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
                                     consensus.nMPoSRewardRecipients + 

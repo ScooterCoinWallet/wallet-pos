@@ -54,6 +54,7 @@ BOOST_AUTO_TEST_CASE(rpc_supply_uses_validated_chain)
     BOOST_REQUIRE(tip != nullptr);
     const uint64_t expected_supply = tip->nMoneySupply / COIN;
     CBlockIndex header;
+    header.SetNull();
     header.nHeight = tip->nHeight + 1;
     header.nMoneySupply = (expected_supply + 123) * COIN;
     struct RestoreHeader {

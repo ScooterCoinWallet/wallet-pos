@@ -1335,7 +1335,7 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     obj.pushKV("headers",               pindexBestHeader ? pindexBestHeader->nHeight : -1);
     obj.pushKV("bestblockhash",         tip->GetBlockHash().GetHex());
     obj.pushKV("difficulty",            (double)GetDifficulty(tip));
-    obj.pushKV("moneysupply",           pindexBestHeader ? pindexBestHeader->nMoneySupply / COIN : -1);
+    obj.pushKV("moneysupply",           tip->nMoneySupply / COIN);
     obj.pushKV("mediantime",            (int64_t)tip->GetMedianTimePast());
     obj.pushKV("verificationprogress",  GuessVerificationProgress(Params().TxData(), tip));
     obj.pushKV("initialblockdownload",  ::ChainstateActive().IsInitialBlockDownload());

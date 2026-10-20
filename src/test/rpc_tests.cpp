@@ -6,6 +6,8 @@
 #include <rpc/client.h>
 #include <rpc/util.h>
 
+#include <chain.h>
+#include <validation.h>
 #include <core_io.h>
 #include <interfaces/chain.h>
 #include <node/context.h>
@@ -41,6 +43,31 @@ UniValue CallRPC(std::string args)
 
 
 BOOST_FIXTURE_TEST_SUITE(rpc_tests, TestingSetup)
+
+BOOST_AUTO_TEST_CASE(rpc_supply_uses_validated_chain)
+{
+    LOCK(cs_main);
+    const CBlockIndex* tip = ::ChainActive().Tip();
+    BOOST_REQUIRE(tip != nullptr);
+    const uint64_t expected_supply = tip->nMoneySupply / COIN;
+    CBlockIndex header;
+    header.nHeight = tip->nHeight + 1;
+    header.nMoneySupply = (expected_supply + 123) * COIN;
+    struct RestoreHeader {
+        CBlockIndex* saved;
+        ~RestoreHeader() { pindexBestHeader = saved; }
+    } restore{pindexBestHeader};
+
+    // Headers have not passed full block validation and cannot report supply.
+    pindexBestHeader = &header;
+    const UniValue info = CallRPC("getblockchaininfo");
+    BOOST_CHECK_EQUAL(find_value(info, "moneysupply").get_int64(), expected_supply);
+    BOOST_CHECK_EQUAL(find_value(info, "headers").get_int(), header.nHeight);
+    BOOST_CHECK_EQUAL(find_value(info, "blocks").get_int(), tip->nHeight);
+
+    pindexBestHeader = nullptr;
+    BOOST_CHECK_EQUAL(find_value(CallRPC("getblockchaininfo"), "moneysupply").get_int64(), expected_supply);
+}
 
 BOOST_AUTO_TEST_CASE(rpc_rawparams)
 {

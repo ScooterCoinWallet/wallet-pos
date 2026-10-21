@@ -111,10 +111,11 @@ Build using:
 
 ## Building for 32-bit Windows
 
-The 32-bit build is experimental. The block index, the database cache and the mempool of the current chain need more than
-the 2 GiB of address space a 32-bit process normally gets, so the 32-bit binaries are linked large-address-aware (4 GiB on
-64-bit Windows) and should be run with a reduced cache, for example `-dbcache=100 -maxmempool=50`. Use the 64-bit build
-whenever the system runs 64-bit Windows.
+The 32-bit build is experimental. A 32-bit process normally gets 2 GiB of address space, and with the default database
+cache (`-dbcache=450`) and mempool (`-maxmempool=300`) a node with a large wallet can come close to that limit. The 32-bit
+binaries are therefore linked large-address-aware (4 GiB of address space on 64-bit Windows), and on 32-bit Windows they
+should be run with a reduced cache, for example `-dbcache=100 -maxmempool=50`. Use the 64-bit build whenever the system
+runs 64-bit Windows.
 
 To build executables for Windows 32-bit, install the following dependencies:
 

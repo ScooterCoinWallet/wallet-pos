@@ -22,6 +22,7 @@
 #include <atomic>
 #include <chrono>
 #include <climits>
+#include <cstdlib>
 #include <thread>
 #include <vector>
 
@@ -352,7 +353,9 @@ void RandAddStaticEnv(CSHA512& hasher)
 #endif
 
     // Memory locations
-    hasher << &hasher << &RandAddStaticEnv << &malloc << &errno << &environ;
+    // An explicit pointer type avoids a MinGW GCC 10 template-deduction crash.
+    // The sampled function address and pointer width are unchanged.
+    hasher << &hasher << &RandAddStaticEnv << static_cast<void* (*)(std::size_t)>(&malloc) << &errno << &environ;
 
     // Hostname
     char hname[256];

@@ -20,6 +20,7 @@ format. It does not introduce a coin swap or a new blockchain.
   transaction identifier is added to it.
 - Add an optional ScooterCoin color theme. The native appearance remains
   available through Settings.
+- Restore compatibility with the Windows 32-bit cross-compiler.
 - Produce separate Windows 32-bit and 64-bit installers and portable packages.
   The 32-bit executables are linked large-address-aware.
 - Update the Windows dependency recipes to Qt 5.15.19, OpenSSL 3.5.9,

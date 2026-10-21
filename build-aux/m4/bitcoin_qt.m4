@@ -417,6 +417,19 @@ AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
              BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}DeviceDiscoverySupport],[main],,BITCOIN_QT_FAIL(lib$QT_LIB_PREFIXDeviceDiscoverySupport not found)))
              BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}AccessibilitySupport],[main],,BITCOIN_QT_FAIL(lib$QT_LIB_PREFIXAccessibilitySupport not found)))
              QT_LIBS="$QT_LIBS -lversion -ldwmapi -luxtheme"
+             AC_CACHE_CHECK([for Qt >= 5.15], [bitcoin_cv_qt515], [
+               AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+                 #include <QtCore/qglobal.h>
+                 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+                 #error Qt before 5.15
+                 #endif
+               ]], [[]])], [bitcoin_cv_qt515=yes], [bitcoin_cv_qt515=no])
+             ])
+             if test "x$bitcoin_cv_qt515" = xyes; then
+               dnl Match the Windows Qt 5.15 plugin .prl dependencies. Keep this
+               dnl after the support libraries added by AC_CHECK_LIB above.
+               LIBS="$LIBS -lQt5WindowsUIAutomationSupport -lqtfreetype -lqtlibpng -lz -lmpr -luserenv -lnetapi32 -ld3d11 -ldxgi -ldxguid -lwinspool -lwtsapi32"
+             fi
            fi
          fi
        fi

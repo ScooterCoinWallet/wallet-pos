@@ -119,6 +119,9 @@ PE_ALLOWED_LIBRARIES = {
 'UxTheme.dll',
 'VERSION.dll', # version checking
 'WINMM.dll', # WinMM audio API
+'NETAPI32.dll', # Qt 5.15 Windows network-share paths
+'USERENV.dll', # Qt 5.15 Windows profile paths
+'WTSAPI32.dll', # Qt 5.15 Windows session integration
 }
 
 class CPPFilt(object):

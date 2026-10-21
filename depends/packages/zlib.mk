@@ -1,8 +1,14 @@
 package=zlib
+ifeq ($(host_os),mingw32)
+$(package)_version=1.3.2
+$(package)_download_path=https://zlib.net/fossils
+$(package)_sha256_hash=bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16
+else
 $(package)_version=1.2.11
 $(package)_download_path=https://www.zlib.net
-$(package)_file_name=$(package)-$($(package)_version).tar.gz
 $(package)_sha256_hash=c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
+endif
+$(package)_file_name=$(package)-$($(package)_version).tar.gz
 
 define $(package)_set_vars
 $(package)_config_opts= CC="$($(package)_cc)"

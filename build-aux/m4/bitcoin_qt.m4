@@ -123,6 +123,18 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
     if test "x$TARGET_OS" = xwindows; then
       _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)],[-lqwindows])
       AC_DEFINE(QT_QPA_PLATFORM_WINDOWS, 1, [Define this symbol if the qt platform is windows])
+      AC_CACHE_CHECK([for Qt >= 5.10], [bitcoin_cv_qt510], [
+        AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+          #include <QtCore/qglobal.h>
+          #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
+          #error Qt before 5.10
+          #endif
+        ]], [[]])], [bitcoin_cv_qt510=yes], [bitcoin_cv_qt510=no])
+      ])
+      if test "x$bitcoin_cv_qt510" = xyes; then
+        _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QWindowsVistaStylePlugin)],[-lqwindowsvistastyle -ldwmapi -luxtheme])
+        AC_DEFINE(QT_QPA_PLATFORM_WINDOWS_VISTA_STYLE, 1, [Define this symbol if the static Windows style plugin exists])
+      fi
     elif test "x$TARGET_OS" = xlinux; then
       _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QXcbIntegrationPlugin)],[-lqxcb -lxcb-static])
       AC_DEFINE(QT_QPA_PLATFORM_XCB, 1, [Define this symbol if the qt platform is xcb])
@@ -347,6 +359,9 @@ dnl Outputs: QT_LIBS is appended
 AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
     if test "x$qt_plugin_path" != x; then
       QT_LIBS="$QT_LIBS -L$qt_plugin_path/platforms"
+      if test -d "$qt_plugin_path/styles"; then
+        QT_LIBS="$QT_LIBS -L$qt_plugin_path/styles"
+      fi
       if test -d "$qt_plugin_path/accessible"; then
         QT_LIBS="$QT_LIBS -L$qt_plugin_path/accessible"
       fi

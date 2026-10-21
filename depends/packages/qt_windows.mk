@@ -16,7 +16,7 @@ $(package)_patches=translation_tool_path.patch
 # This is a Windows-only recipe. Do not apply the legacy Qt 5.9 Mac/Android/X11
 # patches to these sources or change other platforms' Qt versions implicitly.
 define $(package)_set_vars
-$(package)_config_opts=-release -static -opensource -confirm-license -c++std c++11
+$(package)_config_opts=-release -static -opensource -confirm-license -c++std c++17
 $(package)_config_opts+=-prefix $(host_prefix) -hostprefix $(build_prefix)
 $(package)_config_opts+=-platform linux-g++ -xplatform win32-g++ -device-option CROSS_COMPILE=$(host)-
 $(package)_config_opts+=-nomake examples -nomake tests -no-compile-examples

@@ -2742,6 +2742,9 @@ bool CWallet::SignTransaction(CMutableTransaction& tx, const std::map<COutPoint,
 TransactionError CWallet::FillPSBT(PartiallySignedTransaction& psbtx, bool& complete, int sighash_type, bool sign, bool bip32derivs) const
 {
     LOCK(cs_wallet);
+    // Staking keeps decrypted keys in memory, but does not authorize spending.
+    // Enforce this here as well as at the RPC boundary for other callers.
+    sign = sign && !m_wallet_unlock_staking_only;
     // Get all of the previous transactions
     for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
         const CTxIn& txin = psbtx.tx->vin[i];

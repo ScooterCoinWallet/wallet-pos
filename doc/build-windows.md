@@ -6,7 +6,12 @@ Below are some notes on how to build Scootercoin Core for Windows.
 The options known to work for building Scootercoin Core on Windows are:
 
 * On Linux, using the [Mingw-w64](https://mingw-w64.org/doku.php) cross compiler tool chain. Ubuntu Bionic 18.04 is required
-and is the platform used to build the Scootercoin Core Windows release binaries.
+and is the platform used to build the Scootercoin Core Windows release binaries. Ubuntu Focal 20.04 also works. Do not use
+Ubuntu 22.04 or newer for the depends build: the depends Qt 5.9.8 builds host tools with the host gcc, and gcc 11 or newer
+fails to compile them.
+
+Building the depends packages (Qt, Boost) in parallel needs several GiB of RAM. Do not build on a machine or WSL VM
+that also runs a live node or staking wallet; a memory shortage there can get the node killed.
 * On Windows, using [Windows
 Subsystem for Linux (WSL)](https://docs.microsoft.com/windows/wsl/about) and the Mingw-w64 cross compiler tool chain.
 * On Windows, using a native compiler tool chain such as [Visual Studio](https://www.visualstudio.com).
@@ -72,8 +77,8 @@ If you want to build the windows installer with `make deploy` you need [NSIS](ht
 
 Acquire the source in the usual way:
 
-    git clone https://github.com/bitcoin/bitcoin.git
-    cd bitcoin
+    git clone https://github.com/ScooterCoinWallet/wallet-pos.git
+    cd wallet-pos
 
 ## Building for 64-bit Windows
 
@@ -83,6 +88,7 @@ The first step is to install the mingw-w64 cross-compilation tool chain:
 
 Ubuntu Bionic 18.04 <sup>[1](#footnote1)</sup>:
 
+    sudo update-alternatives --config x86_64-w64-mingw32-gcc # Set the default mingw32 gcc compiler option to posix.
     sudo update-alternatives --config x86_64-w64-mingw32-g++ # Set the default mingw32 g++ compiler option to posix.
 
 Once the toolchain is installed the build steps are common:
@@ -100,6 +106,45 @@ Build using:
     ./autogen.sh # not required when building from tarball
     CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
     make
+
+`make deploy` then creates `scootercoin-<version>-win64-setup-unsigned.exe`.
+
+## Building for 32-bit Windows
+
+The 32-bit build is experimental. A 32-bit process normally gets 2 GiB of address space, and with the default database
+cache (`-dbcache=450`) and mempool (`-maxmempool=300`) a node with a large wallet can come close to that limit. The 32-bit
+binaries are therefore linked large-address-aware (4 GiB of address space on 64-bit Windows), and on 32-bit Windows they
+should be run with a reduced cache, for example `-dbcache=100 -maxmempool=50`. Use the 64-bit build whenever the system
+runs 64-bit Windows.
+
+To build executables for Windows 32-bit, install the following dependencies:
+
+    sudo apt install g++-mingw-w64-i686 mingw-w64-i686-dev
+
+Ubuntu Bionic 18.04 <sup>[1](#footnote1)</sup>:
+
+    sudo update-alternatives --config i686-w64-mingw32-gcc # Set the default mingw32 gcc compiler option to posix.
+    sudo update-alternatives --config i686-w64-mingw32-g++ # Set the default mingw32 g++ compiler option to posix.
+
+Then build using:
+
+    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
+    cd depends
+    make HOST=i686-w64-mingw32
+    cd ..
+    ./autogen.sh # not required when building from tarball
+    CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/
+    make
+
+`make deploy` then creates `scootercoin-<version>-win32-setup-unsigned.exe`. Unlike the 64-bit installer it installs to
+the 32-bit Program Files folder and runs on 32-bit Windows.
+
+Check that the 32-bit executables are large-address-aware before shipping them:
+
+    i686-w64-mingw32-objdump -p src/qt/scootercoin-qt.exe | grep -i "large address aware"
+    i686-w64-mingw32-objdump -p src/scootercoind.exe | grep -i "large address aware"
+
+Each command must print a line. If it prints nothing, the build is not usable.
 
 ## Depends system
 

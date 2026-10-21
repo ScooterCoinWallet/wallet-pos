@@ -8,6 +8,7 @@
 #include <script/standard.h>
 #include <streams.h>
 #include <test/util/setup_common.h>
+#include <txmempool.h>
 #include <uint256.h>
 #include <undo.h>
 #include <util/strencodings.h>
@@ -97,6 +98,14 @@ public:
 } // namespace
 
 BOOST_FIXTURE_TEST_SUITE(coins_tests, BasicTestingSetup)
+
+BOOST_AUTO_TEST_CASE(mempool_height_fits_coin)
+{
+    const Coin coin(CTxOut(1, CScript() << OP_TRUE), MEMPOOL_HEIGHT, false, false);
+    BOOST_CHECK_EQUAL(coin.nHeight, MEMPOOL_HEIGHT);
+    BOOST_CHECK(!coin.IsCoinBase());
+    BOOST_CHECK(!coin.IsCoinStake());
+}
 
 static const unsigned int NUM_SIMULATION_ITERATIONS = 40000;
 
@@ -479,22 +488,41 @@ BOOST_AUTO_TEST_CASE(updatecoins_simulation_test)
     g_mock_deterministic_tests = false;
 }
 
+BOOST_AUTO_TEST_CASE(ccoins_stake_serialization)
+{
+    // Independently encoded: VARINT((42 << 2) | 2), zero amount, empty script.
+    const auto encoded = ParseHex("802a0006");
+    CDataStream input(encoded, SER_DISK, CLIENT_VERSION);
+    Coin coin;
+    input >> coin;
+    BOOST_CHECK_EQUAL(coin.nHeight, 42U);
+    BOOST_CHECK(!coin.fCoinBase);
+    BOOST_CHECK(coin.fCoinStake);
+    BOOST_CHECK_EQUAL(coin.out.nValue, 0);
+    BOOST_CHECK(coin.out.scriptPubKey.empty());
+    CDataStream output(SER_DISK, CLIENT_VERSION);
+    output << coin;
+    BOOST_CHECK_EQUAL(HexStr(output.begin(), output.end()), HexStr(encoded));
+}
+
 BOOST_AUTO_TEST_CASE(ccoins_serialization)
 {
     // Good example
-    CDataStream ss1(ParseHex("97f23c835800816115944e077fe7c803cfa57f29b36bf87c1d35"), SER_DISK, CLIENT_VERSION);
+    CDataStream ss1(ParseHex("b0e578835800816115944e077fe7c803cfa57f29b36bf87c1d35"), SER_DISK, CLIENT_VERSION);
     Coin cc1;
     ss1 >> cc1;
     BOOST_CHECK_EQUAL(cc1.fCoinBase, false);
+    BOOST_CHECK_EQUAL(cc1.fCoinStake, false);
     BOOST_CHECK_EQUAL(cc1.nHeight, 203998U);
     BOOST_CHECK_EQUAL(cc1.out.nValue, CAmount{60000000000});
     BOOST_CHECK_EQUAL(HexStr(cc1.out.scriptPubKey), HexStr(GetScriptForDestination(PKHash(uint160(ParseHex("816115944e077fe7c803cfa57f29b36bf87c1d35"))))));
 
     // Good example
-    CDataStream ss2(ParseHex("8ddf77bbd123008c988f1a4a4de2161e0f50aac7f17e7f9555caa4"), SER_DISK, CLIENT_VERSION);
+    CDataStream ss2(ParseHex("9cc06dbbd123008c988f1a4a4de2161e0f50aac7f17e7f9555caa4"), SER_DISK, CLIENT_VERSION);
     Coin cc2;
     ss2 >> cc2;
     BOOST_CHECK_EQUAL(cc2.fCoinBase, true);
+    BOOST_CHECK_EQUAL(cc2.fCoinStake, false);
     BOOST_CHECK_EQUAL(cc2.nHeight, 120891U);
     BOOST_CHECK_EQUAL(cc2.out.nValue, 110397);
     BOOST_CHECK_EQUAL(HexStr(cc2.out.scriptPubKey), HexStr(GetScriptForDestination(PKHash(uint160(ParseHex("8c988f1a4a4de2161e0f50aac7f17e7f9555caa4"))))));

@@ -1487,8 +1487,17 @@ static void ThreadMapPort()
     struct IGDdatas data;
     int r;
 
+#if MINIUPNPC_API_VERSION >= 18
+    char wanaddr[64];
+    r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr), wanaddr, sizeof(wanaddr));
+    // API 18 distinguishes a connected private WAN from a public one. Older
+    // versions returned 1 for both, so retain that behavior for double NAT.
+    const bool valid_igd = r == 1 || r == 2;
+#else
     r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr));
-    if (r == 1)
+    const bool valid_igd = r == 1;
+#endif
+    if (valid_igd)
     {
         if (fDiscover) {
             char externalIPAddress[40];

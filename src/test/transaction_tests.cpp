@@ -113,7 +113,8 @@ BOOST_AUTO_TEST_CASE(tx_valid)
         std::string strTest = test.write();
         if (test[0].isArray())
         {
-            if (test.size() != 3 || !test[1].isStr() || !test[2].isStr())
+            if ((test.size() != 3 && test.size() != 4) || !test[1].isStr() || !test[2].isStr() ||
+                (test.size() == 4 && (!test[3].isStr() || test[3].get_str() != "bad-txns-vout-empty")))
             {
                 BOOST_ERROR("Bad test: " << strTest);
                 continue;
@@ -153,8 +154,17 @@ BOOST_AUTO_TEST_CASE(tx_valid)
             CTransaction tx(deserialize, stream);
 
             TxValidationState state;
-            BOOST_CHECK_MESSAGE(CheckTransaction(tx, state), strTest);
-            BOOST_CHECK(state.IsValid());
+            const bool structurally_valid = CheckTransaction(tx, state);
+            if (test.size() == 4) {
+                // Preserve Bitcoin's script vectors, while asserting ScooterCoin's
+                // explicit structural rejection of ordinary empty outputs.
+                BOOST_CHECK_MESSAGE(!structurally_valid, strTest);
+                BOOST_CHECK(state.IsInvalid());
+                BOOST_CHECK_EQUAL(state.GetRejectReason(), test[3].get_str());
+            } else {
+                BOOST_CHECK_MESSAGE(structurally_valid, strTest);
+                BOOST_CHECK(state.IsValid());
+            }
 
             PrecomputedTransactionData txdata(tx);
             for (unsigned int i = 0; i < tx.vin.size(); i++)

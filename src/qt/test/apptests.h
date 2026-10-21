@@ -6,6 +6,8 @@
 #define BITCOIN_QT_TEST_APPTESTS_H
 
 #include <QObject>
+#include <QList>
+#include <QUrl>
 #include <set>
 #include <string>
 #include <utility>
@@ -24,6 +26,7 @@ private Q_SLOTS:
     void appTests();
     void guiTests(BitcoinGUI* window);
     void consoleTests(RPCConsole* console);
+    void recordProjectUrl(const QUrl& url);
 
 private:
     //! Add expected callback name to list of pending callbacks.
@@ -45,6 +48,7 @@ private:
     //! either run or thrown exceptions. This could be a simple int counter
     //! instead of a set of names, but the names might be useful for debugging.
     std::multiset<std::string> m_callbacks;
+    QList<QUrl> m_project_urls;
 };
 
 #endif // BITCOIN_QT_TEST_APPTESTS_H

@@ -506,6 +506,7 @@ public:
     }
     void setWalletUnlockStakingOnly(bool unlock) override
     {
+        LOCK(m_wallet->cs_wallet);
         m_wallet->m_wallet_unlock_staking_only = unlock;
     }
     void setEnabledStaking(bool enabled) override

@@ -39,8 +39,13 @@ HelpMessageDialog::HelpMessageDialog(interfaces::Node& node, QWidget *parent, bo
         setWindowTitle(tr("About %1").arg(PACKAGE_NAME));
 
         std::string licenseInfo = LicenseInfo();
+        licenseInfo += "\n\nThis application uses Qt under the GNU Lesser General Public License version 3. "
+                       "Qt license texts are included in doc/third-party. Corresponding Qt and application "
+                       "source code and build recipes are provided with the release, so you can modify "
+                       "Qt and rebuild or relink the application.\n"
+                       "<https://github.com/ScooterCoinWallet/wallet-pos/releases>";
         /// HTML-format the license message from the core
-        QString licenseInfoHTML = QString::fromStdString(LicenseInfo());
+        QString licenseInfoHTML = QString::fromStdString(licenseInfo);
         // Make URLs clickable
         QRegExp uri("<(.*)>", Qt::CaseSensitive, QRegExp::RegExp2);
         uri.setMinimal(true); // use non-greedy matching

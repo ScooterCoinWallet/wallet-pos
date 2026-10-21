@@ -15,6 +15,29 @@
   </property>
   <layout class="QVBoxLayout" name="topLayout">
    <item>
+    <widget class="QFrame" name="scootercoinBrandHeader">
+     <layout class="QVBoxLayout" name="brandLayout">
+      <property name="spacing"><number>4</number></property>
+      <property name="leftMargin"><number>16</number></property>
+      <property name="topMargin"><number>12</number></property>
+      <property name="rightMargin"><number>16</number></property>
+      <property name="bottomMargin"><number>12</number></property>
+      <item>
+       <widget class="QLabel" name="scootercoinBrandTitle">
+        <property name="font"><font><pointsize>20</pointsize><bold>true</bold></font></property>
+        <property name="text"><string>ScooterCoin</string></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="scootercoinBrandSubtitle">
+        <property name="text"><string>Your proof-of-stake wallet</string></property>
+        <property name="wordWrap"><bool>true</bool></property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="labelAlerts">
      <property name="visible">
       <bool>false</bool>

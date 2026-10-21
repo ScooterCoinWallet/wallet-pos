@@ -16,7 +16,7 @@ BOOST_FIXTURE_TEST_SUITE(validation_tests, TestingSetup)
 static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
 {
     int maxHalvings = 64;
-    CAmount nInitialSubsidy = 50 * COIN;
+    CAmount nInitialSubsidy = 150 * COIN;
 
     CAmount nPreviousSubsidy = nInitialSubsidy * 2; // for height == 0
     BOOST_CHECK_EQUAL(nPreviousSubsidy, nInitialSubsidy * 2);
@@ -45,17 +45,21 @@ BOOST_AUTO_TEST_CASE(block_subsidy_test)
     TestBlockSubsidyHalvings(1000); // Just another interval
 }
 
-BOOST_AUTO_TEST_CASE(subsidy_limit_test)
+BOOST_AUTO_TEST_CASE(pow_subsidy_total_test)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    CAmount nSum = 0;
-    for (int nHeight = 0; nHeight < 14000000; nHeight += 1000) {
-        CAmount nSubsidy = GetBlockSubsidy(nHeight, chainParams->GetConsensus());
-        BOOST_CHECK(nSubsidy <= 50 * COIN);
-        nSum += nSubsidy * 1000;
-        BOOST_CHECK(MoneyRange(nSum));
+    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(1, params->GetConsensus()), 150 * COIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(2, params->GetConsensus()), PREMINE_COIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(3, params->GetConsensus()), 150 * COIN);
+    CAmount total = 0;
+    // This covers the actual PoW era; Bitcoin's 21-million cap is inapplicable.
+    for (int height = 1; height <= params->GetConsensus().nLastPOWBlock; ++height) {
+        const CAmount reward = GetBlockSubsidy(height, params->GetConsensus());
+        BOOST_CHECK(MoneyRange(reward));
+        total += reward;
     }
-    BOOST_CHECK_EQUAL(nSum, CAmount{2099999997690000});
+    // 385021 * 150 ordinary coins plus the extra 4000000 at height 2.
+    BOOST_CHECK_EQUAL(total, CAmount{61753150} * COIN);
 }
 
 static bool ReturnFalse() { return false; }

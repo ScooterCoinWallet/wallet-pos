@@ -144,6 +144,9 @@ struct TestMemPoolEntryHelper
     TestMemPoolEntryHelper &SigOpsCost(unsigned int _sigopsCost) { sigOpCost = _sigopsCost; return *this; }
 };
 
+class CDataStream;
+//! Read an inherited 80-byte PoW-header fixture with empty ScooterCoin PoS fields.
+CBlock ReadLegacyPoWBlock(CDataStream& stream);
 CBlock getBlock13b8a();
 
 // define an implicit conversion here so that uint256 may be used directly in BOOST_CHECK_*

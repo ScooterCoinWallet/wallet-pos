@@ -24,8 +24,7 @@
  * A UTXO entry.
  *
  * Serialized format:
- * - VARINT((coinbase ? 1 : 0) | (height << 1))
- * - VARINT((coinstake ? 2 : 0) | (height << 2))
+ * - VARINT((coinbase ? 1 : 0) | (coinstake ? 2 : 0) | (height << 2))
  * - the non-spent CTxOut (via CTxOutCompressor)
  */
 class Coin

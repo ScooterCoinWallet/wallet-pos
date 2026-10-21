@@ -223,6 +223,7 @@ BITCOIN_TESTS =\
   test/rpc_tests.cpp \
   test/sanity_tests.cpp \
   test/scheduler_tests.cpp \
+  test/scrypt_tests.cpp \
   test/script_p2sh_tests.cpp \
   test/script_tests.cpp \
   test/script_standard_tests.cpp \
@@ -233,6 +234,7 @@ BITCOIN_TESTS =\
   test/sigopcount_tests.cpp \
   test/skiplist_tests.cpp \
   test/streams_tests.cpp \
+  test/staking_signature_tests.cpp \
   test/sync_tests.cpp \
   test/util_threadnames_tests.cpp \
   test/timedata_tests.cpp \

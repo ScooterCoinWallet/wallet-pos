@@ -91,9 +91,14 @@ void AppTests::guiTests(BitcoinGUI* window)
     HandleCallback callback{"guiTests", *this};
     // Intercept browser launches so link tests never contact a website or send wallet data.
     struct UrlHandlerGuard {
-        ~UrlHandlerGuard() { QDesktopServices::unsetUrlHandler("https"); }
+        ~UrlHandlerGuard()
+        {
+            QDesktopServices::unsetUrlHandler("https");
+            QDesktopServices::unsetUrlHandler("http");
+        }
     } url_handler_guard;
     QDesktopServices::setUrlHandler("https", this, "recordProjectUrl");
+    QDesktopServices::setUrlHandler("http", this, "recordProjectUrl");
     const QList<QPair<QString, QUrl>> links{
         {"projectWebsiteAction", QUrl("https://scootercoin.org/")},
         {"blockExplorerAction", QUrl("https://explorer.scootercoin.org/")},

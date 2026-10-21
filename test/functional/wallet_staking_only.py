@@ -35,16 +35,21 @@ class StakingOnlyTest(BitcoinTestFramework):
         # Fully locked wallets can still update metadata without signing.
         assert_equal(node.walletprocesspsbt(psbt, False)["complete"], False)
         node.walletpassphrase(passphrase, 60, True)
+        # Funding after encryption exercises the refreshed HD seed/keypool too.
+        encrypted_psbt = node.walletcreatefundedpsbt(
+            [], {destination: 1}, 0, {"feeRate": 0.001}
+        )["psbt"]
         assert_raises_rpc_error(
             -13, "Wallet is unlocked for staking only",
             node.dumpprivkey, mining_address,
         )
-        for arguments in [(psbt,), (psbt, True)]:
-            assert_raises_rpc_error(
-                -13, "Wallet is unlocked for staking only",
-                node.walletprocesspsbt, *arguments,
-            )
-        assert_equal(node.walletprocesspsbt(psbt, False)["complete"], False)
+        for candidate in [psbt, encrypted_psbt]:
+            for arguments in [(candidate,), (candidate, True)]:
+                assert_raises_rpc_error(
+                    -13, "Wallet is unlocked for staking only",
+                    node.walletprocesspsbt, *arguments,
+                )
+            assert_equal(node.walletprocesspsbt(candidate, False)["complete"], False)
 
         # A failed ordinary unlock cannot silently clear staking-only mode.
         assert_raises_rpc_error(
@@ -57,7 +62,7 @@ class StakingOnlyTest(BitcoinTestFramework):
         )
         node.walletlock()
         node.walletpassphrase(passphrase, 60, False)
-        signed = node.walletprocesspsbt(psbt)
+        signed = node.walletprocesspsbt(encrypted_psbt)
         assert_equal(signed["complete"], True)
         finalized = node.finalizepsbt(signed["psbt"])
         assert_equal(finalized["complete"], True)

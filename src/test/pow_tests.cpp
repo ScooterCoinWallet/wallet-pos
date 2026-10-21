@@ -20,52 +20,51 @@ BOOST_AUTO_TEST_CASE(regtest_genesis_has_valid_scrypt_proof)
     BOOST_CHECK(params->Checkpoints().mapCheckpoints.at(0) == genesis.GetHash());
 }
 
-/* Test calculation of next difficulty target with no constraints applying */
+// These vectors exercise ScooterCoin's exponential retarget, not Bitcoin's
+// historical linear 2016-block retarget. The compact targets below were also
+// calculated independently with high-precision exp(p/q), including /16 truncation.
 BOOST_AUTO_TEST_CASE(get_next_work)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1261130161; // Block #30240
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 32255;
-    pindexLast.nTime = 1262152739;  // Block #32255
-    pindexLast.nBits = 0x1d00ffff;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00d86aU);
+    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+    CBlockIndex last;
+    last.nHeight = 32255;
+    last.nTime = 1000150;
+    last.nBits = 0x1d00ffff;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000000, params->GetConsensus()), last.nBits);
 }
 
-/* Test the constraint on the upper bound for next work */
 BOOST_AUTO_TEST_CASE(get_next_work_pow_limit)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1231006505; // Block #0
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 2015;
-    pindexLast.nTime = 1233061996;  // Block #2015
-    pindexLast.nBits = 0x1d00ffff;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00ffffU);
+    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+    CBlockIndex last;
+    last.nHeight = 2015;
+    last.nTime = 1003000;
+    last.nBits = UintToArith256(params->GetConsensus().powLimit).GetCompact();
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000000, params->GetConsensus()), last.nBits);
 }
 
-/* Test the constraint on the lower bound for actual time taken */
 BOOST_AUTO_TEST_CASE(get_next_work_lower_limit_actual)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1279008237; // Block #66528
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 68543;
-    pindexLast.nTime = 1279297671;  // Block #68543
-    pindexLast.nBits = 0x1c05a3f4;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1c0168fdU);
+    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+    CBlockIndex last;
+    last.nHeight = 68543;
+    last.nTime = 1000000;
+    last.nBits = 0x1c05a3f4;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000000, params->GetConsensus()), 0x1c05a294U);
+    // A negative interval falls back to nominal spacing, leaving work unchanged.
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000001, params->GetConsensus()), last.nBits);
 }
 
-/* Test the constraint on the upper bound for actual time taken */
 BOOST_AUTO_TEST_CASE(get_next_work_upper_limit_actual)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1263163443; // NOTE: Not an actual block time
-    CBlockIndex pindexLast;
-    pindexLast.nHeight = 46367;
-    pindexLast.nTime = 1269211443;  // Block #46367
-    pindexLast.nBits = 0x1c387f6f;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00e1fdU);
+    const auto params = CreateChainParams(CBaseChainParams::MAIN);
+    CBlockIndex last;
+    last.nHeight = 46367;
+    last.nBits = 0x1c387f6f;
+    last.nTime = 1003000;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000000, params->GetConsensus()), 0x1c399250U);
+    last.nTime = 2000000;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&last, 1000000, params->GetConsensus()), 0x1c399250U);
 }
 
 BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_negative_target)

@@ -59,6 +59,7 @@ endef
 # Qt generates bootstrap-private module metadata while building qtbase/src.
 # Configure translation host tools only after those modules and libraries exist.
 define $(package)_build_cmds
+  $(MAKE) sub-src-qmake_all && \
   $(MAKE) -C src && \
   cd ../qttools/src/linguist/lrelease && ../../../../qtbase/bin/qmake lrelease.pro -o Makefile && $(MAKE) && \
   cd ../lupdate && ../../../../qtbase/bin/qmake lupdate.pro -o Makefile && $(MAKE) && \

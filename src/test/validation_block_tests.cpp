@@ -264,7 +264,13 @@ BOOST_AUTO_TEST_CASE(mempool_locks_reorg)
         funded_block->vtx.push_back(funding_tx);
         const auto main_block = FinalizeBlock(funded_block);
         BOOST_REQUIRE(ProcessBlock(main_block));
-        const uint256 tip_init = main_block->GetHash();
+        constexpr size_t reorg_depth = 12;
+        std::shared_ptr<const CBlock> main_tip = main_block;
+        for (size_t depth = 1; depth < reorg_depth; ++depth) {
+            main_tip = GoodBlock(main_tip->GetHash());
+            BOOST_REQUIRE(ProcessBlock(main_tip));
+        }
+        const uint256 tip_init = main_tip->GetHash();
 
         std::vector<CTransactionRef> txs;
         for (unsigned int index = 0; index < funding.vout.size(); ++index) {
@@ -276,7 +282,7 @@ BOOST_AUTO_TEST_CASE(mempool_locks_reorg)
             txs.push_back(MakeTransactionRef(spending));
         }
 
-        // A shallow competing branch spends the same mature input elsewhere.
+        // A bounded multi-block fork spends the same mature input elsewhere.
         // All 22 dependent mempool transactions must disappear atomically.
         CMutableTransaction conflict = funding;
         conflict.vout.resize(1);
@@ -284,7 +290,11 @@ BOOST_AUTO_TEST_CASE(mempool_locks_reorg)
         auto fork_block = Block(split_hash);
         fork_block->vtx.push_back(MakeTransactionRef(conflict));
         const auto fork_first = FinalizeBlock(fork_block);
-        const auto fork_tip = GoodBlock(fork_first->GetHash());
+        std::vector<std::shared_ptr<const CBlock>> fork_blocks{fork_first};
+        while (fork_blocks.size() <= reorg_depth) {
+            fork_blocks.push_back(GoodBlock(fork_blocks.back()->GetHash()));
+        }
+        const auto fork_tip = fork_blocks.back();
         {
             LOCK(cs_main);
             TxValidationState state;
@@ -317,8 +327,7 @@ BOOST_AUTO_TEST_CASE(mempool_locks_reorg)
             }
         }};
         while (!observer_ready.load()) std::this_thread::yield();
-        BOOST_CHECK(ProcessBlock(fork_first));
-        BOOST_CHECK(ProcessBlock(fork_tip));
+        for (const auto& block : fork_blocks) BOOST_CHECK(ProcessBlock(block));
         processing_done = true;
         rpc_thread.join(); // A failed fork must report failure rather than hang forever.
         BOOST_CHECK_EQUAL(fork_tip->GetHash(), ::ChainActive().Tip()->GetBlockHash());

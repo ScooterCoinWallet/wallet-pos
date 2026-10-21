@@ -9,9 +9,9 @@ format. It does not introduce a coin swap or a new blockchain.
   through `walletprocesspsbt`. Requests with `sign=false` can still update PSBT
   metadata. Fully unlocking the wallet permits signing as before.
 - Initialize the version-warning confirmation window before it is used.
-- Correct the in-memory unconfirmed-output height marker to fit ScooterCoin's
-  30-bit coin-height field, so relative-lock checks recognize mempool parents.
-  The on-disk coin serialization is unchanged.
+- Fix a transaction-validation robustness issue that could cause node failure.
+  Upgrading is recommended, including for staking nodes. The on-disk coin
+  serialization and mainnet consensus rules are unchanged.
 - Report money supply from the validated active-chain tip rather than an
   unvalidated header. This RPC value is not a calculation of spendable supply
   after provably unspendable outputs or address-based burns.

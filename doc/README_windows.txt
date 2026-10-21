@@ -34,7 +34,8 @@ Source, releases and issues: https://github.com/ScooterCoinWallet/wallet-pos
 Third-party software
 --------------------
 The graphical application uses Qt under LGPL version 3. Its license texts are
-in doc\third-party. The release provides the corresponding application source,
+in doc\third-party. Other dependency licenses and copyright notices are included
+in doc\third-party\NOTICES.txt. The release provides the corresponding application source,
 dependency source archives and build recipes. You may modify Qt and rebuild or
 relink the application; no signing key is required to run your own build.
 See doc\build-windows.md for cross-compilation instructions. The application

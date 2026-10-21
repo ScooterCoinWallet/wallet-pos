@@ -360,7 +360,7 @@ BOOST_AUTO_TEST_CASE(descriptor_test)
     // Addr and raw tests
     CheckUnparsable("", "addr(asdf)", "Address is not valid"); // Invalid address
     CheckUnparsable("", "raw(asdf)", "Raw script is not hex"); // Invalid script
-    CheckUnparsable("", "raw(Ãœ)#00000000", "Invalid characters in payload"); // Invalid chars
+    CheckUnparsable("", "raw(Ü)#00000000", "Invalid characters in payload"); // Invalid chars
 }
 
 BOOST_AUTO_TEST_SUITE_END()

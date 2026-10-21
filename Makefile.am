@@ -61,7 +61,8 @@ WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/bitcoin.ico \
   $(top_srcdir)/doc/build-windows.md \
   $(top_srcdir)/doc/release-notes/release-notes-0.20.1.md \
   $(top_srcdir)/doc/third-party/qt-LGPL-3.0.txt \
-  $(top_srcdir)/doc/third-party/qt-GPL-3.0.txt
+  $(top_srcdir)/doc/third-party/qt-GPL-3.0.txt \
+  $(top_srcdir)/doc/third-party/NOTICES.txt
 
 OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/$(OSX_BACKGROUND_SVG) \

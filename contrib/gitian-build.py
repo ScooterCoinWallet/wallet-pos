@@ -98,7 +98,7 @@ def sign():
         subprocess.check_call('cp inputs/scootercoin-' + args.version + '-win-unsigned.tar.gz inputs/scootercoin-win-unsigned.tar.gz', shell=True)
         subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../scootercoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian/', '../scootercoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call('mv build/out/scootercoin-*win64-setup.exe ../scootercoin-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/scootercoin-*-setup.exe ../scootercoin-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nSigning ' + args.version + ' MacOS')

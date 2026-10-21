@@ -1,11 +1,11 @@
 AC_PREREQ([2.69])
 define(_CLIENT_VERSION_MAJOR, 0)
 define(_CLIENT_VERSION_MINOR, 20)
-define(_CLIENT_VERSION_REVISION, 0)
+define(_CLIENT_VERSION_REVISION, 1)
 define(_CLIENT_VERSION_BUILD, 0)
-define(_CLIENT_VERSION_RC, 1)
+define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2020)
+define(_COPYRIGHT_YEAR, 2026)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Scootercoin Core]])
 AC_INIT([Scootercoin Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/ScooterCoinWallet/wallet-pos/issues],[scootercoin],[https://scootercoin.org/])
@@ -528,6 +528,22 @@ case $host in
      dnl -static is interpreted by libtool, where it has a different meaning.
      dnl In libtool-speak, it's -all-static.
      AX_CHECK_LINK_FLAG([[-static]],[LIBTOOL_APP_LDFLAGS="$LIBTOOL_APP_LDFLAGS -all-static"])
+
+     dnl Bitness of the NSIS installer. i686 builds are large-address-aware so the
+     dnl node can use more than 2 GiB of address space on 64-bit Windows.
+     case $host in
+       x86_64-*)
+         WINDOWS_BITS=64
+         ;;
+       i?86-*)
+         WINDOWS_BITS=32
+         AX_CHECK_LINK_FLAG([[-Wl,--large-address-aware]], [LDFLAGS="$LDFLAGS -Wl,--large-address-aware"], [AC_MSG_ERROR([--large-address-aware is required for 32-bit Windows builds])])
+         ;;
+       *)
+         AC_MSG_ERROR("Could not determine win32/win64 for installer")
+         ;;
+     esac
+     AC_SUBST(WINDOWS_BITS)
 
      AC_PATH_PROG([MAKENSIS], [makensis], none)
      if test x$MAKENSIS = xnone; then

@@ -158,6 +158,20 @@ public:
 
 BOOST_FIXTURE_TEST_SUITE(versionbits_tests, TestingSetup)
 
+// Warning thresholds must use the configured window, never an uninitialized
+// consensus member. These heights affect warning display, not activation.
+BOOST_AUTO_TEST_CASE(chainparams_warning_height)
+{
+    const auto main = CreateChainParams(CBaseChainParams::MAIN);
+    const auto test = CreateChainParams(CBaseChainParams::TESTNET);
+    const auto regtest = CreateChainParams(CBaseChainParams::REGTEST);
+    BOOST_CHECK_EQUAL(main->GetConsensus().MinBIP9WarningHeight, 577);
+    BOOST_CHECK_EQUAL(test->GetConsensus().MinBIP9WarningHeight, 2017);
+    BOOST_CHECK_EQUAL(regtest->GetConsensus().MinBIP9WarningHeight, 0);
+    BOOST_CHECK_EQUAL(main->GetConsensus().SegwitHeight, 1);
+    BOOST_CHECK_EQUAL(test->GetConsensus().SegwitHeight, 1);
+}
+
 BOOST_AUTO_TEST_CASE(versionbits_test)
 {
     for (int i = 0; i < 64; i++) {

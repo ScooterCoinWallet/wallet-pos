@@ -6,7 +6,12 @@
 #include <rpc/client.h>
 #include <rpc/util.h>
 
+#include <chain.h>
+#include <validation.h>
 #include <core_io.h>
+#include <key.h>
+#include <key_io.h>
+#include <script/standard.h>
 #include <interfaces/chain.h>
 #include <node/context.h>
 #include <test/util/setup_common.h>
@@ -41,6 +46,32 @@ UniValue CallRPC(std::string args)
 
 
 BOOST_FIXTURE_TEST_SUITE(rpc_tests, TestingSetup)
+
+BOOST_AUTO_TEST_CASE(rpc_supply_uses_validated_chain)
+{
+    LOCK(cs_main);
+    const CBlockIndex* tip = ::ChainActive().Tip();
+    BOOST_REQUIRE(tip != nullptr);
+    const uint64_t expected_supply = tip->nMoneySupply / COIN;
+    CBlockIndex header;
+    header.SetNull();
+    header.nHeight = tip->nHeight + 1;
+    header.nMoneySupply = (expected_supply + 123) * COIN;
+    struct RestoreHeader {
+        CBlockIndex* saved;
+        ~RestoreHeader() { pindexBestHeader = saved; }
+    } restore{pindexBestHeader};
+
+    // Headers have not passed full block validation and cannot report supply.
+    pindexBestHeader = &header;
+    const UniValue info = CallRPC("getblockchaininfo");
+    BOOST_CHECK_EQUAL(find_value(info, "moneysupply").get_int64(), expected_supply);
+    BOOST_CHECK_EQUAL(find_value(info, "headers").get_int(), header.nHeight);
+    BOOST_CHECK_EQUAL(find_value(info, "blocks").get_int(), tip->nHeight);
+
+    pindexBestHeader = nullptr;
+    BOOST_CHECK_EQUAL(find_value(CallRPC("getblockchaininfo"), "moneysupply").get_int64(), expected_supply);
+}
 
 BOOST_AUTO_TEST_CASE(rpc_rawparams)
 {
@@ -102,16 +133,26 @@ BOOST_AUTO_TEST_CASE(rpc_togglenetwork)
 BOOST_AUTO_TEST_CASE(rpc_rawsign)
 {
     UniValue r;
-    // input is a 1-of-2 multisig (so is output):
-    std::string prevout =
-      "[{\"txid\":\"b4cc287e58f87cdae59417329f710f3ecd75a4ee1d2872b7248f50977c8493f3\","
-      "\"vout\":1,\"scriptPubKey\":\"a914b10c9df5f7edf436c697f02f1efdba4cf399615187\","
-      "\"redeemScript\":\"512103debedc17b3df2badbcdd86d5feb4562b86fe182e5998abd8bcd4f122c6155b1b21027e940bb73ab8732bfdf7f9216ecefca5b94d6df834e77e108f68e66f126044c052ae\"}]";
-    r = CallRPC(std::string("createrawtransaction ")+prevout+" "+
+    // Generate keys in the selected network format instead of using Bitcoin WIFs.
+    CKey key1, key2;
+    key1.MakeNewKey(true);
+    key2.MakeNewKey(true);
+    const CScript redeem = GetScriptForMultisig(1, {key1.GetPubKey(), key2.GetPubKey()});
+    const CScript output = GetScriptForDestination(ScriptHash(redeem));
+    UniValue input(UniValue::VOBJ);
+    input.pushKV("txid", "b4cc287e58f87cdae59417329f710f3ecd75a4ee1d2872b7248f50977c8493f3");
+    input.pushKV("vout", 1);
+    input.pushKV("scriptPubKey", HexStr(output));
+    input.pushKV("redeemScript", HexStr(redeem));
+    UniValue inputs(UniValue::VARR);
+    inputs.push_back(input);
+    const std::string prevout = inputs.write();
+    r = CallRPC(std::string("createrawtransaction ") + prevout + " " +
       "{\"3HqAe9LtNBjnsfM4CyYaWTnvCaUYT7v4oZ\":11}");
     std::string notsigned = r.get_str();
-    std::string privkey1 = "\"KzsXybp9jX64P5ekX1KUxRQ79Jht9uzW7LorgwE65i5rWACL6LQe\"";
-    std::string privkey2 = "\"Kyhdf5LuKTRx4ge69ybABsiUAWjVRK4XGxAKk2FQLp2HjGMy87Z4\"";
+    UniValue encoded1(EncodeSecret(key1)), encoded2(EncodeSecret(key2));
+    const std::string privkey1 = encoded1.write();
+    const std::string privkey2 = encoded2.write();
     r = CallRPC(std::string("signrawtransactionwithkey ")+notsigned+" [] "+prevout);
     BOOST_CHECK(find_value(r.get_obj(), "complete").get_bool() == false);
     r = CallRPC(std::string("signrawtransactionwithkey ")+notsigned+" ["+privkey1+","+privkey2+"] "+prevout);

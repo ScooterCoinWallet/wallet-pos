@@ -1,0 +1,18 @@
+Use a matching 64-bit time value for the explicit Windows CRT conversion.
+MinGW i686 defaults to a 32-bit time_t; passing its address to _gmtime64_s
+reads beyond that object and can terminate the process during HTTP startup.
+
+--- a/evutil_time.c
++++ b/evutil_time.c
+@@ -188,7 +188,11 @@ evutil_date_rfc1123(char *date, const size_t datelen, const struct tm *tm)
+ 	static const char *MONTHS[] =
+ 		{ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+ 
++#if defined(_WIN32) && (defined(EVENT__HAVE__GMTIME64_S) || defined(EVENT__HAVE__GMTIME64))
++	__time64_t t = _time64(NULL);
++#else
+ 	time_t t = time(NULL);
++#endif
+ 
+ #if defined(EVENT__HAVE__GMTIME64_S) || !defined(_WIN32)
+ 	struct tm sys;

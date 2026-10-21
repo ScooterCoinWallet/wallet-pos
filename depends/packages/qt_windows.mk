@@ -53,17 +53,16 @@ endef
 define $(package)_config_cmds
   ./configure $($(package)_config_opts) && \
   echo 'host_build: QT_CONFIG ~= s/system-zlib/zlib' >> mkspecs/qconfig.pri && \
-  echo 'CONFIG += force_bootstrap' >> mkspecs/qconfig.pri && \
-  cd ../qttools/src/linguist/lrelease && ../../../../qtbase/bin/qmake lrelease.pro -o Makefile && \
-  cd ../lupdate && ../../../../qtbase/bin/qmake lupdate.pro -o Makefile && \
-  cd ../../../../qttranslations && ../qtbase/bin/qmake qttranslations.pro -o Makefile
+  echo 'CONFIG += force_bootstrap' >> mkspecs/qconfig.pri
 endef
 
+# Qt generates bootstrap-private module metadata while building qtbase/src.
+# Configure translation host tools only after those modules and libraries exist.
 define $(package)_build_cmds
   $(MAKE) -C src && \
-  $(MAKE) -C ../qttools/src/linguist/lrelease && \
-  $(MAKE) -C ../qttools/src/linguist/lupdate && \
-  $(MAKE) -C ../qttranslations
+  cd ../qttools/src/linguist/lrelease && ../../../../qtbase/bin/qmake lrelease.pro -o Makefile && $(MAKE) && \
+  cd ../lupdate && ../../../../qtbase/bin/qmake lupdate.pro -o Makefile && $(MAKE) && \
+  cd ../../../../qttranslations && ../qtbase/bin/qmake qttranslations.pro -o Makefile && $(MAKE)
 endef
 
 define $(package)_stage_cmds

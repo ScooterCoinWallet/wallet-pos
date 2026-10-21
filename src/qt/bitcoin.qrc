@@ -86,4 +86,7 @@
         <file alias="spinner-034">res/movies/spinner-034.png</file>
         <file alias="spinner-035">res/movies/spinner-035.png</file>
     </qresource>
+    <qresource prefix="/styles">
+        <file alias="scootercoin">res/scootercoin.qss</file>
+    </qresource>
 </RCC>

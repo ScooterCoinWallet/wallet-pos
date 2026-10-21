@@ -13,6 +13,41 @@
 
 BOOST_FIXTURE_TEST_SUITE(psbt_wallet_tests, WalletTestingSetup)
 
+BOOST_AUTO_TEST_CASE(staking_only_psbt_cannot_sign)
+{
+    CKey key;
+    key.MakeNewKey(true);
+    auto spk_man = m_wallet.GetOrCreateLegacyScriptPubKeyMan();
+    {
+        LOCK2(m_wallet.cs_wallet, spk_man->cs_KeyStore);
+        BOOST_REQUIRE(spk_man->AddKeyPubKey(key, key.GetPubKey()));
+    }
+    CMutableTransaction previous;
+    previous.vin.emplace_back(COutPoint(uint256S("01"), 0));
+    previous.vout.emplace_back(2 * COIN, GetScriptForDestination(PKHash(key.GetPubKey())));
+    CMutableTransaction spending;
+    spending.vin.emplace_back(COutPoint(previous.GetHash(), 0));
+    spending.vout.emplace_back(COIN, CScript() << OP_TRUE);
+    PartiallySignedTransaction unsigned_psbt(spending);
+    unsigned_psbt.inputs[0].non_witness_utxo = MakeTransactionRef(previous);
+
+    m_wallet.m_wallet_unlock_staking_only = true;
+    auto staking_psbt = unsigned_psbt;
+    bool complete = false;
+    BOOST_REQUIRE_EQUAL(TransactionError::OK, m_wallet.FillPSBT(staking_psbt, complete, SIGHASH_ALL, true, true));
+    BOOST_CHECK(!complete);
+    BOOST_CHECK(staking_psbt.inputs[0].partial_sigs.empty());
+    BOOST_CHECK(staking_psbt.inputs[0].final_script_sig.empty());
+    BOOST_CHECK(staking_psbt.inputs[0].final_script_witness.IsNull());
+
+    // Explicit full unlock still authorizes signing the exact same transaction.
+    m_wallet.m_wallet_unlock_staking_only = false;
+    auto fully_unlocked_psbt = unsigned_psbt;
+    BOOST_REQUIRE_EQUAL(TransactionError::OK, m_wallet.FillPSBT(fully_unlocked_psbt, complete, SIGHASH_ALL, true, true));
+    BOOST_CHECK(complete);
+    BOOST_CHECK(!fully_unlocked_psbt.inputs[0].final_script_sig.empty());
+}
+
 BOOST_AUTO_TEST_CASE(psbt_updater_test)
 {
     auto spk_man = m_wallet.GetOrCreateLegacyScriptPubKeyMan();

@@ -4189,6 +4189,10 @@ UniValue walletprocesspsbt(const JSONRPCRequest& request)
     // Fill transaction with our data and also sign
     bool sign = request.params[1].isNull() ? true : request.params[1].get_bool();
     bool bip32derivs = request.params[3].isNull() ? true : request.params[3].get_bool();
+    LOCK(pwallet->cs_wallet);
+    if (sign && pwallet->m_wallet_unlock_staking_only) {
+        EnsureWalletIsUnlocked(pwallet);
+    }
     bool complete = true;
     const TransactionError err = pwallet->FillPSBT(psbtx, complete, nHashType, sign, bip32derivs);
     if (err != TransactionError::OK) {

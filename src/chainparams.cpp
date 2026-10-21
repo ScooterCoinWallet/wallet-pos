@@ -330,10 +330,12 @@ public:
 
         UpdateActivationParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1596107187, 398386, 0x1e0fffff, 1, 50 * COIN);
+        // The private regression chain needs a valid scrypt proof at its easy target.
+        // This deliberately resets regtest only; mainnet and testnet are unchanged.
+        genesis = CreateGenesisBlock(1596107187, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000002a62d284b34a40e18f27fc770bf26f7a61560ae6a072a2c95aabc60a129"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xfc44eaded503eb48afae3768f272d3ec731ada62b7aeb00d9636fdc73c5b7f98"));
+        assert(consensus.hashGenesisBlock == uint256S("0x43de7df3255ee0490d1c779ff74f69000259eb5eb75ea59fa6693376896c76e0"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4db42f7b571df82cc049231f8ac54100e0ba40b7dc9815e4870f52020975ba30"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -345,7 +347,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0x2b8d445931aa4ea9b52db1488d3641fa2d4f7a3c1f8151bfa99d017493129e97")},
+                {0, consensus.hashGenesisBlock},
             }
         };
 

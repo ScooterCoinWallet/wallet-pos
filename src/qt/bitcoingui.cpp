@@ -43,7 +43,9 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QDragEnterEvent>
+#include <QFile>
 #include <QListWidget>
 #include <QMenu>
 #include <QMenuBar>
@@ -124,6 +126,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 
     // Create the toolbars
     createToolBars();
+    applyProjectStyle(projectThemeAction->isChecked());
 
     // Create system tray icon and notification
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -373,6 +376,33 @@ void BitcoinGUI::createActions()
     showHelpMessageAction->setMenuRole(QAction::NoRole);
     showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Scootercoin command-line options").arg(PACKAGE_NAME));
 
+    projectWebsiteAction = new QAction(tr("ScooterCoin &website"), this);
+    projectWebsiteAction->setObjectName("projectWebsiteAction");
+    projectWebsiteAction->setStatusTip(tr("Open the ScooterCoin website in your default browser"));
+    blockExplorerAction = new QAction(tr("&Block explorer"), this);
+    blockExplorerAction->setObjectName("blockExplorerAction");
+    blockExplorerAction->setStatusTip(tr("Browse the ScooterCoin mainnet blockchain in your default browser"));
+    // Open only fixed project home pages on an explicit user action. Never send wallet data.
+    connect(projectWebsiteAction, &QAction::triggered, this, [this] {
+        if (!QDesktopServices::openUrl(QUrl(QStringLiteral("https://scootercoin.org/")))) {
+            QMessageBox::warning(this, tr("Open website"), tr("Could not open the browser. Visit https://scootercoin.org/ manually."));
+        }
+    });
+    connect(blockExplorerAction, &QAction::triggered, this, [this] {
+        if (!QDesktopServices::openUrl(QUrl(QStringLiteral("https://explorer.scootercoin.org/")))) {
+            QMessageBox::warning(this, tr("Open block explorer"), tr("Could not open the browser. Visit https://explorer.scootercoin.org/ manually."));
+        }
+    });
+    projectThemeAction = new QAction(tr("Use project &colours"), this);
+    projectThemeAction->setObjectName("projectThemeAction");
+    projectThemeAction->setCheckable(true);
+    projectThemeAction->setChecked(QSettings().value("UseScootercoinTheme", true).toBool());
+    projectThemeAction->setStatusTip(tr("Use ScooterCoin navigation colours, or return to the system appearance"));
+    connect(projectThemeAction, &QAction::toggled, this, [this](bool enabled) {
+        QSettings().setValue("UseScootercoinTheme", enabled);
+        applyProjectStyle(enabled);
+    });
+
     connect(quitAction, &QAction::triggered, qApp, QApplication::quit);
     connect(aboutAction, &QAction::triggered, this, &BitcoinGUI::aboutClicked);
     connect(aboutQtAction, &QAction::triggered, qApp, QApplication::aboutQt);
@@ -475,6 +505,7 @@ void BitcoinGUI::createMenuBar()
         settings->addSeparator();
     }
     settings->addAction(optionsAction);
+    settings->addAction(projectThemeAction);
 
     QMenu* window_menu = appMenuBar->addMenu(tr("&Window"));
 
@@ -529,6 +560,9 @@ void BitcoinGUI::createMenuBar()
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
     help->addSeparator();
+    help->addAction(projectWebsiteAction);
+    help->addAction(blockExplorerAction);
+    help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
 }
@@ -538,6 +572,7 @@ void BitcoinGUI::createToolBars()
     if(walletFrame)
     {
         QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
+        toolbar->setObjectName("scootercoinNavigation");
         appToolBar = toolbar;
         toolbar->setContextMenuPolicy(Qt::PreventContextMenu);
         toolbar->setMovable(false);
@@ -547,6 +582,9 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(stakeAction);
         toolbar->addAction(historyAction);
+        toolbar->addSeparator();
+        toolbar->addAction(projectWebsiteAction);
+        toolbar->addAction(blockExplorerAction);
         overviewAction->setChecked(true);
 
 #ifdef ENABLE_WALLET
@@ -569,6 +607,16 @@ void BitcoinGUI::createToolBars()
         m_wallet_selector_action->setVisible(false);
 #endif
     }
+}
+
+void BitcoinGUI::applyProjectStyle(bool enabled)
+{
+    QString stylesheet;
+    if (enabled) {
+        QFile resource(QStringLiteral(":/styles/scootercoin"));
+        if (resource.open(QIODevice::ReadOnly)) stylesheet = QString::fromUtf8(resource.readAll());
+    }
+    setStyleSheet(stylesheet);
 }
 
 void BitcoinGUI::setClientModel(ClientModel *_clientModel)

@@ -20,6 +20,7 @@
 #endif
 
 #include <QAction>
+#include <QDesktopServices>
 #include <QEventLoop>
 #include <QLineEdit>
 #include <QScopedPointer>
@@ -88,10 +89,42 @@ void AppTests::appTests()
 void AppTests::guiTests(BitcoinGUI* window)
 {
     HandleCallback callback{"guiTests", *this};
+    // Intercept browser launches so link tests never contact a website or send wallet data.
+    struct UrlHandlerGuard {
+        ~UrlHandlerGuard() { QDesktopServices::unsetUrlHandler("https"); }
+    } url_handler_guard;
+    QDesktopServices::setUrlHandler("https", this, "recordProjectUrl");
+    const QList<QPair<QString, QUrl>> links{
+        {"projectWebsiteAction", QUrl("https://scootercoin.org/")},
+        {"blockExplorerAction", QUrl("https://explorer.scootercoin.org/")},
+    };
+    for (const auto& link : links) {
+        QAction* project_action = window->findChild<QAction*>(link.first);
+        QVERIFY(project_action);
+        const int previous = m_project_urls.size();
+        project_action->trigger();
+        QCOMPARE(m_project_urls.size(), previous + 1);
+        QCOMPARE(m_project_urls.last(), link.second);
+        QVERIFY(!m_project_urls.last().hasQuery());
+        QVERIFY(!m_project_urls.last().hasFragment());
+    }
+    QAction* theme_action = window->findChild<QAction*>("projectThemeAction");
+    QVERIFY(theme_action);
+    theme_action->setChecked(true);
+    QVERIFY(!window->styleSheet().isEmpty());
+    theme_action->setChecked(false);
+    QVERIFY(window->styleSheet().isEmpty());
+    theme_action->setChecked(true);
+    QVERIFY(!window->styleSheet().isEmpty());
     connect(window, &BitcoinGUI::consoleShown, this, &AppTests::consoleTests);
     expectCallback("consoleTests");
     QAction* action = window->findChild<QAction*>("openRPCConsoleAction");
     action->activate(QAction::Trigger);
+}
+
+void AppTests::recordProjectUrl(const QUrl& url)
+{
+    m_project_urls.append(url);
 }
 
 //! Entry point for RPCConsole tests.

@@ -190,6 +190,7 @@ BASE_SCRIPTS = [
     'wallet_listsinceblock.py',
     'p2p_leak.py',
     'wallet_encryption.py',
+    'wallet_staking_only.py',
     'feature_dersig.py',
     'feature_cltv.py',
     'rpc_uptime.py',

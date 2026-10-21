@@ -11,6 +11,15 @@
 
 BOOST_FIXTURE_TEST_SUITE(pow_tests, BasicTestingSetup)
 
+BOOST_AUTO_TEST_CASE(regtest_genesis_has_valid_scrypt_proof)
+{
+    const auto params = CreateChainParams(CBaseChainParams::REGTEST);
+    const CBlock& genesis = params->GenesisBlock();
+    BOOST_CHECK(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, params->GetConsensus()));
+    BOOST_CHECK(genesis.GetHash() == params->GetConsensus().hashGenesisBlock);
+    BOOST_CHECK(params->Checkpoints().mapCheckpoints.at(0) == genesis.GetHash());
+}
+
 /* Test calculation of next difficulty target with no constraints applying */
 BOOST_AUTO_TEST_CASE(get_next_work)
 {

@@ -1,0 +1,39 @@
+/* Scoped project colours. Wallet forms and security status retain native styling. */
+QToolBar#scootercoinNavigation {
+    background: #f3f0fa;
+    border: 0;
+    border-bottom: 1px solid #dcd9ed;
+    padding: 6px;
+    spacing: 4px;
+}
+QToolBar#scootercoinNavigation QToolButton {
+    color: #1b1e61;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 7px;
+}
+QToolBar#scootercoinNavigation QToolButton:hover {
+    background: #e6e1f3;
+}
+QToolBar#scootercoinNavigation QToolButton:checked {
+    background: #f8d8ed;
+    border-bottom-color: #1b1e61;
+    font-weight: bold;
+}
+QToolBar#scootercoinNavigation QToolButton:focus {
+    border-color: #1b1e61;
+}
+QToolBar#scootercoinNavigation QToolButton:disabled {
+    color: #777777;
+}
+QFrame#scootercoinBrandHeader {
+    background: #1b1e61;
+    border-radius: 7px;
+}
+QLabel#scootercoinBrandTitle {
+    color: #ffffff;
+}
+QLabel#scootercoinBrandSubtitle {
+    color: #f8c6e8;
+}

@@ -1864,6 +1864,9 @@ software, please send email to
 
 SOURCE: libevent-2.1.12-stable.tar.gz
 SHA256: 92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
+LOCAL MODIFICATION: Windows builds apply depends/patches/libevent/mingw-time64.patch
+to match the time value width to the explicit 64-bit CRT date conversion.
+The patch and build recipe are included in the wallet source bundle.
 
 --- libevent-2.1.12-stable.tar.gz/LICENSE ---
 Libevent is available for use under the following license, commonly known

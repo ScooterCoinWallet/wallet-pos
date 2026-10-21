@@ -15,6 +15,8 @@ $(package)_patches=translation_tool_path.patch
 
 # This is a Windows-only recipe. Do not apply the legacy Qt 5.9 Mac/Android/X11
 # patches to these sources or change other platforms' Qt versions implicitly.
+# Qt 5.15.19 Windows locale code uses std::size; build this dependency with C++17.
+# The wallet and other platforms keep their existing language settings.
 define $(package)_set_vars
 $(package)_config_opts=-release -static -opensource -confirm-license -c++std c++17
 $(package)_config_opts+=-prefix $(host_prefix) -hostprefix $(build_prefix)
